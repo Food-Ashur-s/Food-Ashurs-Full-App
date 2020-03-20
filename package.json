@@ -4,7 +4,12 @@
   "description": "# Food-Ashurs - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -16,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/issues"
   },
-  "homepage": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App#readme",
+  "homepage": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App",
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
     "enzyme": "^3.11.0",
