@@ -5,7 +5,7 @@ import App from './app.js';
 
 function Entry() {
     return (
-            <App />
+        <App />
     )
 
 } // end of Entry Function 

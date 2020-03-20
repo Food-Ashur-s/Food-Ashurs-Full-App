@@ -9,12 +9,27 @@ const DonorMethod = (props) => {
     props.get();
   }
 
+  const postData = (e, donor) => {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+    let name = formData.post('name');
+    let type = formData.post('typeOfFood');
+    let available_time = formData.post('atTime');
+    let foodAmount = formData.post('foodamount');
+    props.post({name , type , available_time , foodAmount});
+  };
+
+
   const updateTeam = (e, team) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     let name = formData.get('name');
     let id = formData.get('id');
-    props.put(id, { name })
+    let type = formData.get('typeOfFood');
+    let available_time = formData.get('atTime');
+    let foodAmount = formData.get('foodamount');
+
+    props.put(id, { name , type,available_time,foodAmount })
   }
 
   useEffect(() => {
@@ -29,21 +44,37 @@ const DonorMethod = (props) => {
 
   return (
     <section>
-      <button onClick={fetchData}>Get Teams</button>
+         <form onSubmit={() => postData()}>
+          <input name="name"  placeholder="Enter A Name "/>
+          <input type="hidden" name="id"  />
+          <label> 
+          <input name="typeOfFood" type="radio" />
+          Fast Food </label>
+          <label>  
+          <input name="typeOfFood" type="radio" />
+          Deserts </label>
+          <label> 
+          <input name="typeOfFood" type="radio" />
+          Eastren Food </label>
+          <input name="atTime"  placeholder="Enter Available Time "/>
+          <input name="foodamount"  placeholder="Enter Food Amount(optional) "/>
 
-      {/* {props.data.results.map((record, idx) => (
-        <div key={idx}>
-          {record.name}
-        </div>
-      ))} */}
-
+          <button>Add New Donor</button>
+        </form>
+      <button onClick={fetchData}>Get All Donors</button>
+    
       {props.data.results.map((record, idx) => (
         <form key={idx} onSubmit={(e) => updateTeam(e, record)}>
-          <input name="name" defaultValue={record.name} />
+          <input name="name" defaultValue={record.name} placeholder="Enter A Name "/>
           <input type="hidden" name="id" defaultValue={record._id} />
-          {/* <button>Update Team</button> */}
+          <input name="typeOfFood" type="radio" />
+          <input name="typeOfFood" type="radio" />
+          <input name="typeOfFood" type="radio" />
+          <input name="atTime" defaultValue={record.time} placeholder="Enter Available Time "/>
+          <input name="foodamount" defaultValue={record.foodAmount} placeholder="Enter Food Amount(optional) "/>
         </form>
       ))}
+
     </section>
   )
 }
@@ -60,3 +91,4 @@ const mapDispatchToProps = (dispatch, getState) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DonorMethod);
+// export default DonorMethod;
