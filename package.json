@@ -1,0 +1,20 @@
+{
+  "name": "Food-Ashurs-Full-App",
+  "version": "1.0.0",
+  "description": "# Food-Ashurs - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Food-Ashur-s/Food-Ashurs-Full-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/issues"
+  },
+  "homepage": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App#readme"
+}
