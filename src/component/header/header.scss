@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bellota+Text|Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bellota+Text|Righteous|Trade+Winds&display=swap');
 html{
     box-sizing: border-box;
 }
@@ -17,10 +17,11 @@ body{
 h1{
   width: 100%;
   color: #FFF;
-  font-family: 'Bellota Text', cursive;
+  font-family: 'Righteous', cursive;
   text-align: center;
   font-size: 30px;
-  letter-spacing: 6px;
+  margin-left: 10%;
+  letter-spacing: 10px;
 }
 .open{
     position: fixed;

@@ -1,15 +1,22 @@
 /* eslint-disable no-unused-vars */
 
 
-import React , {useState} from 'react';
+import React  from 'react';
 import '../header/header.scss';
 import $ from 'jquery';
 import logo from '../../assest/mainLogo.PNG';
+// import ReactWOW from 'react-wow';
+import WOW from 'wowjs';
 window.$ = window.jQuery = require('jquery');
 
-const Header = (props) =>{
+class Header extends React.Component{
 
-  const handleClick = () =>{
+  componentDidMount(){
+    const wow = new WOW.WOW();
+    wow.init();
+  }
+
+  handleClick = () =>{
     $(document).ready(function() {
       $(document).delegate('.open', 'click', function(event){
         $(this).addClass('oppenned');
@@ -25,38 +32,43 @@ const Header = (props) =>{
     });
   };
   //   const [open , setOpen] = useState(false);
+  render(){
 
-  return (
-    <>
-      <div className='header-containar'>
-        <img src={logo} height="70px" width="200px"/>
-        <h1>Food Ashurs</h1>
-        <div  className="open" onClick={handleClick}>
-          <span className="cls"></span>
-          <span>
-            <ul className="sub-menu ">
-              <li>
-                <a href="#profile" title="profile">My Account</a>
-              </li>
-              <li>
-                <a href="#Donor" title="Donor">Donor</a>
-              </li>
-              <li>
-                <a href="#resipient" title="resipient">Order</a>
-              </li>
-              <li>
-                <a href="#aboutUs" title="aboutUs">About Us</a>
-              </li>
-              <li>
-                <a href="#setting" title="setting">Log Out</a>
-              </li>
-            </ul>
-          </span>
-          <span className="cls"></span>
+    return (
+      <>
+        <div className='header-containar'>
+          <img src={logo} height="70px" width="200px"/>
+          <link rel="stylesheet" href="animate.min.css"></link>
+          <div className="wow pulse" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="6">
+            <h1>Food Ashurs</h1>
+          </div>
+          <div  className="open" onClick={this.handleClick}>
+            <span className="cls"></span>
+            <span>
+              <ul className="sub-menu ">
+                <li>
+                  <a href="#profile" title="profile">My Account</a>
+                </li>
+                <li>
+                  <a href="#Donor" title="Donor">Donor</a>
+                </li>
+                <li>
+                  <a href="#resipient" title="resipient">Order</a>
+                </li>
+                <li>
+                  <a href="#aboutUs" title="aboutUs">About Us</a>
+                </li>
+                <li>
+                  <a href="#setting" title="setting">Log Out</a>
+                </li>
+              </ul>
+            </span>
+            <span className="cls"></span>
+          </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
 
 export default Header;
