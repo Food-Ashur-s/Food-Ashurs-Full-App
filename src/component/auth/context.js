@@ -20,7 +20,7 @@ class LoginProvider extends React.Component {
   login = (username, password) => {
     fetch(`${API}/signin`, {
       method: 'post',
-      mode: 'cors',
+      mode: 'no-cors',
       cache: 'no-cache',
       headers: new Headers({
         'Authorization': `Basic ${btoa(`${username}:${password}`)}`
