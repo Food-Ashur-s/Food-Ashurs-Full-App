@@ -31,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0-beta.17",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
     "react-hookstore": "^1.4.3",
@@ -43,5 +44,17 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
