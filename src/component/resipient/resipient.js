@@ -11,6 +11,8 @@ function Recipients (props){
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState({});
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [updated, setUpdate] = useState({});
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -42,11 +44,21 @@ function Recipients (props){
     callAPI(`${recipientsAPI}/${id}`, 'DELETE', undefined, deleteHandeler );
   };
 
-  const UpdteItem = updatedItem =>{
+  const handelUpdateChange = e => {
+    setUpdate({...updated, [e.target.name]: e.target.value});
+  };
+
+  const UpdteItem = e =>{
+    e.preventDefault();
+    console.log(updated);
+
     const updateHandeler  = newItem =>
       setRecipientList(recipientList.map(recipient => recipient._id === newItem._id ? newItem : recipient));
-    callAPI(`${recipientsAPI}/${updatedItem._id}`, 'PUT', updatedItem, updateHandeler );
+    callAPI(`${recipientsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
+    setShowUpdate(!showUpdate);
+
   };
+
   const getRecipientList = () => {
     const getHandeler = data => setRecipientList(data.results);
     callAPI( recipientsAPI, 'GET', undefined, getHandeler );
@@ -61,6 +73,11 @@ function Recipients (props){
     setShowDetails(!showDetails);
   };
 
+  const toggleUpdate = id => {
+    let updated = recipientList.filter( item => item._id === id )[0] || {};
+    setUpdate(updated);
+    setShowUpdate(!showUpdate);
+  };
   return (
     <>
       <h1>Recipients</h1>
@@ -85,12 +102,12 @@ function Recipients (props){
 
       <div>
         {recipientList.map((recipient, idx) =>{
-          console.log(recipient);
           return <ul key={idx}>
             <li>
               {recipient.name}
             </li>
             <button onClick={()=> toggleDetails(recipient._id)}>More Detail</button>
+            <button onClick={()=> toggleUpdate(recipient._id)}>Update</button>
             <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
           </ul>;
         })}
@@ -107,6 +124,34 @@ function Recipients (props){
             <div className="item">
             description: {details.description}
             </div>
+          </div>
+        </Model>
+      </When>
+      <When condition={showUpdate}>
+        <Model title='Recipient update' close={toggleUpdate}>
+          <div className="recipient-updated">
+            <form onSubmit={UpdteItem} value={updated}>
+              <input type='hidden' name='_id' value={details._id} />
+              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <br/>
+              <label> Eastern Food
+                <input type='radio' name='requestType' value='eastern food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Fast Food
+                <input type='radio' name='requestType' value='fast food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Desserts
+                <input type='radio' name='requestType' value='desserts' onClick={handelUpdateChange} required />
+              </label>
+              <br/>
+              <input type='text' name='identity' placeholder='type your identity' defaultValue={updated.identity} onChange={handelUpdateChange} required />
+              <br/>
+              <input type='number' name='contactNumber' placeholder='type your contactNumber' defaultValue={updated.contactNumber} onChange={handelUpdateChange} required />
+              <br/>
+              <input type='text' name='description' placeholder='description'  defaultValue={updated.description} onChange={handelUpdateChange} />
+              <br/>
+              <button >Submit</button>
+            </form>
           </div>
         </Model>
       </When>

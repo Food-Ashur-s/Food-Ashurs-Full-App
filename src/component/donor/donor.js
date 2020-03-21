@@ -11,6 +11,8 @@ function Donors (props){
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState({});
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [updated, setUpdate] = useState({});
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -42,10 +44,20 @@ function Donors (props){
     callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
   };
 
-  const UpdteItem = updatedItem =>{
-    const _updateData  = newItem =>
+
+  const handelUpdateChange = e => {
+    setUpdate({...updated, [e.target.name]: e.target.value});
+  };
+
+  const UpdteItem = e =>{
+    e.preventDefault();
+    console.log(updated);
+
+    const updateHandeler  = newItem =>
       setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
-    callAPI(`${donorsAPI}/${updatedItem._id}`, 'PUT', updatedItem, _updateData );
+    callAPI(`${donorsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
+    setShowUpdate(!showUpdate);
+
   };
   const getdonorList = () => {
     const _updateState = data =>
@@ -60,6 +72,12 @@ function Donors (props){
     let details = donorList.filter( item => item._id === id )[0] || {};
     setDetails(details);
     setShowDetails(!showDetails);
+  };
+
+  const toggleUpdate = id => {
+    let updated = donorList.filter( item => item._id === id )[0] || {};
+    setUpdate(updated);
+    setShowUpdate(!showUpdate);
   };
 
   return (
@@ -90,6 +108,7 @@ function Donors (props){
               {donor.name}
             </li>
             <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
+            <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
             <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
           </ul>;
         })}
@@ -105,6 +124,33 @@ function Donors (props){
             <div className="item">
             Food Amount: {details.amount}
             </div>
+          </div>
+        </Model>
+      </When>
+      <When condition={showUpdate}>
+        <Model title='Recipient update' close={toggleUpdate}>
+          <div className="recipient-updated">
+            <form onSubmit={UpdteItem} value={updated}>
+              <input type='hidden' name='_id' value={details._id} />
+              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <br/>
+              <label> Eastern Food
+                <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Fast Food
+                <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Desserts
+                <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+              </label>
+              <br/>
+              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              <br/>
+              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+              <br/>
+              <br/>
+              <button >Submit</button>
+            </form>
           </div>
         </Model>
       </When>
