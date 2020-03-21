@@ -1,6 +1,7 @@
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
-
+import Model from '../modal';
+import {When} from '../if';
 
 const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
 
@@ -8,8 +9,8 @@ function Donors (props){
 
   const [donorList, setDonorList] = useState([]);
   const [item, setItem] = useState({});
-  //const [showDetails, setShowDetails] = useState(false);
-  //const [details, setDetails] = useState({});
+  const [showDetails, setShowDetails] = useState(false);
+  const [details, setDetails] = useState({});
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -24,8 +25,8 @@ function Donors (props){
       body: body ? JSON.stringify(body) : undefined,
     })
       .then( response => response.json())
-      .then(data => typeof handler === 'function')
-      .catch(e => typeof errorHandler === 'function');
+      .then(data => typeof handler === 'function' ? handler(data) : null )
+      .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
   };
 
   const addItem = e => {
@@ -53,8 +54,13 @@ function Donors (props){
   };
   useEffect(() => {
     getdonorList();
-  },getdonorList());
+  }, [donorList]);
 
+  const toggleDetails = id => {
+    let details = donorList.filter( item => item._id === id )[0] || {};
+    setDetails(details);
+    setShowDetails(!showDetails);
+  };
 
   return (
     <>
@@ -79,16 +85,29 @@ function Donors (props){
 
       <div>
         {donorList.map((donor, idx) =>{
-          console.log(donor);
           return <ul key={idx}>
             <li>
               {donor.name}
             </li>
+            <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
             <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
           </ul>;
         })}
       </div>
-
+      <When condition={showDetails}>
+        <Model title='Recipient details' close={toggleDetails}>
+          <div className="recipient-details">
+            <header>
+              <li>Name: {details.name}   </li>
+              <li>Donation Type: {item.type}   </li>
+              <li>Available Time: {details.available_time}   </li>
+            </header>
+            <div className="item">
+            Food Amount: {details.amount}
+            </div>
+          </div>
+        </Model>
+      </When>
     </>
   );
 }

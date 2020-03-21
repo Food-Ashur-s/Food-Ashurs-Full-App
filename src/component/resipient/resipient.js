@@ -1,6 +1,7 @@
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
-
+import Model from '../modal';
+import {When} from '../if';
 
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
 
@@ -8,8 +9,8 @@ function Recipients (props){
 
   const [recipientList, setRecipientList] = useState([]);
   const [item, setItem] = useState({});
-  //const [showDetails, setShowDetails] = useState(false);
-  //const [details, setDetails] = useState({});
+  const [showDetails, setShowDetails] = useState(false);
+  const [details, setDetails] = useState({});
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -24,37 +25,41 @@ function Recipients (props){
       body: body ? JSON.stringify(body) : undefined,
     })
       .then( response => response.json())
-      .then(data => typeof handler === 'function')
-      .catch(e => typeof errorHandler === 'function');
+      .then(data => typeof handler === 'function' ? handler(data) : null )
+      .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
   };
 
   const addItem = e => {
     e.preventDefault();
     e.target.reset();
 
-    const _updateState  = newItem => setRecipientList([...recipientList, newItem]);
-    callAPI(recipientsAPI, 'POST', item, _updateState );
+    const postHandeler  = newItem => setRecipientList([...recipientList, newItem]);
+    callAPI(recipientsAPI, 'POST', item, postHandeler );
   };
 
   const deleteItem = id =>{
-    const _updateState  = results => setRecipientList(recipientList.filter(recipient=> recipient._id !== id));
-    callAPI(`${recipientsAPI}/${id}`, 'DELETE', undefined, _updateState );
+    const deleteHandeler  = results => setRecipientList(recipientList.filter(recipient=> recipient._id !== id));
+    callAPI(`${recipientsAPI}/${id}`, 'DELETE', undefined, deleteHandeler );
   };
 
   const UpdteItem = updatedItem =>{
-    const _updateData  = newItem =>
+    const updateHandeler  = newItem =>
       setRecipientList(recipientList.map(recipient => recipient._id === newItem._id ? newItem : recipient));
-    callAPI(`${recipientsAPI}/${updatedItem._id}`, 'PUT', updatedItem, _updateData );
+    callAPI(`${recipientsAPI}/${updatedItem._id}`, 'PUT', updatedItem, updateHandeler );
   };
   const getRecipientList = () => {
-    const _updateState = data =>
-      setRecipientList(data.results) 
-    callAPI( `${recipientsAPI}/5e74de83cb1ca900179978e5`, 'GET', undefined, _updateState );
+    const getHandeler = data => setRecipientList(data.results);
+    callAPI( recipientsAPI, 'GET', undefined, getHandeler );
   };
   useEffect(() => {
     getRecipientList();
-  },getRecipientList());
+  }, [recipientList]);
 
+  const toggleDetails = id => {
+    let details = recipientList.filter( item => item._id === id )[0] || {};
+    setDetails(details);
+    setShowDetails(!showDetails);
+  };
 
   return (
     <>
@@ -79,18 +84,32 @@ function Recipients (props){
       </form>
 
       <div>
-        {console.log(recipientList)}
         {recipientList.map((recipient, idx) =>{
           console.log(recipient);
           return <ul key={idx}>
             <li>
               {recipient.name}
             </li>
+            <button onClick={()=> toggleDetails(recipient._id)}>More Detail</button>
             <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
           </ul>;
         })}
       </div>
-
+      <When condition={showDetails}>
+        <Model title='Recipient details' close={toggleDetails}>
+          <div className="recipient-details">
+            <header>
+              <li>Name: {details.name}   </li>
+              <li>Request Type: {item.requestType}   </li>
+              <li>Identity: {details.identity}   </li>
+              <li>Contact Number: {details.contactNumber}</li>
+            </header>
+            <div className="item">
+            description: {details.description}
+            </div>
+          </div>
+        </Model>
+      </When>
     </>
   );
 }
