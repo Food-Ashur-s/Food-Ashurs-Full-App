@@ -17,6 +17,10 @@ import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
 import fastfood3 from '../../assets/fast-food-3.jpg';
 
+const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
+const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
+const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
+
 
 
 const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
@@ -29,6 +33,7 @@ function Donors (props){
   const [details, setDetails] = useState({});
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
+  const [ num, setNum] = useState(0);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -53,6 +58,7 @@ function Donors (props){
 
     const _updateState  = newItem => setDonorList([...donorList, newItem]);
     callAPI(donorsAPI, 'POST', item, _updateState );
+    setNum(Math.floor(Math.random() * 4));
   };
 
   const deleteItem = id =>{
@@ -119,10 +125,11 @@ function Donors (props){
 
       <div>
         {donorList.map((donor, idx) =>{
+          let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return <ul key={idx}>
             <li>
               {donor.name}
-              <img  height="200" width="200" />
+              <img src={src} height="200" width="200" />
             </li>
 
             <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
@@ -136,7 +143,7 @@ function Donors (props){
           <div className="recipient-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Donation Type: {item.type}   </li>
+              <li>Donation Type: {details.type}   </li>
               <li>Available Time: {details.available_time}   </li>
             </header>
             <div className="item">

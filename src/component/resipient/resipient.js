@@ -17,6 +17,11 @@ import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
 import fastfood3 from '../../assets/fast-food-3.jpg';
 
+const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
+const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
+const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
+
+
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
 
 function Recipients (props){
@@ -27,6 +32,7 @@ function Recipients (props){
   const [details, setDetails] = useState({});
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
+  const [ num, setNum] = useState(0);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -48,9 +54,11 @@ function Recipients (props){
   const addItem = e => {
     e.preventDefault();
     e.target.reset();
+    console.log(e.target.value);
 
     const postHandeler  = newItem => setRecipientList([...recipientList, newItem]);
     callAPI(recipientsAPI, 'POST', item, postHandeler );
+    setNum(Math.floor(Math.random() * 4));
   };
 
   const deleteItem = id =>{
@@ -99,10 +107,10 @@ function Recipients (props){
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
         <label> Eastern Food
-          <input type='radio' name='requestType' value='eastern-food'  onClick={handelInputChange} required />
+          <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
         </label>
         <label> Fast Food
-          <input type='radio' name='requestType' value='fast-food' onClick={handelInputChange} required />
+          <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
         </label>
         <label> Desserts
           <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
@@ -116,12 +124,11 @@ function Recipients (props){
 
       <div>
         {recipientList.map((recipient, idx) =>{
-          let src = recipient.requestType === 'eastern-food' ? easternfood0 : recipient.requestType === 'fast-food' ? fastfood0 : desserts0;
-          //   src = {`assets/${recipient.requestType}-${Math.floor(Math.random() * 4)}.jpg`}
+          let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return <ul key={idx}>
             <li>
               {recipient.name}
-              {/* <img src={src} height="200" width="200" /> */}
+              <img src={src} height="200" width="200" />
             </li>
             <button onClick={()=> toggleDetails(recipient._id)}>More Detail</button>
             <button onClick={()=> toggleUpdate(recipient._id)}>Update</button>
@@ -134,7 +141,7 @@ function Recipients (props){
           <div className="recipient-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Request Type: {item.requestType}   </li>
+              <li>Request Type: {details.requestType}   </li>
               <li>Identity: {details.identity}   </li>
               <li>Contact Number: {details.contactNumber}</li>
             </header>
