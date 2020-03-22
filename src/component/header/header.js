@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 
-import React  from 'react';
+import React from 'react';
 import '../header/header.scss';
 import $ from 'jquery';
 import logo from '../../assest/mainLogo.PNG';
@@ -10,13 +10,21 @@ import WOW from 'wowjs';
 window.$ = window.jQuery = require('jquery');
 
 class Header extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isToggle : false,
+    };
+  }
 
   componentDidMount(){
     const wow = new WOW.WOW();
     wow.init();
   }
-
   handleClick = () =>{
+    // this.setState( prevState => ({
+    //   isToggle : !prevState.isToggle,
+    // }));
     $(document).ready(function() {
       $(document).delegate('.open', 'click', function(event){
         $(this).addClass('oppenned');
@@ -31,7 +39,6 @@ class Header extends React.Component{
       });
     });
   };
-  //   const [open , setOpen] = useState(false);
   render(){
 
     return (
@@ -39,9 +46,9 @@ class Header extends React.Component{
         <div className='header-containar'>
           <img src={logo} height="70px" width="200px"/>
           <link rel="stylesheet" href="animate.min.css"></link>
-          <div className="wow pulse" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="6">
-            <h1>Food Ashurs</h1>
-          </div>
+          {/* <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
+            <h1>Food Ashur's</h1>
+          </div> */}
           <div  className="open" onClick={this.handleClick}>
             <span className="cls"></span>
             <span>

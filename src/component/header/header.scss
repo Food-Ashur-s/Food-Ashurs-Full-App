@@ -12,10 +12,17 @@ body{
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(19, 18, 18);
-  padding: 60px;
+//   padding: 60px;
+// margin: 1%;
+}
+header{
+    margin: 2%;
+    width: 99%;
+   margin: auto;
+    position: relative;
 }
 h1{
-  width: 100%;
+  width: 99%;
   color: #FFF;
   font-family: 'Righteous', cursive;
   text-align: center;
@@ -24,7 +31,7 @@ h1{
   letter-spacing: 10px;
 }
 .open{
-    position: fixed;
+    position: absolute;
     top: 26px;
     color: #000;
     background-color: black;
