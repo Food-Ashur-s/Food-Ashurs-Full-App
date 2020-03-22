@@ -2,6 +2,20 @@
 import React, {useState, useEffect} from 'react';
 import Model from '../modal';
 import {When} from '../if';
+import desserts0 from '../../assets/desserts-0.jpg';
+import desserts1 from '../../assets/desserts-1.jpg';
+import desserts2 from '../../assets/desserts-1.jpg';
+import desserts3 from '../../assets/desserts-1.jpg';
+
+import easternfood0 from '../../assets/eastern-food-0.jpg';
+import easternfood1 from '../../assets/eastern-food-1.jpg';
+import easternfood2 from '../../assets/eastern-food-2.jpg';
+import easternfood3 from '../../assets/eastern-food-3.jpg';
+
+import fastfood0 from '../../assets/fast-food-0.jpg';
+import fastfood1 from '../../assets/fast-food-1.jpg';
+import fastfood2 from '../../assets/fast-food-2.jpg';
+import fastfood3 from '../../assets/fast-food-3.jpg';
 
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
 
@@ -85,10 +99,10 @@ function Recipients (props){
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
         <label> Eastern Food
-          <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
+          <input type='radio' name='requestType' value='eastern-food'  onClick={handelInputChange} required />
         </label>
         <label> Fast Food
-          <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
+          <input type='radio' name='requestType' value='fast-food' onClick={handelInputChange} required />
         </label>
         <label> Desserts
           <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
@@ -102,9 +116,12 @@ function Recipients (props){
 
       <div>
         {recipientList.map((recipient, idx) =>{
+          let src = recipient.requestType === 'eastern-food' ? easternfood0 : recipient.requestType === 'fast-food' ? fastfood0 : desserts0;
+          //   src = {`assets/${recipient.requestType}-${Math.floor(Math.random() * 4)}.jpg`}
           return <ul key={idx}>
             <li>
               {recipient.name}
+              {/* <img src={src} height="200" width="200" /> */}
             </li>
             <button onClick={()=> toggleDetails(recipient._id)}>More Detail</button>
             <button onClick={()=> toggleUpdate(recipient._id)}>Update</button>

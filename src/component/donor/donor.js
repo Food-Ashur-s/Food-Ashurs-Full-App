@@ -2,6 +2,22 @@
 import React, {useState, useEffect} from 'react';
 import Model from '../modal';
 import {When} from '../if';
+import desserts0 from '../../assets/desserts-0.jpg';
+import desserts1 from '../../assets/desserts-1.jpg';
+import desserts2 from '../../assets/desserts-1.jpg';
+import desserts3 from '../../assets/desserts-1.jpg';
+
+import easternfood0 from '../../assets/eastern-food-0.jpg';
+import easternfood1 from '../../assets/eastern-food-1.jpg';
+import easternfood2 from '../../assets/eastern-food-2.jpg';
+import easternfood3 from '../../assets/eastern-food-3.jpg';
+
+import fastfood0 from '../../assets/fast-food-0.jpg';
+import fastfood1 from '../../assets/fast-food-1.jpg';
+import fastfood2 from '../../assets/fast-food-2.jpg';
+import fastfood3 from '../../assets/fast-food-3.jpg';
+
+
 
 const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
 
@@ -106,7 +122,9 @@ function Donors (props){
           return <ul key={idx}>
             <li>
               {donor.name}
+              <img  height="200" width="200" />
             </li>
+
             <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
             <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
             <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
