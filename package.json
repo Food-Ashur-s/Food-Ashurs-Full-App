@@ -4,7 +4,7 @@
   "description": "# Food-Ashurs - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=8080 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -34,6 +34,7 @@
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.2",
+    "react-google-login-component": "^0.9.3",
     "react-hookstore": "^1.4.3",
     "react-jsonschema-form": "^1.8.1",
     "react-redux": "^7.2.0",
