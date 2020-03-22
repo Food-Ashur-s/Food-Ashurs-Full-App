@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=ABeeZee|Bellota+Text|Righteous|Trade+Winds&display=swap');
 @media (min-width: 768px){
+    .open{
+        position: absolute;
+        top: 19px;
+        left: 50px;
+    }
     .page-footer{
         padding: .5%;
         grid-template-columns: 26% 35% 33%;
@@ -30,10 +35,15 @@
     .footer-copyright:hover , .contact-header:hover ,p:hover , .contact-div:hover , .links-div:hover ,.simple-bio:hover ,   .linkes-header:hover ,  .footer-header:hover{
         box-shadow: 3px 6px 9px #075151;
         transform: scale(1.005);
-        transition:880ms;
+        transition:850ms;
       }
 }
 @media (max-width: 768px){
+    .open{
+        position: absolute;
+        top: 13px;
+        left: 40px;
+    }
     .page-footer{
         padding: .5%;
         grid-template-columns: 1fr;
@@ -68,7 +78,7 @@
     // position: relative;
     padding: 4% 0 .5% 4%;
     // padding-top: 4%;
-    margin-top: 30pc;
+    margin-top: 32pc;
     // clear: both;
     display: grid;
     color: white;
