@@ -2,7 +2,7 @@ import React from 'react';
 import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
 
-const API = process.env.REACT_APP_API;
+const API = 'https://food--ashurs.herokuapp.com';
 
 export const LoginContext = React.createContext();
 
@@ -33,7 +33,7 @@ class LoginProvider extends React.Component {
 
   validateToken = token => {
     try {
-      let user = jwt.verify(token, process.env.REACT_APP_SECRET);
+      let user = jwt.verify(token, 'foodashurs');
       this.setLoginState(true, token, user);
     } catch {
       this.setLoginState(false, null, {});
