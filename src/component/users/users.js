@@ -3,19 +3,20 @@ import React, {useState, useEffect} from 'react';
 import Model from '../modal';
 import {When} from '../if';
 
-const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/users';
+const usersAPI = 'https://food--ashurs.herokuapp.com';
 
-function Donors (props){
+function Users (props){
 
-  const [donorList, setDonorList] = useState([]);
-  const [item, setItem] = useState({});
+  const [usersList, setUsersList] = useState([]);
+  const [user, setUser] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState({});
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
 
   const handelInputChange = e => {
-    setItem({...item, [e.target.name]: e.target.value});
+     console.log('user : ', user);
+    setUser({...user, [e.target.name]: e.target.value});
   };
 
   const callAPI = (url, method , body, handler, errorHandler) => {
@@ -31,21 +32,22 @@ function Donors (props){
       .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
   };
 
-  const addItem = e => {
+  const addUser = e => {
     e.preventDefault();
     e.target.reset();
-
-    const _updateState  = newItem => setDonorList([...donorList, newItem]);
-    callAPI(donorsAPI, 'POST', item, _updateState );
+   console.log('usersList : ', usersList);
+    const _updateState  = newUser => setUsersList([...usersList, newUser]);
+    callAPI(usersAPI, 'POST', user, _updateState );
   };
 
   const deleteItem = id =>{
-    const _updateState  = results => setDonorList(donorList.filter(donor=> donor._id !== id));
-    callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
+    const _updateState  = results => setUsersList(usersList.filter(user=> user._id !== id));
+    callAPI(`${usersAPI}/${id}`, 'DELETE', undefined, _updateState );
   };
 
 
   const handelUpdateChange = e => {
+   console.log('e.target.name : ', e.target.username);
     setUpdate({...updated, [e.target.name]: e.target.value});
   };
 
@@ -53,100 +55,92 @@ function Donors (props){
     e.preventDefault();
     console.log(updated);
 
-    const updateHandeler  = newItem =>
-      setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
-    callAPI(`${donorsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
+    const updateHandeler  = newUser =>
+      setUsersList(usersList.map(user => user._id === newUser._id ? newUser : user));
+    callAPI(`${usersAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
     setShowUpdate(!showUpdate);
 
   };
   const getdonorList = () => {
     const _updateState = data =>
-      setDonorList(data.results);
-    callAPI( donorsAPI, 'GET', undefined, _updateState );
+      setUsersList(data.results);
+    callAPI( usersAPI, 'GET', undefined, _updateState );
   };
   useEffect(() => {
     getdonorList();
-  }, [donorList]);
+  }, [usersList]);
 
   const toggleDetails = id => {
-    let details = donorList.filter( item => item._id === id )[0] || {};
+    let details = usersList.filter( user => user._id === id )[0] || {};
     setDetails(details);
     setShowDetails(!showDetails);
   };
 
   const toggleUpdate = id => {
-    let updated = donorList.filter( item => item._id === id )[0] || {};
+    let updated = usersList.filter( user => user._id === id )[0] || {};
     setUpdate(updated);
     setShowUpdate(!showUpdate);
   };
 
   return (
     <>
-      <h1>Donors</h1>
+      <h1>Welcome To User's Page / Login</h1>
 
-      <form onSubmit={addItem}>
-        <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-        <label> Eastern Food
-          <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
+      <form onSubmit={addUser}>
+        <input type='text' name='username' placeholder='Enter your Username' onChange={handelInputChange} required  />
+        <input type='password' name='password' placeholder='Enter your Password' onChange={handelInputChange} required />
+        <input type='text' name='email' placeholder='Enter your Email ( Optional )' onChange={handelInputChange}/>
+        <label> Choose User Type : 
+        <label> 
+          <input type='radio' name='type' value='recipients' onClick={handelInputChange} required />
+          Recipients</label>
+        <label> 
+          <input type='radio' name='type' value='donors' onClick={handelInputChange} required />
+          Donors</label>
         </label>
-        <label> Fast Food
-          <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-        </label>
-        <label> Desserts
-          <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-        </label>
-        <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-        <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
-
-        <button>Submit</button>
+        <button>Login</button>
       </form>
 
       <div>
-        {donorList.map((donor, idx) =>{
+        {usersList.map((user, idx) =>{
           return <ul key={idx}>
             <li>
-              {donor.name}
+              {user.username}
             </li>
-            <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
-            <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-            <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
+            <button onClick={()=> toggleDetails(user._id)}>More Detail</button>
+            <button onClick={()=> toggleUpdate(user._id)}>Update</button>
+            <button onClick={()=> deleteItem(user._id)}>DELETE</button>
           </ul>;
         })}
       </div>
       <When condition={showDetails}>
-        <Model title='Recipient details' close={toggleDetails}>
-          <div className="recipient-details">
+        <Model title='Users details' close={toggleDetails}>
+          <div className="Users-details">
             <header>
-              <li>Name: {details.name}   </li>
-              <li>Donation Type: {item.type}   </li>
-              <li>Available Time: {details.available_time}   </li>
+              <li>Username: {details.username}   </li>
+              <li>Email Type: {details.email}   </li>
+              <li>User Type: {details.type}   </li>
             </header>
-            <div className="item">
-            Food Amount: {details.amount}
-            </div>
           </div>
         </Model>
       </When>
       <When condition={showUpdate}>
-        <Model title='Recipient update' close={toggleUpdate}>
-          <div className="recipient-updated">
+        <Model title='Users update' close={toggleUpdate}>
+          <div className="Users-updated">
             <form onSubmit={UpdteItem} value={updated}>
               <input type='hidden' name='_id' value={details._id} />
-              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <input type='text' name='username' placeholder='Change Your Username' defaultValue={updated.username} onChange={handelUpdateChange} required />
               <br/>
-              <label> Eastern Food
-                <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
-              </label>
-              <label> Fast Food
-                <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
-              </label>
-              <label> Desserts
-                <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
-              </label>
+              <input type='password' name='password' placeholder='Change your Password' defaultValue={updated.password} onChange={handelUpdateChange} required />
               <br/>
-              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              <input type='text' name='email' placeholder='Change your Email ( Optional )' defaultValue={updated.email} onChange={handelUpdateChange} />
               <br/>
-              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+              <label>
+                <input type='radio' name='type' value='recipients' onClick={handelUpdateChange} required />
+                Recipients </label>
+              <label>
+                <input type='radio' name='type' value='donors' onClick={handelUpdateChange} required />
+                Donors </label>
               <br/>
               <br/>
               <button >Submit</button>
@@ -158,4 +152,4 @@ function Donors (props){
   );
 }
 
-export default Donors;
+export default Users;
