@@ -84,7 +84,7 @@ function Users(props) {
 
    return (
       <>
-         <h1>Welcome To User's Page / Login</h1>
+         <h1>Welcome To User's Page</h1>
 
          <form onSubmit={addUser}>
             <input type='text' name='username' placeholder='Enter your Username' onChange={handelInputChange} required />
@@ -98,7 +98,7 @@ function Users(props) {
                   <input type='radio' name='role' value='donors' onClick={handelInputChange} required />
           Donors</label>
             </label>
-            <button>Login</button>
+            <button>SignUp</button>
          </form>
 
          <div>
