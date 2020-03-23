@@ -1,0 +1,122 @@
+// #root{
+//     background: rgba(0, 0, 0, 0.842);
+// }
+.donors-list{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+}
+.donor-line{
+    position: relative;
+    border-radius: 3%;
+    width: 80%;
+    margin: 3%;
+    padding: 1.5%;
+    display: block;
+    background-color: white;
+    box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+    .donor-item-img{
+        border-radius: 3%;
+        width: 100%;
+        margin: auto;
+        opacity: 97%;
+        // position: relative;
+    }
+    .div-buttons{
+        opacity: 0;
+        margin-left: 5%;
+        .donor-item-button{
+            padding: 2%;
+            margin: 10%;
+            width: 230px;
+            height: 50px;
+            display: block;
+            font-size: 20px;
+            color: white;
+            border-radius: 5%;
+            background: rgba(0, 0, 0, 0.438);
+            border: rgba(255, 255, 255, 0.623) solid 1px;
+            box-shadow:3px 3px 3px rgba(45, 148, 105, 0.308) ;
+        }
+        .more{
+            margin-top: 18%;
+
+        }
+    }
+    .donor-item-button:hover{
+        // transform: scale(1.00);
+       color: rgba(68, 197, 143, 0.623);
+        border:rgba(68, 197, 143, 0.623) solid 2px ;
+        transition: 750ms;
+        cursor: pointer;
+    }
+    .donor-item-div1{
+        position: absolute;
+        top: 1.9%;
+        width: 48.1%;
+        left: 2%;
+        height: 86.8%;
+        opacity: 1;
+        border-radius: 4%;
+        transform: rotate(30beg);
+        background: rgba(0, 0, 0, 0.582);
+        // background-color: rgba(112, 33, 33, 0.658);
+    }
+    .donor-item-div2{
+        background: rgba(0, 0, 0, 0.582);
+        opacity: 1;
+        position: absolute;
+        width: 48.1%;
+        top: 1.9%;
+        right: 2%;
+        height: 86.8%;
+        border-radius: 4%;
+        // transform: rotate(0);
+    }
+   
+    // .donor-item-div{
+    // }
+    // .donor-item-div:hover{
+    //     background: rgba(0, 0, 0, 0.842);
+    // }
+   
+}
+.donor-line .div-buttons {
+    position: absolute; 
+    top: 2%;
+    left: 1%;
+    width: 97%;
+    box-sizing: border-box;
+    height: 91%;
+    border-radius: 3%;
+    // position: relative;
+}
+// .donor-item-div2:hover{
+//     opacity: 1;
+//     background: rgba(0, 0, 0, 0.808);
+    
+// }
+.donor-line .div-buttons:hover{
+    // opacity: 1;
+    // background: rgba(0, 0, 0, 0.582);
+}
+.donor-item-name{
+    text-align: center;
+    margin: 2%;
+    border-top: groove;
+}
+.donor-item-name:hover{
+    color: rgba(68, 197, 143, 0.623);
+    cursor: pointer;
+}
+.donor-line:hover{
+    transform: scale(1.002);
+    transition: 870;
+}
+// .styles-div{
+//     opacity: 0;
+// }
+// .styles-div:hover{
+//     opacity: 0.5%;
+// }

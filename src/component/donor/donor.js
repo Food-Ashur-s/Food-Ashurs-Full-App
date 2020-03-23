@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
 import Model from '../modal';
 import {When} from '../if';
+import './donor.scss';
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
@@ -123,19 +125,32 @@ function Donors (props){
         <button>Submit</button>
       </form>
 
-      <div>
+      <div className="donors-list">
         {donorList.map((donor, idx) =>{
           let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <ul key={idx}>
-            <li>
-              {donor.name}
-              <img src={src} height="200" width="200" />
 
-              <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
-              <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-              <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
-            </li>
-          </ul>;
+          return(
+            <>
+              <div key={idx} className="donor-line">
+                {/* <div className="donor-item"> */}
+                <img src={src} className="donor-item-img" height="330" width="300" />
+                <div className="donor-item-name">
+                  {donor.name}
+                </div>
+                <div className="styles-div">
+                  <div className="donor-item-div1"></div>
+                  <div className="donor-item-div2"></div>
+                </div>
+                <div className="div-buttons">
+                  {/* <div className="s"></div> */}
+                  <button onClick={()=> toggleDetails(donor._id)} className="donor-item-button more">More Detail</button>
+                  <button onClick={()=> toggleUpdate(donor._id)} className="donor-item-button">Update</button>
+                  <button onClick={()=> deleteItem(donor._id)} className="donor-item-button">DELETE</button>
+                </div>
+
+                {/* </div> */}
+              </div>
+            </>);
         })}
       </div>
       <When condition={showDetails}>
