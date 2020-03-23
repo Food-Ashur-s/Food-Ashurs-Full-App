@@ -55,34 +55,41 @@
         left: 40px;
     }
     .page-footer{
+        margin-top: 1%;
         padding: .5%;
         grid-template-columns: 1fr;
         grid-template-rows: 5fr;
     }
     .simple-bio{
+        margin-top: 1%;
         padding: 1%;
         grid-row: 1;
     }
     .links-div{
+        margin-top: 1%;
         border-top-style: inset;
         padding: 1%;
         grid-row: 2;
     }
     .contact-div{
+        margin-top: 1%;
         border-top-style: inset;
         padding: 1%;
         grid-row: 3;
     }
     .social-icon{
+        margin-top: 1%;
         padding: 1%;
         grid-row: 4;
     }
     .footer-copyright{
+        margin-top: 1%;
         padding: 1%;
         // padding: 2%;
         grid-row: 5;
     }
     .contact-div{
+        margin-top: 1%;
         opacity: 65%;
         text-align: left;
         margin-left: 2%;
@@ -226,4 +233,15 @@
   .div-fix{
     clear: both;
   }
-  
+  .page-footer {
+    clear: both;
+    font-family: 'ABeeZee', sans-serif;
+    width: 99%;
+    padding: 4% 0 .5% 4%;
+    margin-top: 32pc;
+    display: grid;
+    box-shadow: 2px 2px 2px 2px #ffffffa6;
+    color: white;
+    letter-spacing: 1px;
+    background: rgba(1, 1, 1, 0.95);
+}

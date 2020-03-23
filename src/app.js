@@ -39,10 +39,7 @@ export default function App (){
     <>
       <LoginContext>
         <Header/>
-
-
         <SignForm/>
-
         <Donors />
         <Recipient />
       </LoginContext>

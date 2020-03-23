@@ -4,12 +4,18 @@
 import React from 'react';
 import '../header/header.scss';
 import logo from '../../assest/mainLogo.PNG';
+import {LoginContext} from '../auth/context.js';
 // import ReactWOW from 'react-wow';
 import WOW from 'wowjs';
 import $ from 'jquery';
 window.$ = window.jQuery = require('jquery');
 
+const If = props => {
+  return props.condition ? props.children : null;
+};
+
 class Header extends React.Component{
+  static contextType = LoginContext;
   constructor(props){
     super(props);
     this.state = {
@@ -66,7 +72,13 @@ class Header extends React.Component{
                   <a href="#aboutUs" title="aboutUs">About Us</a>
                 </li>
                 <li>
-                  <a href="#setting" title="setting">Log Out</a>
+                  <If condition={this.context.loggedIn}>
+                    <a onClick={this.context.logout} >Log Out!</a>
+                  </If>
+                  <If condition={!this.context.loggedIn}>
+                    <a>Log In</a>
+                  </If>
+                  {/* <a href="#setting" title="setting">Log Out</a> */}
                 </li>
               </ul>
             </span>

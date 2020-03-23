@@ -106,6 +106,7 @@ function Donors (props){
 
   return (
     <>
+      <div className="fixx"></div>
       <h1>Donors</h1>
 
       <form onSubmit={addItem}>

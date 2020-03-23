@@ -1,8 +1,8 @@
 body{
-	margin:0;
-	color: #18181ba3;
+	// margin:0;
+	// color: #18181ba3;
 	// background-color:rgba(0, 0, 0, 0.596);
-	background: rgba(0, 0, 0, 0.877);
+	// background: rgba(0, 0, 0, 0.877);
 	// opacity: 50%;
 	// background-size: cover;
 	font:600 16px/18px 'Open Sans',sans-serif;
@@ -10,7 +10,7 @@ body{
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
-a{color:inherit;text-decoration:none}
+a{color:rgba(0, 0, 0, 0.623);text-decoration:none}
 
 .login-wrap{
 	width:100%;
@@ -190,4 +190,8 @@ input::placeholder {
 .button:hover{
     opacity: 85%;
     cursor: pointer;
+}
+.login-html .sign-in:checked + .tab, .login-html .sign-up:checked + .tab {
+    color: #faf6f6be;
+    border-color: #258794;
 }

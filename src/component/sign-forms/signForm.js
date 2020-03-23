@@ -14,7 +14,7 @@ render(){
   return (
     <React.Fragment>
       <If condition={this.context.loggedIn}>
-        <button onClick={this.context.logout}>Log Out!</button>
+        <button onClick={this.context.logout} >Log Out!</button>
       </If>
 
       <If condition={!this.context.loggedIn}>
