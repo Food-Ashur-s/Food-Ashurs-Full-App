@@ -71,7 +71,7 @@ class LoginProvider extends React.Component {
       let user = jwt.verify(token, 'ashurFood');
       this.setLoginState(true, token, user);
     } catch {
-      alert('wrong password/username');
+      // alert('wrong password/username');
       this.setLoginState(false, null, {});
       console.error('token invalid');
     }
