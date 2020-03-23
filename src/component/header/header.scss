@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Bellota+Text|Righteous|Trade+Winds&display=swap');
+html{
+    box-sizing: border-box;
+}
+*, *:after,*:before{
+    box-sizing: inherit;
+}
+
+body{
+    background: rgba(19, 18, 18, 0.945);
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+//   padding: 60px;
+// margin: 1%;
+}
+header{
+    background: rgba(19, 18, 18, 0.945);
+    position: fixed;
+    // padding-bottom: 4.5%;
+    width: 99%;
+    margin: auto;
+    margin: 2%;
+    position: relative;
+}
+h1{
+  width: 99%;
+  color: #FFF;
+  font-family: 'Righteous', cursive;
+  text-align: center;
+  font-size: 30px;
+  margin-left: 10%;
+  letter-spacing: 10px;
+}
+.open{
+    position: absolute;
+    color: #000;
+    // background-color: black;
+    
+ 
+    // padding: 3%;
+    width: 50px;
+    height: 50px;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+    span{
+        display: block;
+        float: right;
+        clear: both;
+        height: 4px;
+        width: 40px;
+        border-radius: 40px;
+        background-color: #fff;
+        position: absolute;
+        left:-7px;
+        top: 2px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        &:nth-child(1){
+            margin-top: 10px;
+            z-index: 9;
+        }
+        &:nth-child(2){
+            margin-top: 25px;
+        }
+        &:nth-child(3){
+            margin-top: 40px;
+        }
+    }
+}
+.sub-menu{
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        height: 0;
+        width: 0;
+        // right: 0;
+        top: 100px;
+        position: absolute;
+        background-color: rgba(38, 84, 133, 0.54);
+        border-radius: 20%;
+        z-index: 18;
+        overflow: hidden;
+        li{
+            display: block;
+            clear: both;
+            height: auto;
+
+            a{
+                color: rgb(250, 250, 250);
+                font-family: 'Lato', Arial, Helvetica, sans-serif;
+                font-size: 26px;
+                margin-left: 30px;
+                text-decoration: none;
+                width: 100%;
+                display: block;
+                float: left;
+                line-height: 50px;
+                padding: 4.5%;
+                border-bottom: groove;
+            }
+        }
+    }
+    .oppenned{
+        .sub-menu{
+            opacity: 55%;
+            height: 100%;
+            width: 129%;
+            border-radius: 2%;
+            background: #455a6494;
+            border-radius: 6%;
+            background-color: #0f545d;
+            margin: 1%;
+            padding: 4%;
+        }
+        span:nth-child(2){
+            overflow: visible;
+        }
+        span:nth-child(1), span:nth-child(3){
+            z-index: 100;
+            transform: rotate(45deg);
+        }
+        span:nth-child(1){
+            transform: rotate(45deg) translateY(12px) translateX(12px);
+        }
+        span:nth-child(2){
+            height: 400px;
+            width: 400px;
+            right: -160px;
+            top: -160px;
+            border-radius: 20%;
+            background-color: rgba(38, 84, 133, 0.54);
+        }
+        span:nth-child(3){          
+            transform: rotate(-45deg) translateY(-10px) translateX(10px);
+        }
+        li{
+            margin-right: 168px;
+        }
+    }
+
+.oppenned span:nth-child(2) {
+    height: 1048%;
+    width: 681%;
+    top: -38px;
+    border-radius: 13%;
+    background-color: #009688;
+}
+
+.oppenned .sub-menu {
+    opacity: 55%;
+    height: 90%;
+    width: 129%;
+    border-radius: 2%;
+    border-radius: 6%;
+    background-color: #009688;
+    margin-top: -18%;
+    padding: 5%;
+}
+.sub-menu li:hover{
+    opacity: 40%;
+    margin-left: 20px;
+    transition: 990ms;
+}
+
+.header-containar{
+    position: fixed;
+    margin-bottom: 20%;
+    // position: absolute;
+    clear: both;
+    padding: 1%;
+    padding-bottom: 1%;
+    margin: .5%;
+    top: 0;
+    left: 0;
+    background-color: rgba(2, 2, 2, 0.945);
+    width: 100%;
+}
+.header-containar img {
+  margin-right: 2%;
+  float: right;
+}
+
+.header-containar img:hover{
+    opacity: 50%;
+    transition: 870ms;
+}
