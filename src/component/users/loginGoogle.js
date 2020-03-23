@@ -1,38 +1,80 @@
-import React , { Component } from 'react';
-import GoogleLogin from 'react-google-login'
+import React from "react";
+import GoogleLogin from "react-google-login";
+import { GoogleLogout } from "react-google-login";
 
-export default class Login extends Component {
+// import "./App.scss";
+class App extends React.Component {
+   constructor() {
+      super();
+      this.state = {
+         userDetails: {},
+         isUserLoggedIn: false
+      };
+   }
 
-    responseGoogle = async (response) => {
-       const userObject = {
-          username: response.w3.ofa,
-          password: 'test'
-       }
-       if(response.w3.ofa) {
-          await localStorage.setItem("user", JSON.stringify(userObject));
-          await window.location.reload();
-       } else {
+   responseGoogle = (response) => {
+      this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
+      console.log('userDetails : ', this.state.userDetails);
 
-    }
-    console.log(response);
-    }
-    
-    render(){
-       return(
-           <div>
-              <input type="text" placeholder="username"/>
-              <input type="text" placeholder="password"/> 
-              <button>SignIn</button>
-              <GoogleLogin
-                clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com" 
-                buttonText="Log in with Google"
-                scope="profile"
-                fetchBasicProfile={false}
-                responseHandler={this.responseGoogle}
-                onSuccess={this.props.responseGoogle}
-                onFailure={this.props.responseGoogleError}
-              />
-           </div>
-       )
-    }
+      let id_token = response.getAuthResponse().id_token;
+      console.log({ accessToken: id_token });
+   };
+
+   logout = () => {
+      this.setState({ isUserLoggedIn: false })
+   };
+
+
+   render() {
+      return (
+         <div className="App">
+            {!this.state.isUserLoggedIn && (
+               <GoogleLogin
+                  clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com"
+                  render={renderProps => (
+                     <button
+                        className="button"
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                     >
+                        Log in with Google
+                     </button>
+                  )}
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+               />
+            )}
+            {this.state.isUserLoggedIn && (
+               <div className="userDetails-wrapper">
+                  <div className="details-wrapper">
+                     <GoogleLogout
+                        render={renderProps => (
+                           <button
+                              className="logout-button"
+                              onClick={renderProps.onClick}
+                           >
+                              Log Out
+                           </button>
+                        )}
+                        onLogoutSuccess={this.logout}
+                     />
+
+                     <div className="image">
+                        <img src={this.state.userDetails.imageUrl} />
+                     </div>
+                     <div className="name">
+                        Welcome Mr. {this.state.userDetails.givenName}{" "}
+                        {this.state.userDetails.familyName}
+                     </div>
+                     <div className="email"><i>{this.state.userDetails.email}</i></div>
+                  </div>
+                  <div className="bar" />
+                  <div className="stand" />
+               </div>
+            )}
+         </div>
+      );
+   }
 }
+
+export default App;
