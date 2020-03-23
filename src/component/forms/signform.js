@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './signform.scss';
+import { GoogleLoginButton} from 'react-social-login-buttons';
 
 export default function Form (){
   return (
@@ -24,7 +25,10 @@ export default function Form (){
                 <label for="check"><span class="icon"></span> Keep me Signed in</label>
               </div>
               <div class="group">
-                <input type="submit" class="button" value="Sign In"/>
+                <input type="submit" className="button" value="Sign In"/>
+              </div>
+              <div class="group-google">
+                <GoogleLoginButton className="button-google"/>
               </div>
               <div class="hr"></div>
               <div class="foot-lnk">
@@ -49,11 +53,10 @@ export default function Form (){
                 <input id="pass" type="text" class="input"/>
               </div>
               <div class="group">
-                <input type="submit" class="button" value="Sign Up"/>
+                <input type="submit" className="button" value="Sign Up"/>
               </div>
-              <div class="hr"></div>
-              <div class="foot-lnk">
-                <label for="tab-1">Already Member?</label>
+              <div class="group-google">
+                <GoogleLoginButton className="button-google"/>
               </div>
             </div>
           </div>

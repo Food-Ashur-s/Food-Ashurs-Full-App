@@ -3,13 +3,13 @@ import Form from './component/forms/signform.js';
 
 class App extends React.Component {
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <React.Fragment>
         <Form />
       </React.Fragment>
     );
   }
 }
- 
+
 export default App ;
