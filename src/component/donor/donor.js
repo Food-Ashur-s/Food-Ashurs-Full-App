@@ -130,11 +130,11 @@ function Donors (props){
             <li>
               {donor.name}
               <img src={src} height="200" width="200" />
-            </li>
 
-            <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
-            <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-            <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
+              <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
+              <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
+              <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
+            </li>
           </ul>;
         })}
       </div>
@@ -158,7 +158,6 @@ function Donors (props){
             <form onSubmit={UpdteItem} value={updated}>
               <input type='hidden' name='_id' value={details._id} />
               <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
-              <br/>
               <label> Eastern Food
                 <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
               </label>
@@ -168,12 +167,8 @@ function Donors (props){
               <label> Desserts
                 <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
               </label>
-              <br/>
               <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-              <br/>
               <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
-              <br/>
-              <br/>
               <button >Submit</button>
             </form>
           </div>
