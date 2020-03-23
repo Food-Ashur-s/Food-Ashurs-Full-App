@@ -24,9 +24,11 @@ export default class Login extends Component {
               <input type="text" placeholder="password"/> 
               <button>SignIn</button>
               <GoogleLogin
-                clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com
-                " 
+                clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com" 
                 buttonText="Log in with Google"
+                scope="profile"
+                fetchBasicProfile={false}
+                responseHandler={this.responseGoogle}
                 onSuccess={this.props.responseGoogle}
                 onFailure={this.props.responseGoogleError}
               />
