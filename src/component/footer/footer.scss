@@ -85,7 +85,6 @@
     .footer-copyright{
         margin-top: 1%;
         padding: 1%;
-        // padding: 2%;
         grid-row: 5;
     }
     .contact-div{
@@ -97,14 +96,10 @@
 }
 .page-footer{
     clear: both;
-    // margin: .5%;
     font-family: 'ABeeZee', sans-serif;
     width: 99%;
-    // position: relative;
     padding: 4% 0 .5% 4%;
-    // padding-top: 4%;
     margin-top: 32pc;
-    // clear: both;
     display: grid;
     color: white;
     letter-spacing: 1px;
@@ -124,12 +119,9 @@
     }
 }
 .links-div{
-    // margin: 0;
-    // margin-left: 28%;
     opacity: 65%;
     .linkes-header{
         text-align: center;
-        // margin-left: 30px;
         font-size: 21px;
         margin: 0;
         padding: 0;
@@ -155,11 +147,9 @@
 .contact-div{
     opacity: 65%;
     text-align: left;
-    // margin-left: 20%;
     .contact-header{
         font-size: 21px;
         margin: 0;
-        // margin-left: -40%;
         padding: 0;
     }
     p , i {
@@ -181,7 +171,6 @@
     opacity: 70%;
     font-size: 15px;
     text-align: center;
-    // grid-row: 3;
     a{
         cursor: pointer;
          color: #009688;

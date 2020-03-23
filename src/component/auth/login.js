@@ -32,10 +32,6 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        {/* <If condition={this.context.loggedIn}>
-          <button onClick={this.context.logout}>Log Out!</button>
-        </If> */}
-
         <If condition={!this.context.loggedIn}>
           <form onSubmit={this.handleSubmit} className="sign-in-htm">
             <div className="group">

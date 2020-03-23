@@ -34,10 +34,6 @@ class Logup extends React.Component {
   render() {
     return (
       <>
-        {/* <If condition={this.context.loggedIn}>
-          <button onClick={this.context.logout}>Log Out!</button>
-        </If> */}
-
         <If condition={!this.context.loggedIn}>
           <form onSubmit={this.handleSubmit} className="sign-up-htm">
             <div className="group">
@@ -67,14 +63,6 @@ class Logup extends React.Component {
               <GoogleLoginButton className="button-google"/>
             </div>
           </form>
-          {/* <form onSubmit={this.handleSubmit}>
-
-            <input name="username" onChange={this.handleChange} placeholder='Enter your UserName' required/>
-            <input type='password' name="password" onChange={this.handleChange}  placeholder='Enter your Password' required/>
-            <input name="email" onChange={this.handleChange} placeholder='Enter your Email' required/>
-
-            <button>Sign up!</button>
-          </form> */}
         </If>
       </>
     );
