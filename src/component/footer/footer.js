@@ -5,6 +5,7 @@ class Footer extends React.Component{
   render(){
     return(
       <>
+        <div className="div-fix"></div>
         <footer className="page-footer">
           <div className="simple-bio">
             <h5 class="footer-header">Food Ashur's</h5>
@@ -30,13 +31,13 @@ class Footer extends React.Component{
           </div>
           <div class="contact-div">
             <h6 className="contact-header">Contact</h6>
-            <p>
+            <p className="contact-p">
               <i className="fas fa-home mr-3"></i> Amman Jordan</p>
-            <p>
+            <p className="contact-p">
               <i className="fas fa-envelope mr-3"></i> foodAshurs@gmail.com</p>
-            <p>
+            <p className="contact-p">
               <i className="fas fa-phone mr-3"></i> + 962 234 567 88</p>
-            <p>
+            <p className="contact-p">
               <i className="fas fa-print mr-3"></i> + 962 234 567 89</p>
           </div>
 
