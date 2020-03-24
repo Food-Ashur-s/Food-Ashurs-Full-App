@@ -17,7 +17,7 @@ class App extends React.Component {
       console.log('userDetails : ', this.state.userDetails);
 
       let id_token = response.getAuthResponse().id_token;
-      console.log({ accessToken: id_token });
+      console.log('accessToken',{ accessToken: id_token });
    };
 
    logout = () => {
