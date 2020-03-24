@@ -1,5 +1,6 @@
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
+import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import desserts0 from '../../assets/desserts-0.jpg';
@@ -105,8 +106,8 @@ function Recipients (props){
 
   return (
     <>
+      {/* <NavLink to='/profile'>profile</NavLink> */}
       <h1>Recipients</h1>
-
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
         <label> Eastern Food

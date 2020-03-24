@@ -1,8 +1,9 @@
 import React ,{useState} from 'react';
+import {Route} from 'react-router-dom';
+
 import Recipients from './component/resipient/resipient.js';
 import Donor from './component/donor/donor.js';
 import Profile from './component/profile.js';
-
 import SettingsProvider from './component/auth/context.js';
 import LoginContext from './component/auth/context.js';
 import Login from './component/auth/login.js';
@@ -10,33 +11,9 @@ import Auth from './component/auth/auth.js';
 import Logup from './component/auth/logup.js';
 
 
-// const Donors = props => {
-//   return (
-//     <Auth capability='donor'>
-//       <SettingsProvider>
-//         <Donor handelcart={props.handelcart}/>
-//       </SettingsProvider>
-//     </Auth>
-//   );
-// };
-// const Recipient = props => {
-//   return (
-//     <Auth capability='recipient'>
-//       <SettingsProvider>
-//         <Recipients handelcart={props.handelcart}/>
-//       </SettingsProvider>
-//     </Auth>
-//   );
-// };
-
-
 export default function App (){
   const [cart, setCart] = useState([]);
-  // const [donorCart, setDonorCart] = useState([]);
-
   const [user, setUserData] = useState({});
-
-  // console.log(user);
 
   const handelUser = user =>    setUserData(user);
 
@@ -46,11 +23,9 @@ export default function App (){
     }
     setCart([...cart, newCart]);
   };
-  // const handelDonorCarts = newCart =>  setDonorCart([...donorCart, newCart]);
-  // const handelRecipientCarts = newCart =>  setRecipientCart([...recipientCart, newCart]);
 
   return (
-    <>
+    <React.Fragment>
       <LoginContext>
         <Login />
         <Logup />
@@ -64,8 +39,10 @@ export default function App (){
             <Donor cartList={cart} handelcart={handelcart}/>
           </SettingsProvider>
         </Auth>
+        {/* <Route exact path= '/profile'> */}
         <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
+        {/* </Route> */}
       </LoginContext>
-    </>
+    </React.Fragment>
   );
 }

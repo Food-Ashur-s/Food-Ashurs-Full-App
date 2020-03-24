@@ -80,8 +80,12 @@ function Profile (props){
         <Model title='cart update' close={toggleUpdate}>
           <div className="cart-updated">
             <form onSubmit={UpdteItem} value={details._id}>
-              <input type='hidden' name='_id' value={details._id} />
-              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <label>
+                <input type='hidden' name='_id' value={details._id} />
+              </label>
+              <label> name
+                <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              </label>
               <br/>
               <label> Eastern Food
                 <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
@@ -93,9 +97,13 @@ function Profile (props){
                 <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
               </label>
               <br/>
-              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              <label> available_time
+                <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              </label>
               <br/>
-              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+              <label>amount
+                <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+              </label>
               <br/>
               <br/>
               <button >Submit</button>
