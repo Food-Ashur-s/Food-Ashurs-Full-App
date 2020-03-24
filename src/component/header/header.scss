@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bellota+Text|Righteous|Trade+Winds&display=swap');
 html{
-    background: #0c0c0c;
+    background: #000000;
     box-sizing: border-box;
     width: 100%;
 }
@@ -15,7 +15,7 @@ header{
     width: 100%;
     background: rgba(19, 18, 18, 0.945);
     position: absolute;
-    margin: auto;
+    // margin: auto;
     position: relative;
 }
 h1{
@@ -68,7 +68,7 @@ h1{
         top: 100px;
         position: absolute;
         background-color: rgba(38, 84, 133, 0.54);
-        border-radius: 20%;
+        border-radius: 10px;
         z-index: 18;
         overflow: hidden;
         li{
@@ -95,10 +95,10 @@ h1{
         .sub-menu{
             opacity: 55%;
             height: 100%;
-            width: 129%;
+            width: 98%;
             border-radius: 2%;
             background: #455a6494;
-            border-radius: 6%;
+            border-radius: 5px;
             background-color: #0f545d;
             margin: 1%;
             padding: 4%;
@@ -133,16 +133,16 @@ h1{
     height: 1164%;
     z-index: 18;
     position: absolute;
-    width: 774%;
+    width: 674%;
     top: -38px;
     border-radius: 13%;
-    background-color: #009688;
+    background-color: #088074;
 }
 
 .oppenned .sub-menu {
     opacity: 55%;
     height: 90%;
-    width: 129%;
+    width: 115%;
     border-radius: 2%;
     border-radius: 6%;
     background-color: #009688;
@@ -175,4 +175,17 @@ h1{
 .header-containar img:hover{
     opacity: 50%;
     transition: 870ms;
+}
+.sub-menu li a {
+    color: #fafafa;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    margin-left: 32px;
+    text-decoration: none;
+    width: 126%;
+    display: block;
+    float: left;
+    line-height: 49px;
+    padding: 6.5%;
+    border-bottom: groove;
 }

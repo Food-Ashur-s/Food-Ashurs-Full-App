@@ -50,7 +50,7 @@ class Header extends React.Component{
     return (
       <>
         <div className='header-containar'>
-          <img src={logo}  className="wow fadeInLeft slower logo" height="60px" width="200px"/>
+          <img src={logo}  className="wow fadeInLeft slower logo" height="50px" width="200px"/>
           <link rel="stylesheet" href="animate.min.css"></link>
           {/* <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
             <h1>Food Ashur's</h1>
