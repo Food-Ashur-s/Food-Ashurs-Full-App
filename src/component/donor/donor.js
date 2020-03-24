@@ -102,6 +102,10 @@ function Donors (props){
     setShowUpdate(!showUpdate);
   };
 
+  const addCart = donor => {
+    props.handelcart(donor);
+  };
+
   return (
     <>
       <h1>Donors</h1>
@@ -133,8 +137,9 @@ function Donors (props){
             </li>
 
             <button onClick={()=> toggleDetails(donor._id)}>More Detail</button>
-            <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-            <button onClick={()=> deleteItem(donor._id)}>DELETE</button>
+            <button onClick={()=> addCart(donor)}>Add To Cart</button>
+            {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
+            <button onClick={()=> deleteItem(donor._id)}>DELETE</button> */}
           </ul>;
         })}
       </div>
@@ -152,7 +157,7 @@ function Donors (props){
           </div>
         </Model>
       </When>
-      <When condition={showUpdate}>
+      {/* <When condition={showUpdate}>
         <Model title='Recipient update' close={toggleUpdate}>
           <div className="recipient-updated">
             <form onSubmit={UpdteItem} value={updated}>
@@ -178,7 +183,7 @@ function Donors (props){
             </form>
           </div>
         </Model>
-      </When>
+      </When> */}
     </>
   );
 }

@@ -33,6 +33,7 @@ function Recipients (props){
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
   const [ num, setNum] = useState(0);
+  const [resultsList, setResultstList] = useState([]);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -54,9 +55,8 @@ function Recipients (props){
   const addItem = e => {
     e.preventDefault();
     e.target.reset();
-    console.log(e.target.value);
 
-    const postHandeler  = newItem => setRecipientList([...recipientList, newItem]);
+    const postHandeler  = newItem => setRecipientList([newItem]);
     callAPI(recipientsAPI, 'POST', item, postHandeler );
     setNum(Math.floor(Math.random() * 4));
   };
@@ -64,6 +64,7 @@ function Recipients (props){
   const deleteItem = id =>{
     const deleteHandeler  = results => setRecipientList(recipientList.filter(recipient=> recipient._id !== id));
     callAPI(`${recipientsAPI}/${id}`, 'DELETE', undefined, deleteHandeler );
+    setRecipientList([]);
   };
 
   const handelUpdateChange = e => {
@@ -73,33 +74,35 @@ function Recipients (props){
   const UpdteItem = e =>{
     e.preventDefault();
     console.log(updated);
-
-    const updateHandeler  = newItem =>
-      setRecipientList(recipientList.map(recipient => recipient._id === newItem._id ? newItem : recipient));
-    callAPI(`${recipientsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
+    const postHandeler  = updated => setRecipientList([updated]);
+    callAPI(recipientsAPI, 'POST', updated, postHandeler );
+    // const updateHandeler  = newItem => setRecipientList([newItem]);
+    // callAPI(`${recipientsAPI}/${updated._id}`, 'PUT', updated, updateHandeler);
     setShowUpdate(!showUpdate);
-
   };
 
   const getRecipientList = () => {
-    const getHandeler = data => setRecipientList(data.results);
-    callAPI( recipientsAPI, 'GET', undefined, getHandeler );
+    const getHandeler = data => setResultstList(data.results);
+    callAPI('https://food--ashurs.herokuapp.com/api/v1/donor', 'GET', undefined, getHandeler );
+
   };
   useEffect(() => {
     getRecipientList();
-  }, [recipientList]);
+  });
 
-  const toggleDetails = id => {
-    let details = recipientList.filter( item => item._id === id )[0] || {};
-    setDetails(details);
+  const toggleDetails = item => {
+    setDetails(item);
     setShowDetails(!showDetails);
   };
 
-  const toggleUpdate = id => {
-    let updated = recipientList.filter( item => item._id === id )[0] || {};
-    setUpdate(updated);
+  const toggleUpdate = updatedItem => {
+    setUpdate(updatedItem);
+    console.log(updated);
     setShowUpdate(!showUpdate);
   };
+
+  const addCart = donor => props.handelcart(donor);
+
   return (
     <>
       <h1>Recipients</h1>
@@ -121,38 +124,64 @@ function Recipients (props){
 
         <button>Submit</button>
       </form>
-
-      <div>
+       --------------------------------------------------------------------------------
+      <div>Your Order
         {recipientList.map((recipient, idx) =>{
           let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <ul key={idx}>
-            <li>
-              {recipient.name}
-              <img src={src} height="200" width="200" />
-            </li>
-            <button onClick={()=> toggleDetails(recipient._id)}>More Detail</button>
-            <button onClick={()=> toggleUpdate(recipient._id)}>Update</button>
+          return <div key={idx}>
+            <h3>{recipient.name}</h3>
+            <h4>{recipient.identity}</h4>
+            <h4>{recipient.requestType}</h4>
+            <h4>{recipient.contactNumber}</h4>
+            <img src={src} height="200" width="200" />
+            <p>{recipient.description}</p>
+
+            {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
             <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
+            ----------------------------------------------------------------------------
+            <section> Results Request
+              {recipient.requestRecipient.map(item=>{
+                return <ul key={idx}>
+                  <li>
+                    {item.name}
+                    <img src={src} height="200" width="200" />
+                  </li>
+                  <button onClick={()=> toggleDetails(item)}>More Detail</button>
+                  <button onClick={()=> addCart(item)}>Add To Cart</button>
+                </ul>;
+              })}
+            </section>
+          </div>;
+        })}
+      </div>
+      -------------------------------------------------------------------------------------
+      <div> Donations Available
+        {resultsList.map((item, i)=>{
+          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          return <ul key={i}>
+            <li>{item.name}</li>
+            <img src={src} height="200" width="200" />
+            <button onClick={()=> toggleDetails(item)}>More Detail</button>
+            <button onClick={()=> addCart(item)}>Add To Cart</button>
           </ul>;
         })}
       </div>
       <When condition={showDetails}>
-        <Model title='Recipient details' close={toggleDetails}>
-          <div className="recipient-details">
+        <Model title='Donor details' close={toggleDetails}>
+          <div className="donor-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Request Type: {details.requestType}   </li>
-              <li>Identity: {details.identity}   </li>
-              <li>Contact Number: {details.contactNumber}</li>
+              <li>Donation Type: {details.type}   </li>
+              <li>Available Time: {details.available_time}   </li>
             </header>
             <div className="item">
-            description: {details.description}
+            Food Amount: {details.amount}
             </div>
           </div>
         </Model>
       </When>
       <When condition={showUpdate}>
-        <Model title='Recipient update' close={toggleUpdate}>
+        {/* <Model title='Recipient update' close={toggleUpdate}>
           <div className="recipient-updated">
             <form onSubmit={UpdteItem} value={updated}>
               <input type='hidden' name='_id' value={details._id} />
@@ -177,7 +206,7 @@ function Recipients (props){
               <button >Submit</button>
             </form>
           </div>
-        </Model>
+        </Model> */}
       </When>
     </>
   );

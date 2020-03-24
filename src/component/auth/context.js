@@ -45,11 +45,10 @@ class LoginProvider extends React.Component {
       body: newbody ? JSON.stringify(newbody) : undefined,
     })
       .then( response => {
-        console.log(response);
+        // console.log(response);
         this.genarateToken(newbody);
         response.json();
       })
-      .then(data => console.log(data))
       .catch(console.error);
   }
 
@@ -61,25 +60,23 @@ class LoginProvider extends React.Component {
       capabilities: user.role,
     };
     let token = jwt.sign(userData, 'ashurFood');
-    console.log(token);
-    this.setLoginState(false, token, user);
+    this.setLoginState(true, token, user);
   }
 
   validateToken = token =>{
-    console.log(token);
     try {
       let user = jwt.verify(token, 'ashurFood');
       this.setLoginState(true, token, user);
     } catch {
-      alert('wrong password/username');
       this.setLoginState(false, null, {});
+      // alert('wrong password/username');
       console.error('token invalid');
     }
   }
   setLoginState = (loggedIn, token, user) =>{
-    console.log(this.state.user);
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
+    // this.props.setUser(this.state.user);
   }
 
     logout = () =>{
