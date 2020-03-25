@@ -160,16 +160,38 @@ text-decoration: none;
 }
 
 @media(max-width: 768px) {
+    
+.button_container{
+    display: grid;
+    grid-template-columns:auto;
+    // grid-template-rows: ;
+    margin-bottom: 2%;
+}
+
+.github{
+grid-column: 1;
+text-decoration: none; 
+
+}
+.linked{
+    grid-column: 1;
+    text-decoration: none; 
+
+}
 
    
     .btn{
         font-size: 60%;
+        margin-bottom: 4%
     }
     
 .team-section{
   
     padding: 45px;
 
+}
+.par{
+    padding: 8%;
 }
   
    

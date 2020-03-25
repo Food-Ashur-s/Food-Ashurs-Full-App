@@ -98,7 +98,7 @@ Senior Customer Support Specialist.
 
 Core professional values include honesty, a hard-working nature, support and mentorship of others, and a constant desire to learn and grow. </p>
             <div class="button_container">
-              <a href="https://github.com/orgs/Food-Ashur-s/people/Nsuliman" className="github" ><button className="btn">Github Link</button></a>
+              <a href="https://github.com/Nsuliman" className="github" ><button className="btn">Github Link</button></a>
               <a href="https://www.linkedin.com/in/nawal-suliman-sherine/" className="linked" ><button className="btn">LinkedIn Link</button></a>
          
             </div>
