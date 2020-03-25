@@ -1,1 +1,41 @@
+.div-slide-2{
+    position: relative;
+    // background: rgba(255, 0, 0, 0.281);
+    max-height: 600px;
+    min-width:300px;
+    min-height:450px;
+    justify-content: center;
+    height: 600px;
+    overflow: hidden;
+}
+.div-slide-2:before{ // pseudo element or pseudo selector
+    content:"";
+    height: 200%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    scale: (1.0 , 1.0);
+    transform: translateZ(0);
+    // background-color: red;
+    background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010C1C0P7V/depositphotos_104290980_s-2019.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.8;
+    background-attachment: fixed;
+    animation: homeSlide2 50s linear 3s infinite;
+    transition:all 1.4s ease-in-out;
+}
+
+@keyframes homeSlide2{
+    0%{
+       transform: scale(1) translateY(0px);
+    }
+    60%{
+        transform: scale(1.2) translateY(-30px);
+    }
+}
+
+
 

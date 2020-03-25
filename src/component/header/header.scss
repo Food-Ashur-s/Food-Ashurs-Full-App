@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Bellota+Text|Righteous|Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css?family=ABeeZee|Bellota+Text|Righteous|Titillium+Web|Trade+Winds&display=swap');
 html{
-    // background: #000000;
-    box-sizing: border-box;
+    background: #000000f5;
+    // box-sizing: border-box;
     width: 100%;
+    color: white;
+    // position: fixed;
+    z-index: -1;
+}
+html,body{
+    margin: 0;
+    height: 118%;
 }
 *, *:after,*:before{
     box-sizing: inherit;
@@ -13,8 +21,8 @@ body{
 }
 header{
     width: 100%;
-    background: rgba(19, 18, 18, 0.945);
-    position: absolute;
+    background: rgba(8, 8, 8, 0.959);
+    position: fixed;
     // margin: auto;
     position: relative;
 }
@@ -27,8 +35,10 @@ h1{
   margin-left: 10%;
   letter-spacing: 10px;
 }
+
 .open{
     position: absolute;
+    top: 13px;
     color: #000;
     width: 50px;
     height: 50px;
@@ -133,8 +143,8 @@ h1{
     height: 1164%;
     z-index: 18;
     position: absolute;
-    width: 674%;
-    top: -38px;
+    width: 654%;
+    top: -24px;
     border-radius: 13%;
     background-color: #088074;
 }
@@ -155,16 +165,16 @@ h1{
     transition: 990ms;
 }
 
-.header-containar{
-    position: absolute;
+.header-containar {
+    z-index: 95;
+    position: fixed;
     margin-bottom: 20%;
     clear: both;
-    padding: 1%;
-    padding-bottom: 1%;
-    margin: .5%;
-    top: 0;
+    /* padding: 1%; */
+    /* padding-bottom: 1%; */
+    top: .1%;
     left: 0;
-    background-color: rgba(2, 2, 2, 0.945);
+    background-color: rgba(2, 2, 2, 0.959);
     width: 100%;
 }
 .header-containar img {
@@ -189,3 +199,139 @@ h1{
     padding: 6.5%;
     border-bottom: groove;
 }
+
+.header-page{
+    position: relative;
+    // background: rgba(255, 0, 0, 0.281);
+    max-height: 600px;
+    min-width:390px;
+    min-height:450px;
+    justify-content: center;
+    height: 600px;
+    overflow: hidden;
+}
+.header-page:before{ // pseudo element or pseudo selector
+    content:"";
+    height: 250%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    // scale: (1.0 , 1.0);
+    transform: translateZ(0);
+    // background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010P1QUM52/depositphotos_187656914_s-2019.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: .95;
+    background-attachment: fixed;
+    animation: homeSlide 30s linear 0s infinite;
+    transition:all 10s ease-in-out;
+}
+
+@keyframes homeSlide{
+    0%{
+        background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010P1QUM52/depositphotos_187656914_s-2019.jpg);
+       transform: scale(1) translateY(0px);
+    }
+    20%{
+        background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010P1QUM52/depositphotos_187656914_s-2019.jpg);
+       transform: scale(1.1) translateY(-20px); 
+    }
+    80%{
+        background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010P1QVBHS/depositphotos_314459712_s-2019.jpg);
+        transform: scale(1) translateY(-20px);
+        opacity: 80%;
+    }
+    99%{
+        background-image: url(https://files.slack.com/files-pri/TNGRRLUMA-F010P1QVBHS/depositphotos_314459712_s-2019.jpg);
+        transform: scale(1.1) translateY(0px);
+        opacity: 80%;
+    }
+}
+.signForm-button {
+    /* margin-top: 10%; */
+    z-index: 93;
+    background: #080808b8;
+    position: absolute;
+    margin: auto;
+    left: 41%;
+    top: 58%;
+    width: 20%;
+    color: #ffffffc2;
+    border: none;
+    padding: 1.5%;
+    font-size: 19px;
+    cursor: pointer;
+    border-radius: 9px;
+    border: solid 2px #ffffffa1;
+    box-shadow: 3px 2px 5px 1px #009285d1;
+}
+.signForm-button:hover{
+    background:#009285d1;
+    color: white;
+    border: solid 2px #141414a1;
+    box-shadow: 2px 2px 2px 1px #f7f7f7d1;
+}
+
+.clear-div{
+    margin-top: 22%;
+    z-index: 19;
+}
+.quotes-div:after { 
+    top: 16px; 
+		position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    z-index: 89; 
+}
+
+.quotes-div div p{
+    position: absolute;
+    top: 23%;
+    left: 42%;
+   color: rgb(240, 235, 235);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 92;
+    animation: quotesAnimation 15s linear infinite 0s; 
+}
+
+.quotes-div div:nth-child(1) p { 
+    font-size: 50px;
+    animation-delay: 0s; 
+}
+.quotes-div div:nth-child(2) p { 
+    font-size: 50px;
+    animation-delay: 4s; 
+}
+.quotes-div div:nth-child(3) p { 
+    font-size: 50px;
+    animation-delay: 7s; 
+}
+.quotes-div div:nth-child(4) p {  
+    font-size: 50px;
+    animation-delay: 12s; 
+}
+
+@keyframes quotesAnimation { 
+    0% { opacity: 0; animation-timing-function: ease-in; }
+    8% { opacity: 1; animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+
+.quote{
+    font-family: 'Titillium Web', sans-serif;
+    letter-spacing: 3px;
+    font-size: 67px;
+    background-color: rgba(0, 0, 0, 0.007);
+    text-shadow: 3px 3px 5px rgb(56, 58, 56);
+
+    // box-shadow: 1px 1px 4px 2px rgb(90, 87, 87);
+}
+

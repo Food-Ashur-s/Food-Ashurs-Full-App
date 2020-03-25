@@ -4,30 +4,41 @@ import React, {useState, useEffect} from 'react';
 import Model from '../modal';
 import {When} from '../if';
 import './donor.scss';
+import '../../../node_modules/aos/dist/aos.css';
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
-import desserts2 from '../../assets/desserts-1.jpg';
-import desserts3 from '../../assets/desserts-1.jpg';
+import desserts2 from '../../assets/desserts-2.jpg';
+
 
 import easternfood0 from '../../assets/eastern-food-0.jpg';
 import easternfood1 from '../../assets/eastern-food-1.jpg';
 import easternfood2 from '../../assets/eastern-food-2.jpg';
-import easternfood3 from '../../assets/eastern-food-3.jpg';
+
 
 import fastfood0 from '../../assets/fast-food-0.jpg';
 import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
-import fastfood3 from '../../assets/fast-food-3.jpg';
+import fastfood4 from '../../assets/fast-food-4.jpg';
+import fastfood5 from '../../assets/fast-food-5.jpg';
 
-const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
-const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
-const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
+import AOS from 'aos';
+
+const easternfoodArray = [easternfood0, easternfood1, easternfood2];
+const fastfoodArray = [fastfood0, fastfood1, fastfood2 ,fastfood4,fastfood5];
+const dessertsArray = [desserts0, desserts1, desserts2];
 
 
 
 const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
 
 function Donors (props){
+  AOS.init();
+  // const componentDidMount = ()=>{
+  //   AOS.init({
+  //     duration : 200,
+  //   });
+  // };
+
 
   const [donorList, setDonorList] = useState([]);
   const [item, setItem] = useState({});
@@ -105,7 +116,7 @@ function Donors (props){
   };
 
   return (
-    <>
+    <section className="block-donor">
       <div className="fixx"></div>
       <h1>Donors</h1>
 
@@ -128,28 +139,28 @@ function Donors (props){
 
       <div className="donors-list">
         {donorList.map((donor, idx) =>{
+          // Math.floor(Math.random() * easternfoodArray.length)
           let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
 
           return(
             <>
-              <div key={idx} className="donor-line">
+              <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
                 {/* <div className="donor-item"> */}
                 <img src={src} className="donor-item-img" height="330" width="300" />
                 <div className="donor-item-name">
                   {donor.name}
                 </div>
                 <div className="styles-div">
-                  <div className="donor-item-div1"></div>
-                  <div className="donor-item-div2"></div>
+                  <div className="donor-item-div1" data-aos="fade-right"
+                    data-aos-duration="1500" ></div>
+                  <div className="donor-item-div2"data-aos="fade-left" data-aos-duration="1700"
+                  ></div>
                 </div>
                 <div className="div-buttons">
-                  {/* <div className="s"></div> */}
                   <button onClick={()=> toggleDetails(donor._id)} className="donor-item-button more">More Detail</button>
                   <button onClick={()=> toggleUpdate(donor._id)} className="donor-item-button">Update</button>
                   <button onClick={()=> deleteItem(donor._id)} className="donor-item-button">DELETE</button>
                 </div>
-
-                {/* </div> */}
               </div>
             </>);
         })}
@@ -190,7 +201,7 @@ function Donors (props){
           </div>
         </Model>
       </When>
-    </>
+    </section>
   );
 }
 

@@ -7,7 +7,10 @@ import logo from '../../assest/mainLogo.PNG';
 import {LoginContext} from '../auth/context.js';
 // import ReactWOW from 'react-wow';
 import WOW from 'wowjs';
+import SignForm from '../sign-forms/signForm.js';
 import $ from 'jquery';
+import {When} from '../if/index.js';
+import AOS from 'aos';
 window.$ = window.jQuery = require('jquery');
 
 const If = props => {
@@ -20,10 +23,12 @@ class Header extends React.Component{
     super(props);
     this.state = {
       isToggle : false,
+      showSignForm : false,
     };
   }
 
   componentDidMount(){
+    AOS.init();
     const wow = new WOW.WOW();
     wow.init();
   }
@@ -45,12 +50,19 @@ class Header extends React.Component{
       });
     });
   };
+  handleSignClick =() => {
+    this.setState(state =>({showSignForm : true}));
+    console.log(this.state);
+  }
+  closeSignForm =() => {
+    this.setState(state =>({showSignForm : false}));
+  }
   render(){
 
     return (
       <>
         <div className='header-containar'>
-          <img src={logo}  className="wow fadeInLeft slower logo" height="50px" width="200px"/>
+          <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
           <link rel="stylesheet" href="animate.min.css"></link>
           {/* <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
             <h1>Food Ashur's</h1>
@@ -76,7 +88,9 @@ class Header extends React.Component{
                     <a onClick={this.context.logout} >Log Out!</a>
                   </If>
                   <If condition={!this.context.loggedIn}>
-                    <a>Log In</a>
+                    <a onClick={this.handleSignClick}>Log In</a>
+                    {/* <button onClick={this.handleSignClick} className="signForm-button" >
+            SignIn</button> */}
                   </If>
                   {/* <a href="#setting" title="setting">Log Out</a> */}
                 </li>
@@ -86,6 +100,30 @@ class Header extends React.Component{
           </div>
         </div>
         <div className="div-fix"></div>
+        <When condition={this.state.showSignForm}>
+          <SignForm close={this.closeSignForm}  />
+        </When>
+
+        {/* <When condition={!this.state.showSignForm}>
+        </When> */}
+        <If condition={!this.context.loggedIn}>
+          <button onClick={this.handleSignClick} data-aos="fade-up" data-aos-duration="2000" className="signForm-button" >
+            SignIn</button>
+        </If>
+        <div className="header-page">
+
+        </div>
+        <div className="quotes-div">
+          {/* <ul class="slideshow"> */}
+          <div ><p data-aos="flip-up" className="quote">Food Charty</p></div>
+          <div><p  data-aos="flip-down" className="quote">Donation</p></div>
+
+          <div ><p data-aos="flip-up" className="quote">Humanity</p></div>
+
+          <div  ><p data-aos="flip-down" className="quote">Help ...</p></div>
+
+        </div>
+        <div className="clear-div"></div>
       </>
     );
   }

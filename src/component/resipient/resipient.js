@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
 import Model from '../modal';
@@ -5,21 +6,23 @@ import {When} from '../if';
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
-import desserts3 from '../../assets/desserts-1.jpg';
+// import desserts3 from '../../assets/desserts-1.jpg';
 
 import easternfood0 from '../../assets/eastern-food-0.jpg';
 import easternfood1 from '../../assets/eastern-food-1.jpg';
 import easternfood2 from '../../assets/eastern-food-2.jpg';
-import easternfood3 from '../../assets/eastern-food-3.jpg';
+// import easternfood3 from '../../assets/eastern-food-3.jpg';
 
 import fastfood0 from '../../assets/fast-food-0.jpg';
 import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
 import fastfood3 from '../../assets/fast-food-3.jpg';
+import fastfood4 from '../../assets/fast-food-4.jpg';
+import fastfood5 from '../../assets/fast-food-5.jpg';
 
-const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
-const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
-const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
+const easternfoodArray = [easternfood0, easternfood1, easternfood2];
+const fastfoodArray = [fastfood0, fastfood1, fastfood2 ,fastfood3,fastfood4,fastfood5];
+const dessertsArray = [desserts0, desserts1, desserts2];
 
 
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';

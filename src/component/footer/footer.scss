@@ -2,7 +2,7 @@
 @media (min-width: 768px){
     .open{
         position: absolute;
-        top: 19px;
+        top: 7px;
         left: 50px;
     }
     .page-footer{
@@ -33,7 +33,7 @@
         grid-column: 1/ span 3;
     }
 
-    .footer-copyright:hover , .contact-header:hover , .contact-div:hover , .links-div:hover ,.simple-bio:hover ,   .linkes-header:hover ,  .footer-header:hover{
+    .footer-copyright:hover , .contact-div:hover , .links-div:hover ,.simple-bio:hover {
         box-shadow: 3px 6px 9px #075151;
         transform: scale(1.005);
         transition:850ms;
@@ -51,7 +51,7 @@
 @media (max-width: 768px){
     .open{
         position: absolute;
-        top: 13px;
+        top: 6px;
         left: 40px;
     }
     .page-footer{
@@ -104,7 +104,7 @@
     color: white;
     letter-spacing: 1px;
   
-   background: rgba(19, 18, 18, 0.945);;
+   background: #000000f5;;
 }
 
 .simple-bio{

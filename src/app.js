@@ -40,12 +40,12 @@ export default function App (){
     <>
       <LoginContext>
         <Header/>
-        {/* <SlideShow/> */}
-        <SignForm/>
+
         <Donors />
         <Recipient />
+        <SlideShow/>
+        <Footer/>
       </LoginContext>
-      <Footer/>
     </>
   );
 }

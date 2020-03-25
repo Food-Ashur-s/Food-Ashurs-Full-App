@@ -18,16 +18,19 @@ render(){
       </If>
 
       <If condition={!this.context.loggedIn}>
-        <div className="login-wrap">
-          <div className="login-html"  action="https://github.com/Food-Ashur-s/Food-Ashurs-Full-App">
-            <input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" class="tab">Sign In</label>
-            <input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2" class="tab">Sign Up</label>
-            <div className="login-form">
-              <SignInForm/>
-              <SignUpForm/>
+        <section className="sign-bg-section">
+          <div className="login-wrap">
+            <button onClick={this.props.close}>X</button>
+            <div className="login-html"  action="https://github.com/Food-Ashur-s/Food-Ashurs-Full-App">
+              <input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" class="tab">Sign In</label>
+              <input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2" class="tab">Sign Up</label>
+              <div className="login-form">
+                <SignInForm/>
+                <SignUpForm/>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </If>
     </React.Fragment>
   );

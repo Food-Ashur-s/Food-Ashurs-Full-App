@@ -1,31 +1,29 @@
-body{
-	// margin:0;
-	// color: #18181ba3;
-	// background-color:rgba(0, 0, 0, 0.596);
-	// background: rgba(0, 0, 0, 0.877);
-	// opacity: 50%;
-	// background-size: cover;
-	font:600 16px/18px 'Open Sans',sans-serif;
-}
+
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
 a{color:rgba(0, 0, 0, 0.623);text-decoration:none}
 
-.login-wrap{
-	width:100%;
-	margin:auto;
-	max-width:525px;
-	margin-top: 3%;
-	min-height: 590px;
-	position:relative;
-	background:url(https://i.ibb.co/zXXVW3m/man.jpg) no-repeat center;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+.login-wrap {
+    z-index: 99;
+    width: 100%;
+    position: fixed;
+    // /* margin: auto; */
+	margin: 4% 0% 3% 29%;
+    max-width: 525px;
+    /* margin-top: 3%; */
+    padding-bottom: 3%;
+    min-height: 590px;
+    /* position: relative; */
+    background: url(https://i.ibb.co/zXXVW3m/man.jpg) no-repeat center;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+
 }
 .login-html{
 	width:100%;
 	height:100%;
-	position:absolute;
+	position:fixed;
 	padding:90px 70px 50px 70px;
 	background: #009487ab;
 }
@@ -194,4 +192,26 @@ input::placeholder {
 .login-html .sign-in:checked + .tab, .login-html .sign-up:checked + .tab {
     color: #faf6f6be;
     border-color: #258794;
+}
+.sign-bg-section{
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 93;
+		background: rgba(116, 111, 111, 0.644);
+		width: 100%;
+		height: 319%;
+		opacity: .5;
+	}
+}
+.tab{
+	color: #020202d6;
+}
+.login-html .sign-in:checked + .tab, .login-html .sign-up:checked + .tab {
+    color: #faf6f6be;
+    border-color: #a9b2b3;
 }
