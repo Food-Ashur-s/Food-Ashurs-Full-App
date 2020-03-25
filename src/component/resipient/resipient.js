@@ -129,30 +129,31 @@ function Recipients(props) {
 
         <button>Submit</button>
       </form>
-       --------------------------------------------------------------------------------
+      -------------------------------------------------------------------------------
       <div className="recipients-list">Your Order's Details
         {recipientList.map((recipient, idx) => {
         let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-        return <div key={idx} className="recipient-line">
-          <h3 className="recipient-item-name">{recipient.name}</h3>
-          <h4 className="recipient-item-name">{recipient.identity}</h4>
-          <h4 className="recipient-item-name">{recipient.requestType}</h4>
-          <h4 className="recipient-item-name">{recipient.contactNumber}</h4>
-          <img src={src} height="200" width="200" />
-          <p className="recipient-item-name">{recipient.description}</p>
+        return <div key={idx} className="recipient-line"> Order's Details
+          <h3 className="recipient-item-name"> Your Name : {recipient.name}</h3>
+          <img src={src} className="donor-item-img" height="330" width="300" />
+          <h4 className="recipient-item-name"> Request Type : {recipient.requestType}</h4>
+          <h4 className="recipient-item-name">Identity Type : {recipient.identity}</h4>
+          <h4 className="recipient-item-name"> Contact Number : {recipient.contactNumber}</h4>
+          <p className="recipient-item-name">About Your Request :{recipient.description}</p>
 
           {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
-          <button onClick={() => deleteItem(recipient._id)}>DELETE</button>
-            ----------------------------------------------------------------------------
-            <section> Results Request
+            <button onClick={() => deleteItem(recipient._id)}>DELETE</button>
+       
+      ----------------------------------------------------------------------------
+            <section> Matching Results
               {recipient.requestRecipient.map(item => {
             return <ul key={idx}>
               <li>
                 {item.name}
                 <img src={src} height="200" width="200" />
               </li>
-              <button onClick={() => toggleDetails(item)}>More Detail</button>
-              <button onClick={() => addCart(item)}>Add To Cart</button>
+                <button onClick={() => toggleDetails(item)}>More Detail</button>
+                <button onClick={() => addCart(item)}>Add To Cart</button>
             </ul>;
           })}
           </section>
@@ -163,13 +164,13 @@ function Recipients(props) {
       <div> Available Donations
         {resultsList.map((item, i) => {
         let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-        
+
         return <ul key={i} className="recipient-line">
           <li className="recipient-item-name">{item.name}</li>
           <img src={src} className="donor-item-img" height="330" width="300" />
           <div className="div-buttons">
-          <button onClick={() => toggleDetails(item)} className="recipient-item-button more">More Detail</button>
-          <button onClick={() => addCart(item)} className="recipient-item-button">Add To Cart</button>
+            <button onClick={() => toggleDetails(item)} className="recipient-item-button more">More Detail</button>
+            <button onClick={() => addCart(item)} className="recipient-item-button">Add To Cart</button>
           </div>
         </ul>;
       })}
