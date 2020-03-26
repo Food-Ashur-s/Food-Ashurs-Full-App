@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,  useContext} from 'react';
 import Model from './modal';
 import {When} from './if';
+import { LoginContext } from '../component/auth/context.js';
 
 function Profile (props){
 //   console.log(props);
+  const settingsContext = useContext(LoginContext);
+  console.log(settingsContext);
 
   //   const [favourite, setFavourite] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
@@ -40,10 +43,10 @@ function Profile (props){
     setShowUpdate(!showUpdate);
   };
   const IfDonor = props => {
-    return props.donorCart   ? props.children  : null;
+    return props.user.capabilities.includes('donor') ? props.children  : null;
   };
   const IfRecipient = props => {
-    return props.recipientCart   ? props.children  : null;
+    return props.user.capabilities.includes('recipient') ? props.children  : null;
   };
 
 
@@ -60,8 +63,7 @@ function Profile (props){
         })
       }
 
-      {/* </IfDonor> */}
-      {/* <IfDonor props> */}
+      {/* <IfDonor settingsContext> */}
       <When condition={showDetails}>
         <Model title='cart details' close={toggleDetails}>
           <div className="cart-details">
@@ -111,53 +113,52 @@ function Profile (props){
           </div>
         </Model>
       </When>
-      {/* </IfDonor> */}
-      {/* <IfRecipient props>
-        <When condition={showDetails}>
-          <Model title='Recipient details' close={toggleDetails}>
-            <div className="recipient-details">
-              <header>
-                <li>Name: {details.name}   </li>
-                <li>Request Type: {details.requestType}   </li>
-                <li>Identity: {details.identity}   </li>
-                <li>Contact Number: {details.contactNumber}</li>
-              </header>
-              <div className="item">
+      {/* </IfDonor>
+      <IfRecipient settingsContext> */}
+      {/* <When condition={showDetails}>
+        <Model title='Recipient details' close={toggleDetails}>
+          <div className="recipient-details">
+            <header>
+              <li>Name: {details.name}   </li>
+              <li>Request Type: {details.requestType}   </li>
+              <li>Identity: {details.identity}   </li>
+              <li>Contact Number: {details.contactNumber}</li>
+            </header>
+            <div className="item">
             description: {details.description}
-              </div>
             </div>
-          </Model>
-        </When>
-        <When condition={showUpdate}>
-          <Model title='Recipient update' close={toggleUpdate}>
-            <div className="recipient-updated">
-              <form onSubmit={UpdteItem} value={updated}>
-                <input type='hidden' name='_id' value={details._id} />
-                <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
-                <br/>
-                <label> Eastern Food
-                  <input type='radio' name='requestType' value='eastern food' onClick={handelUpdateChange} required />
-                </label>
-                <label> Fast Food
-                  <input type='radio' name='requestType' value='fast food' onClick={handelUpdateChange} required />
-                </label>
-                <label> Desserts
-                  <input type='radio' name='requestType' value='desserts' onClick={handelUpdateChange} required />
-                </label>
-                <br/>
-                <input type='text' name='identity' placeholder='type your identity' defaultValue={updated.identity} onChange={handelUpdateChange} required />
-                <br/>
-                <input type='number' name='contactNumber' placeholder='type your contactNumber' defaultValue={updated.contactNumber} onChange={handelUpdateChange} required />
-                <br/>
-                <input type='text' name='description' placeholder='description'  defaultValue={updated.description} onChange={handelUpdateChange} />
-                <br/>
-                <button >Submit</button>
-              </form>
-            </div>
-          </Model>
-        </When>
-      </IfRecipient> */}
-
+          </div>
+        </Model>
+      </When>
+      <When condition={showUpdate}>
+        <Model title='Recipient update' close={toggleUpdate}>
+          <div className="recipient-updated">
+            <form onSubmit={UpdteItem} value={updated}>
+              <input type='hidden' name='_id' value={details._id} />
+              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <br/>
+              <label> Eastern Food
+                <input type='radio' name='requestType' value='eastern food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Fast Food
+                <input type='radio' name='requestType' value='fast food' onClick={handelUpdateChange} required />
+              </label>
+              <label> Desserts
+                <input type='radio' name='requestType' value='desserts' onClick={handelUpdateChange} required />
+              </label>
+              <br/>
+              <input type='text' name='identity' placeholder='type your identity' defaultValue={updated.identity} onChange={handelUpdateChange} required />
+              <br/>
+              <input type='number' name='contactNumber' placeholder='type your contactNumber' defaultValue={updated.contactNumber} onChange={handelUpdateChange} required />
+              <br/>
+              <input type='text' name='description' placeholder='description'  defaultValue={updated.description} onChange={handelUpdateChange} />
+              <br/>
+              <button >Submit</button>
+            </form>
+          </div>
+        </Model>
+      </When> */}
+      {/* </IfRecipient> */}
     </>
   );
 }

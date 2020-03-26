@@ -30,7 +30,7 @@ class LoginProvider extends React.Component {
         'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
       }),
     })
-      .then(response => response.text())
+      .then(response =>  response.text())
       .then(token => this.validateToken(token))
       .catch(console.error);
   }
@@ -45,11 +45,14 @@ class LoginProvider extends React.Component {
       body: newbody ? JSON.stringify(newbody) : undefined,
     })
       .then( response => {
-        // console.log(response);
-        this.genarateToken(newbody);
-        response.json();
+        if (response.status === 200) this.genarateToken(newbody);
+        else alert('This user is user');
       })
       .catch(console.error);
+  }
+  loginGoogle= token =>{
+    console.log(token);
+    // this.validateToken(token);
   }
 
   genarateToken = user => {
@@ -76,7 +79,6 @@ class LoginProvider extends React.Component {
   setLoginState = (loggedIn, token, user) =>{
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
-    // this.props.setUser(this.state.user);
   }
 
     logout = () =>{

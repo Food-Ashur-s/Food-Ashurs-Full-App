@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React ,{useState} from 'react';
 import {Route} from 'react-router-dom';
 
@@ -9,6 +10,10 @@ import LoginContext from './component/auth/context.js';
 import Login from './component/auth/login.js';
 import Auth from './component/auth/auth.js';
 import Logup from './component/auth/logup.js';
+import GoogleLogContext from './component/auth/login-google.js';
+import GoogleLogProvider from './component/auth/login-google.js';
+import GoogleLog from './component/auth/login-google.js';
+import GoogleAuth from './component/auth/google-auth.js';
 
 
 export default function App (){
@@ -30,18 +35,30 @@ export default function App (){
         <Login />
         <Logup />
         <Auth capability='recipient'>
-          <SettingsProvider setUser={handelUser}>
+          <SettingsProvider>
             <Recipients cartList={cart} handelcart={handelcart}/>
           </SettingsProvider>
         </Auth>
         <Auth capability='donor'>
-          <SettingsProvider setUser={handelUser}>
+          <SettingsProvider>
             <Donor cartList={cart} handelcart={handelcart}/>
           </SettingsProvider>
         </Auth>
-        {/* <Route exact path= '/profile'> */}
-        <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
-        {/* </Route> */}
+
+        <GoogleLogContext>
+          {/* <GoogleLog /> */}
+          <GoogleAuth capability='recipient'>
+            <GoogleLogProvider>
+              <Recipients cartList={cart} handelcart={handelcart}/>
+            </GoogleLogProvider>
+          </GoogleAuth>
+          <GoogleAuth capability='donor'>
+            <GoogleLogProvider>
+              <Donor cartList={cart} handelcart={handelcart}/>
+            </GoogleLogProvider>
+          </GoogleAuth>
+          <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
+        </GoogleLogContext>
       </LoginContext>
     </React.Fragment>
   );

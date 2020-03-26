@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { LoginContext } from './context.js';
 // import { JsonWebTokenError } from 'jsonwebtoken';
@@ -5,6 +6,7 @@ import { LoginContext } from './context.js';
 const If = props => {
   return props.condition ? props.children : null;
 };
+
 
 class Login extends React.Component {
   static contextType = LoginContext;
@@ -27,6 +29,45 @@ class Login extends React.Component {
     e.target.reset();
   }
 
+  // loginByGoogle = e =>{
+  //   let URL = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  //   let options = {
+  //     // response_type:code,
+  //     client_id: '54228323733-dv9m3667fkrc94vlr2aa4b9lel1ogbq5.apps.googleusercontent.com',
+  //     redirect_uri: 'https://food--ashurs.herokuapp.com/oauth',
+  //     scope: 'openid profile email',
+  //     response_type: 'code',
+  //     // access_type:online,
+  //     state: '401appconsent',
+  //   };
+
+  //   let QueryString = Object.keys(options).map((key) => {
+  //     return `${key}=` + encodeURIComponent(options[key]);
+  //   }).join('&');
+
+
+  //   let authURL = `${URL}?${QueryString}`;
+  //   console.log('authURL',authURL);
+  //   console.log(e.target);
+  //   let link = document.getElementById('oauth');
+  //   link.setAttribute('href', authURL);
+  //   // fetch(`${API}/signin`, {
+  //   //   method: 'post',
+  //   //   mode: 'cors',
+  //   //   cache: 'no-cache',
+  //   //   headers: new Headers({
+  //   //     'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
+  //   //   }),
+  //   // })
+  //   //   .then(response =>  response.text())
+  //   //   .then(token => this.validateToken(token))
+  //     // .catch(console.error);
+  //   console.log('link' , link);
+  //   console.log(document.getElementsByTagName('body'));
+    
+  //   this.context.loginGoogle(this.state.username, this.state.password, link);
+  // }
   render() {
     return (
       <>
@@ -40,6 +81,7 @@ class Login extends React.Component {
             <input type='password' name="password" onChange={this.handleChange}  placeholder='Enter your Password' required/>
             <button>Log In!</button>
           </form>
+          {/* <button onClick={this.loginByGoogle}><a href='#' id='oauth'>Login by Google</a></button> */}
         </If>
       </>
     );
