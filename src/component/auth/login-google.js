@@ -6,10 +6,10 @@ import GoogleLogin from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import { LoginContext } from './context.js';
 
-export const GoogleLogContext = React.createContext();
 
-class GoogleLogProvider extends React.Component {
+class GoogleLog extends React.Component {
     static contextType = LoginContext;
+
 
     constructor() {
       super();
@@ -18,65 +18,34 @@ class GoogleLogProvider extends React.Component {
         isUserLoggedIn: false,
       };
     }
+    responseGoogle1 = (response) => {
+      this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
 
-   responseGoogle1 = (response) => {
-     this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-     //  console.log( response.googleId);
+      //  let id_token = response.getAuthResponse().id_token;
 
-     let id_token = response.getAuthResponse().id_token;
-     let user = {
-       name: response.profileObj.name,
-       email: response.profileObj.email,
-       role: 'recipient',
-     };
-     this.genarateToken(user);
-   };
+      // console.log(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'recipient');
+
+      this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'recipient');
+    };
 
    responseGoogle2 = (response) => {
      this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-     let id_token = response.getAuthResponse().id_token;
-     let user = {
-       name: response.profileObj.name,
-       email: response.profileObj.email,
-       role: 'recipient',
-     };
-     //  console.log(user);
-     this.genarateToken(user);
-   };
+     //  let id_token = response.getAuthResponse().id_token;
 
-   genarateToken = user => {
-     let userData = {
-       username: user.username,
-       userEamil: user.email,
-       capabilities: user.role,
-     };
-     let token = jwt.sign(userData, 'ashurFood');
-     this.setLoginState(true, token, user);
-   }
-
-  setLoginState = (isUserLoggedIn, token, user) =>{
-    cookie.save('auth', token);
-    this.setState({token, isUserLoggedIn, user});
-  }
-  componentDidMount(){
-    console.log(this.state.userDetails);
-    const qs = new URLSearchParams(window.location.search);
-    const cookieToken = cookie.load('auth');
-    const token = qs.get('token') || cookieToken || null;
-    this.setLoginState(true, token, this.state.user);
-  }
-
-   logout = () => {
-     this.setLoginState(false, null, {});
-     console.log(this.state);
+     //  console.log(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'donor');
+     this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'donor');
 
    };
+
+
+   //  logout = () => {
+   //     // this.setState({ isUserLoggedIn: false });
+   //  };
 
    render() {
      return (
        <div className="App">
-         {console.log(this.state.isUserLoggedIn)}
-         {!this.state.isUserLoggedIn && (
+         {!this.context.loggedIn && (
            <GoogleLogin
              clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com"
              render={renderProps => (
@@ -92,7 +61,7 @@ class GoogleLogProvider extends React.Component {
              onFailure={this.responseGoogle1}
            />
          )}
-         {!this.state.isUserLoggedIn && (
+         {!this.context.loggedIn && (
            <GoogleLogin
              clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com"
              render={renderProps => (
@@ -108,7 +77,7 @@ class GoogleLogProvider extends React.Component {
              onFailure={this.responseGoogle2}
            />
          )}
-         {this.state.isUserLoggedIn && (
+         {/* {this.state.isUserLoggedIn && (
            <div className="userDetails-wrapper">
              <div className="details-wrapper">
                <GoogleLogout
@@ -135,11 +104,11 @@ class GoogleLogProvider extends React.Component {
              <div className="bar" />
              <div className="stand" />
            </div>
-         )}
+         )}*/}
        </div>
      );
    }
 
 }
 
-export default GoogleLogProvider;
+export default GoogleLog;

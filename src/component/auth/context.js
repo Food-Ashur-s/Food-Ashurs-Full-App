@@ -22,6 +22,7 @@ class LoginProvider extends React.Component {
   }
 
   login = (username, password) =>{
+
     fetch(`${API}/signin`, {
       method: 'post',
       mode: 'cors',
@@ -36,6 +37,8 @@ class LoginProvider extends React.Component {
   }
 
   logup = (username, password, email, role) =>{
+    console.log(username, password,  email, role);
+
     let newbody = {username, password, email, role};
     return fetch(`${API}/signup`, {
       method: 'post',
@@ -49,10 +52,6 @@ class LoginProvider extends React.Component {
         else alert('This user is user');
       })
       .catch(console.error);
-  }
-  loginGoogle= token =>{
-    console.log(token);
-    // this.validateToken(token);
   }
 
   genarateToken = user => {

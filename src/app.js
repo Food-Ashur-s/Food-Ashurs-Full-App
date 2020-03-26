@@ -10,17 +10,13 @@ import LoginContext from './component/auth/context.js';
 import Login from './component/auth/login.js';
 import Auth from './component/auth/auth.js';
 import Logup from './component/auth/logup.js';
-import GoogleLogContext from './component/auth/login-google.js';
-import GoogleLogProvider from './component/auth/login-google.js';
+
 import GoogleLog from './component/auth/login-google.js';
-import GoogleAuth from './component/auth/google-auth.js';
 
 
 export default function App (){
   const [cart, setCart] = useState([]);
-  const [user, setUserData] = useState({});
 
-  const handelUser = user =>    setUserData(user);
 
   const handelcart = newCart => {
     for (let i = 0; i < cart.length; i++) {
@@ -32,8 +28,10 @@ export default function App (){
   return (
     <React.Fragment>
       <LoginContext>
+
         <Login />
         <Logup />
+        <GoogleLog />
         <Auth capability='recipient'>
           <SettingsProvider>
             <Recipients cartList={cart} handelcart={handelcart}/>
@@ -45,20 +43,7 @@ export default function App (){
           </SettingsProvider>
         </Auth>
 
-        <GoogleLogContext>
-          {/* <GoogleLog /> */}
-          <GoogleAuth capability='recipient'>
-            <GoogleLogProvider>
-              <Recipients cartList={cart} handelcart={handelcart}/>
-            </GoogleLogProvider>
-          </GoogleAuth>
-          <GoogleAuth capability='donor'>
-            <GoogleLogProvider>
-              <Donor cartList={cart} handelcart={handelcart}/>
-            </GoogleLogProvider>
-          </GoogleAuth>
-          <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
-        </GoogleLogContext>
+        <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} />
       </LoginContext>
     </React.Fragment>
   );
