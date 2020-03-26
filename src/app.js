@@ -10,8 +10,9 @@ import LoginContext from './component/auth/context.js';
 // import Login from './component/auth/login.js';
 import Auth from './component/auth/auth.js';
 // import Logup from './component/auth/logup.js';
-import SignForm from './component/sign-forms/signForm.js';
+// import SignForm from './component/sign-forms/signForm.js';
 import SlideShow from './component/slideShow/slideShow.js';
+import About from './component/aboutus/about.js';
 
 const If = props => {
   return props.condition ? props.children : null;
@@ -47,6 +48,7 @@ export default function App (){
         <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
         {/* </Route> */}
         <SlideShow/>
+        <About />
         <Footer/>
       </LoginContext>
     </>
