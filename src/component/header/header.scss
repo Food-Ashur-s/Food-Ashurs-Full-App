@@ -27,7 +27,7 @@ header{
     position: relative;
 }
 h1{
-  width: 99%;
+//   width: 99%;
   color: #FFF;
   font-family: 'Righteous', cursive;
   text-align: center;
@@ -301,19 +301,19 @@ h1{
 }
 
 .quotes-div div:nth-child(1) p { 
-    font-size: 50px;
+    font-size: 67px;
     animation-delay: 0s; 
 }
 .quotes-div div:nth-child(2) p { 
-    font-size: 50px;
+    font-size: 67px;
     animation-delay: 4s; 
 }
 .quotes-div div:nth-child(3) p { 
-    font-size: 50px;
+    font-size: 67px;
     animation-delay: 7s; 
 }
 .quotes-div div:nth-child(4) p {  
-    font-size: 50px;
+    font-size: 67px;
     animation-delay: 12s; 
 }
 
@@ -330,7 +330,7 @@ h1{
     letter-spacing: 3px;
     font-size: 80px;
     background-color: rgba(0, 0, 0, 0.007);
-    text-shadow: 3px 3px 5px rgb(56, 58, 56);
+    text-shadow: 3px 3px 5px rgba(33, 34, 33, 0.897);
 
     // box-shadow: 1px 1px 4px 2px rgb(90, 87, 87);
 }

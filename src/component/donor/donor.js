@@ -158,9 +158,9 @@ function Donors (props){
         })}
 
       </section>
-        -------------------- Recipient Request --------------------------
-      <section className="block-donor">
-        <div className="donors-list">
+      <h3 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipient Request</h3>
+      <section className="block-recipient">
+        <div className="recipient-list">
           {donorList.map((donor, idx) =>{
             let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
             return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
@@ -177,10 +177,10 @@ function Donors (props){
                   data-aos-duration="1700"></div>
               </div>
               <div className="div-buttons">
-                <button onClick={()=> toggleDetails(donor)} className="donor-item-button">More Detail</button>
-                <button onClick={()=> addCart(donor)} className="donor-item-button">Add To Cart</button>
+                <button onClick={()=> toggleDetails(donor)} className="donor-item-button"> <i className="	fa fa-address-card-o info"></i>More Detail</button>
+                <button onClick={()=> addCart(donor)} className="donor-item-button"> <i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
                 {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-            <button onClick={()=> deleteItem(donor._id)}>DELETE</button> */}
+                <button onClick={()=> deleteItem(donor._id)}>DELETE</button>  */}
               </div>
             </div>;
           })}
@@ -192,10 +192,10 @@ function Donors (props){
             Description: {details.description}
               </div>
               <div className="detail-info">
-                <div className="detail-name"><span> Name:</span> {details.name}</div>
-                <div className="detail-type"><span> Request Type:</span>{details.requestType} </div>
-                <div className="detail-identity"><span>  Identity:</span>{details.identity}</div>
-                <div ><span> <i className="fa fa-phone"></i></span>{details.contactNumber}</div>
+                <div className="detail-name"><span> Name:</span> <p>{details.name}</p></div>
+                <div className="detail-type"><span> Request Type:</span> <p>{details.requestType}</p> </div>
+                <div className="detail-identity"><span>  Identity:</span> <p>{details.identity}</p></div>
+                <div > <i className="fa fa-phone"></i> <p>{details.contactNumber}</p></div>
               </div>
             </div>
           </Model>

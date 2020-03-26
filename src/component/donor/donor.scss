@@ -1,12 +1,12 @@
 @media (min-width: 768px){
-        .donors-list{
+        .recipient-list{
     margin: auto 0 0 15%;
     display: grid;
     grid-template-columns: 32% 32% 32%;
 }
 }
 @media (max-width: 768px){
-    .donors-list{
+    .recipient-list{
         margin: auto;
         margin-left: 17%;
         display: grid;
@@ -39,7 +39,7 @@
             width: 78%;
             height: 50px;
             display: block;
-            font-size: 20px;
+            font-size: 112%;
             color: white;
             border-radius: 5%;
             background: rgba(0, 0, 0, 0.438);
@@ -87,7 +87,7 @@
     // }
    
 }
-.block-donor{
+.block-recipient{
     padding-bottom: 3%;
     width: 91%;
     display: block;
@@ -139,4 +139,20 @@ text-align: center;
 // .social-icon{
 
 // }
+.cart , .info{
+    display: inline;
+}
+.cart:hover , .info:hover{
+    color: white;
+}
+
+.recipient-header{
+    font-size: 40px;
+    width: 85%;
+    margin-left: 6.5%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.712);
+    border-bottom: groove;
+    padding: 2%;
+}
 

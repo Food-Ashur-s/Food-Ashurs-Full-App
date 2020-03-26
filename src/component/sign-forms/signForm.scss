@@ -216,3 +216,21 @@ input::placeholder {
     color: #faf6f6be;
     border-color: #a9b2b3;
 }
+.sign-close{
+	position: absolute;
+    z-index: 1003;
+    top: 11px;
+    right: 16px;
+    color: rgba(255, 255, 255, 0.945);
+    font-size: 18px;
+    /* padding: 1%; */
+    border: solid .3px #ffffffc2;
+    background: none;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.sign-close:hover{
+	background: rgba(255, 255, 255, 0.918);
+	color: rgba(0, 0, 0, 0.952);
+	transition: 700ms;
+}
