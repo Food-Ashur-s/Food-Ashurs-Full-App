@@ -153,9 +153,13 @@
         padding: 0;
     }
     p , i {
+        
         cursor: pointer;
        font-size: 13px; 
        text-align: left;
+    }
+    i{
+        display: initial;
     }
 }
 .social-icon{

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
+import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import './donor.scss';
@@ -33,14 +34,9 @@ const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
 
 function Donors (props){
   AOS.init();
-  // const componentDidMount = ()=>{
-  //   AOS.init({
-  //     duration : 200,
-  //   });
-  // };
-
 
   const [donorList, setDonorList] = useState([]);
+  const [donation, setDonation] = useState([]);
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState({});
@@ -64,18 +60,21 @@ function Donors (props){
       .then(data => typeof handler === 'function' ? handler(data) : null )
       .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
   };
-
   const addItem = e => {
     e.preventDefault();
     e.target.reset();
-
-    const _updateState  = newItem => setDonorList([...donorList, newItem]);
+    const _updateState  = newItem => setDonation([newItem]);
     callAPI(donorsAPI, 'POST', item, _updateState );
-    setNum(Math.floor(Math.random() * 4));
+    setNum(Math.floor(Math.random() * 3));
   };
 
+  // const deleteItem = id =>{
+  //   const _updateState  = results => setDonorList(donorList.filter(donor=> donor._id !== id));
+  //   callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
+  // };
   const deleteItem = id =>{
-    const _updateState  = results => setDonorList(donorList.filter(donor=> donor._id !== id));
+    setDonation([]);
+    const _updateState  = results => {}; // setDonorList(donorList.filter(donor=> donor._id !== id));
     callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
   };
 
@@ -87,57 +86,152 @@ function Donors (props){
   const UpdteItem = e =>{
     e.preventDefault();
     console.log(updated);
-
-    const updateHandeler  = newItem =>
-      setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
+    setDonation([updated]);
+    const updateHandeler  = newItem =>{};
+    // setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
     callAPI(`${donorsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
     setShowUpdate(!showUpdate);
 
   };
+
   const getdonorList = () => {
     const _updateState = data =>
       setDonorList(data.results);
-    callAPI( donorsAPI, 'GET', undefined, _updateState );
+    callAPI( 'https://food--ashurs.herokuapp.com/api/v1/recipient', 'GET', undefined, _updateState );
   };
   useEffect(() => {
     getdonorList();
   }, [donorList]);
 
-  const toggleDetails = id => {
-    let details = donorList.filter( item => item._id === id )[0] || {};
-    setDetails(details);
+  const toggleDetails = item => {
+    // let details = donorList.filter( item => item._id === id )[0] || {};
+    setDetails(item);
     setShowDetails(!showDetails);
   };
 
-  const toggleUpdate = id => {
-    let updated = donorList.filter( item => item._id === id )[0] || {};
-    setUpdate(updated);
+  const toggleUpdate = item => {
+    // let updated = donorList.filter( item => item._id === id )[0] || {};
+    setDetails(item);
     setShowUpdate(!showUpdate);
+  };
+  const addCart = donor => {
+    props.handelcart(donor);
   };
 
   return (
-    <section className="block-donor">
-      <div className="fixx"></div>
-      <h1>Donors</h1>
+    <>
+      <section className="block-donor">
+        <div className="fixx"></div>
+        <h1>Donors</h1>
 
-      <form onSubmit={addItem}>
-        <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-        <label> Eastern Food
-          <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
-        </label>
-        <label> Fast Food
-          <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-        </label>
-        <label> Desserts
-          <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-        </label>
-        <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-        <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
+        <form onSubmit={addItem}>
+          <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
+          <label> Eastern Food
+            <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
+          </label>
+          <label> Fast Food
+            <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
+          </label>
+          <label> Desserts
+            <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
+          </label>
+          <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
+          <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
 
-        <button>Submit</button>
-      </form>
+          <button>Submit</button>
+        </form>
 
-      <div className="donors-list">
+
+      -------------------- Your Donation Data --------------------------
+        {donation.map((item,i)=>{
+          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          return <div key={i}>
+            <h3>{item.name}</h3>
+            <h3>{item.type}</h3>
+            <h3>{item.available_time}</h3>
+            <h3>{item.amount}</h3>
+            <img src={src} height="200" width="200" />
+            <button onClick={()=> deleteItem(item._id)}>DELETE</button>
+            <button onClick={()=> toggleUpdate(item)}>Update</button>
+
+          </div>;
+        })}
+
+      </section>
+        -------------------- Recipient Request --------------------------
+      <section className="block-donor">
+        <div className="donors-list">
+          {donorList.map((donor, idx) =>{
+            let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+            return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+              <div className="donor-item">
+                <img src={src}className="donor-item-img" height="330" width="300" />
+                <div className="donor-item-name">
+                  {donor.name}
+                </div>
+              </div>
+              <div className="styles-div">
+                <div className="donor-item-div1" data-aos="fade-right"
+                  data-aos-duration="1500" ></div>
+                <div className="donor-item-div2"data-aos="fade-left"
+                  data-aos-duration="1700"></div>
+              </div>
+              <div className="div-buttons">
+                <button onClick={()=> toggleDetails(donor)} className="donor-item-button">More Detail</button>
+                <button onClick={()=> addCart(donor)} className="donor-item-button">Add To Cart</button>
+                {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
+            <button onClick={()=> deleteItem(donor._id)}>DELETE</button> */}
+              </div>
+            </div>;
+          })}
+        </div>
+        <When condition={showDetails}>
+          <Model title='Recipient details' close={toggleDetails}>
+            <div className="recipient-details">
+              <div className="item">
+            Description: {details.description}
+              </div>
+              <div className="detail-info">
+                <div className="detail-name"><span> Name:</span> {details.name}</div>
+                <div className="detail-type"><span> Request Type:</span>{details.requestType} </div>
+                <div className="detail-identity"><span>  Identity:</span>{details.identity}</div>
+                <div ><span> <i className="fa fa-phone"></i></span>{details.contactNumber}</div>
+              </div>
+            </div>
+          </Model>
+        </When>
+        <When condition={showUpdate}>
+          <Model title='Recipient update' close={toggleUpdate}>
+            <div className="recipient-updated">
+              <form onSubmit={UpdteItem} value={updated}>
+                <input type='hidden' name='_id' value={details._id} />
+                <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+                <label> Eastern Food
+                  <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+                </label>
+                <label> Fast Food
+                  <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+                </label>
+                <label> Desserts
+                  <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+                </label>
+                <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+                <button >Submit</button>
+              </form>
+            </div>
+          </Model>
+        </When>
+      </section>
+    </>
+  );
+}
+
+export default Donors;
+
+
+
+{/* <div className="donors-list">
         {donorList.map((donor, idx) =>{
           // Math.floor(Math.random() * easternfoodArray.length);
           let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
@@ -146,7 +240,7 @@ function Donors (props){
             <>
               <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
                 {/* <div className="donor-item"> */}
-                <img src={src} className="donor-item-img" height="330" width="300" />
+{/* <img src={src} className="donor-item-img" height="330" width="300" />
                 <div className="donor-item-name">
                   {donor.name}
                 </div>
@@ -162,10 +256,10 @@ function Donors (props){
                   <button onClick={()=> deleteItem(donor._id)} className="donor-item-button">DELETE</button>
                 </div>
               </div>
-            </>);
-        })}
-      </div>
-      <When condition={showDetails}>
+            </>); */}
+{/* })}
+      </div> */}
+{/* <When condition={showDetails}>
         <Model title='Recipient details' close={toggleDetails}>
           <div className="recipient-details">
             <header>
@@ -200,9 +294,4 @@ function Donors (props){
             </form>
           </div>
         </Model>
-      </When>
-    </section>
-  );
-}
-
-export default Donors;
+      </When> */}

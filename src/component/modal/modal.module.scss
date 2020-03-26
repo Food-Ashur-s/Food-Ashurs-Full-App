@@ -18,62 +18,122 @@
 
     }
 
-    > div {
-        background:#fff;
-        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-        box-sizing:border-box;
-        border-radius: 5px;
-        display:flex;
-        flex-direction:column;
-        height:65%;
-        margin:auto;
-        padding:0;
-        position:relative;
-        top:50%;
-        transform: translateY(-50%);
-        width:65%;
-        z-index:1000;
+    > div { 
+        background: #016b60ef;
+    box-shadow: 0 1px 4px rgba(234, 230, 230, 0.73), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-sizing: border-box;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+    margin: auto;
+    padding: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 65%;
+    z-index: 1000;
 
         > header {
-            background: #ccc;
+            background: #ccc0;
             border-bottom: 0 none;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
-            display:flex;
-            font-size:1em;
-            font-weight:bold;
-            height:1.5em;
-            line-height:1.5em;
+            /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46); */
+            display: flex;
+            margin-top: 2%;
+            color: rgba(255, 255, 255, 0.966);
+            font-size: 23px;
+            font-weight: bold;
+            height: 1.5em;
+            line-height: 1.5em;
+            letter-spacing: 1px;
             padding: .25em 1em;
 
             span {
-                color:#000;
-                flex:1;
+                font-family: 'ABeeZee', sans-serif;
+                color: rgba(255, 255, 255, 0.952);
+                text-align: center;
+            }
+            > img{
+                position: absolute;
+                z-index: 1002;
+                top: 144px;
+                left: 40px;
+                box-shadow: 2px 2px 3px 1px #021413d8;
+                border-radius: 42px;
+                min-height: 148px;
+                min-width: 30%;
+                opacity: 90%;
+                transform: skewX(0deg);
+            }
+            > img:hover{
+                transform: scale(1.02);
+                transition: 800ms;
+                cursor: pointer;
             }
 
             button {
-                background: inherit;
-                border: 0;
-                cursor:pointer;
-                order: 1;
-                text-align:center;
+                position: absolute;
+                z-index: 1000;
+                font-size: 20px;
+                color: #ffffffb3;
+                right: 18px;
+                top: 1px;
+                border-radius: 15px;
+                background: none;
+                border: solid .1px #ffffff2e;
 
                 &:hover {
-                    background:#000;
-                    color:#fff;
+                    background:rgba(252, 252, 252, 0.822);
+                    color:rgb(8, 8, 8);
+                    transition: 700ms;
                 }
             }
 
         }
 
         > div {
-            flex:1;
-            overflow:auto;
-            padding:25px;
+            font-family: 'ABeeZee', sans-serif;
+    width: 57%;
+    height: 86%;
+    top: 47px;
+    position: absolute;
+    right: 19px;
+    color: black;
+    background: #9e9e9e4f;
+    font-size: 23px;
+    box-shadow: 2p 2px 3px 5px brown;
+    /* border: cornsilk; */
+    padding: 1%;
+    border: solid .5px #086f65;
+    border-radius: 20px;
+            > div {
+                // list-style: none;
+                // background-color: white;
+                color: rgba(255, 255, 255, 0.938);
+                line-height: 40px;
+                > div {
+                    letter-spacing: 1.5px;
+                    font-size: 20px;
+                    text-align: center;
+                    > div {  
+                          
+                         > span {
+                            display: block;
+                            text-align: left;
+                            margin-left: 6%;
+                            font-size: 20px;
+                            border-top: groove white;
+                            > i {
+                                display: inline;
+                            }
+                    }
+                }
+                }
+            }
         }
-
-
     }
 
 }
+
