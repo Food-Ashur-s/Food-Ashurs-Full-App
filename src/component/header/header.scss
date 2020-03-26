@@ -250,9 +250,8 @@ h1{
     }
 }
 .signForm-button {
-    /* margin-top: 10%; */
     z-index: 93;
-    background: #080808b8;
+    background: #0808086e;
     position: absolute;
     margin: auto;
     left: 41%;
@@ -263,12 +262,12 @@ h1{
     padding: 1.5%;
     font-size: 19px;
     cursor: pointer;
-    border-radius: 9px;
-    border: solid 2px #ffffffa1;
-    box-shadow: 3px 2px 5px 1px #009285d1;
+    border-radius: 28px;
+    border: solid 2px #ffffff8c;
+    box-shadow: 1px 2px 5px 1px #00928596;
 }
 .signForm-button:hover{
-    background:#009285d1;
+    background:#009286a9;
     color: white;
     border: solid 2px #141414a1;
     box-shadow: 2px 2px 2px 1px #f7f7f7d1;
@@ -290,7 +289,7 @@ h1{
 .quotes-div div p{
     position: absolute;
     top: 23%;
-    left: 42%;
+    left: 40%;
    color: rgb(240, 235, 235);
     background-size: cover;
     background-position: 50% 50%;
@@ -301,19 +300,19 @@ h1{
 }
 
 .quotes-div div:nth-child(1) p { 
-    font-size: 67px;
+    font-size: 75px;
     animation-delay: 0s; 
 }
 .quotes-div div:nth-child(2) p { 
-    font-size: 67px;
+    font-size: 75px;
     animation-delay: 4s; 
 }
 .quotes-div div:nth-child(3) p { 
-    font-size: 67px;
+    font-size: 75px;
     animation-delay: 7s; 
 }
 .quotes-div div:nth-child(4) p {  
-    font-size: 67px;
+    font-size: 75px;
     animation-delay: 12s; 
 }
 

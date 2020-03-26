@@ -218,19 +218,18 @@ input::placeholder {
 }
 .sign-close{
 	position: absolute;
-    z-index: 1003;
-    top: 11px;
-    right: 16px;
-    color: rgba(255, 255, 255, 0.945);
-    font-size: 18px;
-    /* padding: 1%; */
-    border: solid .3px #ffffffc2;
-    background: none;
-	border-radius: 20px;
+	z-index: 1000;
+	font-size: 20px;
+	color: #ffffffb3;
+	right: 18px;
 	cursor: pointer;
+	top: 4px;
+	border-radius: 15px;
+	background: none;
+	border: solid .1px #ffffff4d;
 }
 .sign-close:hover{
-	background: rgba(255, 255, 255, 0.918);
-	color: rgba(0, 0, 0, 0.952);
+	background:rgba(252, 252, 252, 0.658);
+	color:rgb(8, 8, 8);
 	transition: 700ms;
 }
