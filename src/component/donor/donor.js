@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
-import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import './donor.scss';
@@ -42,7 +41,6 @@ function Donors (props){
 
 
   const [donorList, setDonorList] = useState([]);
-  const [donation, setDonation] = useState([]);
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const [details, setDetails] = useState({});
@@ -71,14 +69,13 @@ function Donors (props){
     e.preventDefault();
     e.target.reset();
 
-    const _updateState  = newItem => setDonation([newItem]);
+    const _updateState  = newItem => setDonorList([...donorList, newItem]);
     callAPI(donorsAPI, 'POST', item, _updateState );
     setNum(Math.floor(Math.random() * 4));
   };
 
   const deleteItem = id =>{
-    setDonation([]);
-    const _updateState  = results =>{}; // setDonorList(donorList.filter(donor=> donor._id !== id));
+    const _updateState  = results => setDonorList(donorList.filter(donor=> donor._id !== id));
     callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
   };
 
@@ -90,9 +87,9 @@ function Donors (props){
   const UpdteItem = e =>{
     e.preventDefault();
     console.log(updated);
-    setDonation([updated]);
-    const updateHandeler  = newItem =>{};
-    // setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
+
+    const updateHandeler  = newItem =>
+      setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
     callAPI(`${donorsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
     setShowUpdate(!showUpdate);
 
@@ -100,32 +97,29 @@ function Donors (props){
   const getdonorList = () => {
     const _updateState = data =>
       setDonorList(data.results);
-    callAPI( 'https://food--ashurs.herokuapp.com/api/v1/recipient', 'GET', undefined, _updateState );
+    callAPI( donorsAPI, 'GET', undefined, _updateState );
   };
   useEffect(() => {
     getdonorList();
-  });
+  }, [donorList]);
 
-  const toggleDetails = item => {
-    // let details = donorList.filter( item => item._id === id )[0] || {};
-    setDetails(item);
+  const toggleDetails = id => {
+    let details = donorList.filter( item => item._id === id )[0] || {};
+    setDetails(details);
     setShowDetails(!showDetails);
   };
 
-  const toggleUpdate = updatedItem => {
-    // let updated = donorList.filter( item => item._id === id )[0] || {};
-    setUpdate(updatedItem);
+  const toggleUpdate = id => {
+    let updated = donorList.filter( item => item._id === id )[0] || {};
+    setUpdate(updated);
     setShowUpdate(!showUpdate);
-  };
-
-  const addCart = donor => {
-    props.handelcart(donor);
   };
 
   return (
     <section className="block-donor">
       <div className="fixx"></div>
       <h1>Donors</h1>
+
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
         <label> Eastern Food
@@ -144,24 +138,8 @@ function Donors (props){
       </form>
 
       <div className="donors-list">
-      -------------------- Your Donation Data --------------------------
-        {donation.map((item,i)=>{
-          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <div key={i}>
-            <h3>{item.name}</h3>
-            <h3>{item.type}</h3>
-            <h3>{item.available_time}</h3>
-            <h3>{item.amount}</h3>
-            <img src={src} height="200" width="200" />
-            <button onClick={()=> deleteItem(item._id)}>DELETE</button>
-            <button onClick={()=> toggleUpdate(item)}>Update</button>
-
-          </div>;
-        })}
-
-        -------------------- Recipient Request --------------------------
         {donorList.map((donor, idx) =>{
-          // Math.floor(Math.random() * easternfoodArray.length)
+          // Math.floor(Math.random() * easternfoodArray.length);
           let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
 
           return(
@@ -181,7 +159,6 @@ function Donors (props){
                 <div className="div-buttons">
                   <button onClick={()=> toggleDetails(donor._id)} className="donor-item-button more">More Detail</button>
                   <button onClick={()=> toggleUpdate(donor._id)} className="donor-item-button">Update</button>
-                  <button onClick={()=> addCart(donor)}>Add To Cart</button>
                   <button onClick={()=> deleteItem(donor._id)} className="donor-item-button">DELETE</button>
                 </div>
               </div>
@@ -193,12 +170,11 @@ function Donors (props){
           <div className="recipient-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Request Type: {details.requestType}   </li>
-              <li>Identity: {details.identity}   </li>
-              <li>Contact Number: {details.contactNumber}   </li>
+              <li>Donation Type: {details.type}   </li>
+              <li>Available Time: {details.available_time}   </li>
             </header>
             <div className="item">
-            Description: {details.description}
+            Food Amount: {details.amount}
             </div>
           </div>
         </Model>

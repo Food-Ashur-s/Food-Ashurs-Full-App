@@ -103,6 +103,9 @@ class Header extends React.Component{
         <When condition={this.state.showSignForm}>
           <SignForm close={this.closeSignForm}  />
         </When>
+
+        {/* <When condition={!this.state.showSignForm}>
+        </When> */}
         <If condition={!this.context.loggedIn}>
           <button onClick={this.handleSignClick} data-aos="fade-up" data-aos-duration="2000" className="signForm-button" >
             SignIn</button>
@@ -111,6 +114,7 @@ class Header extends React.Component{
 
         </div>
         <div className="quotes-div">
+          {/* <ul class="slideshow"> */}
           <div ><p data-aos="flip-up" className="quote">Food Charty</p></div>
           <div><p  data-aos="flip-down" className="quote">Donation</p></div>
           <div><p data-aos="flip-up" className="quote">Humanity</p></div>

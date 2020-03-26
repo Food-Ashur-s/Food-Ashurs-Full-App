@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React ,{useState} from 'react';
-import {Route} from 'react-router-dom';
+import React , {useState} from 'react';
 import Recipients from './component/resipient/resipient.js';
 import Donor from './component/donor/donor.js';
 import Header from './component/header/header.js';
@@ -18,7 +17,6 @@ const If = props => {
   return props.condition ? props.children : null;
 };
 
-
 export default function App (){
   const [cart, setCart] = useState([]);
   const [user, setUserData] = useState({});
@@ -31,14 +29,10 @@ export default function App (){
     }
     setCart([...cart, newCart]);
   };
-
   return (
-    <React.Fragment>
+    <>
       <LoginContext>
         <Header/>
-        <SlideShow/>
-        <Login />
-        <Logup />
         <Auth capability='recipient'>
           <SettingsProvider setUser={handelUser}>
             <Recipients cartList={cart} handelcart={handelcart}/>
@@ -52,8 +46,9 @@ export default function App (){
         {/* <Route exact path= '/profile'> */}
         <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
         {/* </Route> */}
+        <SlideShow/>
         <Footer/>
       </LoginContext>
-    </React.Fragment>
+    </>
   );
 }
