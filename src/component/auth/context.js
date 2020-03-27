@@ -46,6 +46,7 @@ class LoginProvider extends React.Component {
 
   }
 
+
   logup = (username, password, email, role) =>{
     let newbody = {username, password, email, role};
     return fetch(`${API}/signup`, {
@@ -77,31 +78,40 @@ class LoginProvider extends React.Component {
     console.log(token);
     this.setLoginState(false, token, user);
 
+
+
   }
 
   validateToken = token =>{
-    this.setState({loading:true});
+
     try {
       let user = jwt.verify(token, 'ashurFood');
       this.setLoginState(true, token, user);
     } catch {
       // alert('wrong password/username');
+      
       this.setLoginState(false, null, {});
-      console.error('token invalid');
-      this.setState({ loading: false});
+
+      // console.error('token invalid');  
 
     }
   }
   setLoginState = (loggedIn, token, user) =>{
+
+
     console.log(this.state.user);
     cookie.save('auth', token);
+
     this.setState({token, loggedIn, user});
-    this.setState({loading:false});
+    this.setState({ loading: false});
+
 
   }
 
     logout = () =>{
+
       this.setLoginState(false, null, {});
+
     }
 
     componentDidMount(){
@@ -109,6 +119,7 @@ class LoginProvider extends React.Component {
       const cookieToken = cookie.load('auth');
       const token = qs.get('token') || cookieToken || null;
       this.validateToken(token);
+
 
     }
     render(){
