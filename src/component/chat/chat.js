@@ -2,32 +2,33 @@
 import React, { useState , useEffect} from 'react'; // we use UsState hook to render the componenet once we update app state
 import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
-// import './chat.scss';
+import './chat.scss';
 
 // Component to render users messagess (from google)
-const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li><strong>{msg[0]}</strong> : <div className="innermsg">{msg[1]}</div></li>) : (<li className="update">{msg[1]}</li>) );
+const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName"><strong>{msg[0]}</strong> : <div className="innermsg">{msg[1]}</div></li>) : (<li className="update">{msg[1]}</li>) );
 
 // Component to check the users status (from google)
 const Online = props => props.data.map(onlineStatus =>
-<li id={onlineStatus[0]}>{onlineStatus[1]}</li> );
+<p id={onlineStatus[0]}>- {onlineStatus[1]}</p> );
 
 export default () => {
     const [id, setId] = useState(''); // set the ID for the user 
     const [nameInput, setNameInput] = useState(''); // User's name 
     const [room, setRoom] = useState(''); // chat Rooms
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState(''); // chat messages (inner)
   
     // bulid-in socket
     const [socket] = useSocket('https://open-chat-naostsaecf.now.sh');
+    // connect to internal server 
     socket.connect();
   
-    // update our messages to avoid duplicated 
+    // update our messages to avoid duplicated with the old state and updated state as Tuple
     const [messages, setMessages] = useImmer([]);
   
     const [online, setOnline] = useImmer([]);
   
     useEffect(()=>{
-      socket.on('message que',(nick,message) => {
+      socket.on('message queue',(nick,message) => {
         setMessages(draft => {
           draft.push([nick,message])
         })
@@ -61,6 +62,7 @@ export default () => {
       })
     },0);
   
+    // Handle login to our chat
     const handleSubmit = e => {
       e.preventDefault();
       if (!nameInput) {
@@ -79,21 +81,22 @@ export default () => {
     }
   
     return id ? (
-      <section style={{display:'flex',flexDirection:'row'}} >
-        <ul id="messages"><Messages data={messages} /></ul>
-        <ul id="online"> People Online List : <Online data={online} /> </ul>
-        <div id="sendform">
-          <form onSubmit={e => handleSend(e)} style={{display: 'flex'}}>
-              <input id="m" onChange={e=>setInput(e.target.value.trim())} placeholder="Type a Message Then press Enter "/><button style={{width:'75px'}} type="submit">Send</button>
+      <section className="sendMsg" >
+        <ul className="messages"><Messages data={messages} /></ul>
+        <ul className="online"> People Online List : <Online data={online} /> </ul>
+        <div className="sendform"> 
+          <form onSubmit={e => handleSend(e)}>
+              <input className="msgInput" id="m" onChange={e=> setInput(e.target.value.trim())} placeholder="Type a Message Then press Enter "/>
+              <button className="msgSend" type="submit">Send</button>
           </form>
         </div>
       </section>
     ) : (
-      <div style={{ textAlign: "center", margin: "50px auto", width: "75%" }}>
+      <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
         <div> Food Ashur's Chat </div>
-          <input id="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="Enter your name" /><br />
-          <input id="room" onChange={e => setRoom(e.target.value.trim())} placeholder="Enter your room" /><br />
+          <input className="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="Enter your name"/><br />
+          <input className="room" onChange={e => setRoom(e.target.value.trim())} required placeholder="Enter your room" /><br />
           <button type="submit">Submit</button>
         </form>
       </div>
