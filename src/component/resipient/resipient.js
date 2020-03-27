@@ -4,6 +4,8 @@ import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
+import recipientPhoto from '../../assets/recipient-form.jpg';
+
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
@@ -38,6 +40,7 @@ function Recipients (props){
   const [resultsList, setResultstList] = useState([]);
   const [cartList, setCartList] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [showForm, setshowForm] = useState(false);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -63,6 +66,7 @@ function Recipients (props){
     const postHandeler  = newItem => setRecipientList([newItem]);
     callAPI(recipientsAPI, 'POST', item, postHandeler );
     setNum(Math.floor(Math.random() * 4));
+    setshowForm(false);
   };
 
   const deleteItem = id =>{
@@ -135,27 +139,33 @@ function Recipients (props){
     }
     setCartList([...cartList, donor]);
   };
+  const toggleForm = e => {
+    e.preventDefault();
+    setshowForm(true);
+  };
 
   return (
     <>
       <h1>Recipients</h1>
-      <form onSubmit={addItem}>
-        <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-        <label> Eastern Food
-          <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
-        </label>
-        <label> Fast Food
-          <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
-        </label>
-        <label> Desserts
-          <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
-        </label>
-        <input type='text' name='identity' placeholder='type your identity' onChange={handelInputChange} required />
-        <input type='number' name='contactNumber' placeholder='type your contactNumber' onChange={handelInputChange} required />
-        <input type='text' name='description' placeholder='description' onChange={handelInputChange} />
+      {!showForm && (<img src={recipientPhoto} onClick={toggleForm}  height="100" width="200"/>)}
+      {showForm && (
+        <form onSubmit={addItem}>
+          <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
+          <label> Eastern Food
+            <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
+          </label>
+          <label> Fast Food
+            <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
+          </label>
+          <label> Desserts
+            <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
+          </label>
+          <input type='text' name='identity' placeholder='type your identity' onChange={handelInputChange} required />
+          <input type='number' name='contactNumber' placeholder='type your contactNumber' onChange={handelInputChange} required />
+          <input type='text' name='description' placeholder='description' onChange={handelInputChange} />
 
-        <button>Submit</button>
-      </form>
+          <button>Submit</button>
+        </form> )}
       <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
        --------------------------------------------------------------------------------
       <div>Your Order

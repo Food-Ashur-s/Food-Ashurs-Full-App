@@ -4,6 +4,7 @@ import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
+import donatePhoto from '../../assets/donate-form.gif';
 
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
@@ -41,7 +42,7 @@ function Donors (props){
   const [ num, setNum] = useState(0);
   const [cartList, setCartList] = useState([]);
   const [showCart, setShowCart] = useState(false);
-  const [CartUpdated, setCartUpdated] = useState({});
+  const [showForm, setshowForm] = useState(false);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -67,6 +68,7 @@ function Donors (props){
     const _updateState  = newItem => setDonation([newItem]);
     callAPI(donorsAPI, 'POST', item, _updateState );
     setNum(Math.floor(Math.random() * 4));
+    setshowForm(false);
   };
 
   const deleteItem = id =>{
@@ -140,27 +142,35 @@ function Donors (props){
     }
     setCartList([...cartList, recipient]);
   };
+  const toggleForm = e => {
+    e.preventDefault();
+    setshowForm(true);
+  };
+
   return (
     <>
 
       <h1>Donors</h1>
       <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
-      <form onSubmit={addItem}>
-        <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-        <label> Eastern Food
-          <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
-        </label>
-        <label> Fast Food
-          <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-        </label>
-        <label> Desserts
-          <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-        </label>
-        <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-        <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
+      {!showForm && (<img src={donatePhoto} onClick={toggleForm}  height="100" width="200"/>)}
+      {showForm && (
+        <form onSubmit={addItem}>
+          <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
+          <label> Eastern Food
+            <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
+          </label>
+          <label> Fast Food
+            <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
+          </label>
+          <label> Desserts
+            <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
+          </label>
+          <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
+          <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
 
-        <button>Submit</button>
-      </form>
+          <button>Submit</button>
+        </form>
+      )}
       -------------------- Your Donation Data --------------------------
       {donation.map((item,i)=>{
         let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
