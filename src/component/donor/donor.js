@@ -178,7 +178,7 @@ function Donors (props){
       <div>
         -------------------- Recipient Request --------------------------
         {donorList.map((donor, idx) =>{
-          let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          let src = donor.requestType === 'eastern food' ? easternfoodArray[num] : donor.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return <ul key={idx}>
             <li>
               {donor.name}
@@ -196,11 +196,13 @@ function Donors (props){
           <div className="recipient-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Donation Type: {details.type}   </li>
-              <li>Available Time: {details.available_time}   </li>
+              <li>Donation Type: {details.requestType}   </li>
+              <li>Contact Number: {details.contactNumber}   </li>
+              <li>Identity: {details.identity}   </li>
+
             </header>
             <div className="item">
-            Amount: {details.amount}
+                Description: {details.description}
             </div>
           </div>
         </Model>
