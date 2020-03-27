@@ -11,7 +11,7 @@ const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="
 const Online = props => props.data.map(onlineStatus =>
 <p id={onlineStatus[0]}>- {onlineStatus[1]}</p> );
 
-export default () => {
+function ChatChannel () {
     const [id, setId] = useState(''); // set the ID for the user 
     const [nameInput, setNameInput] = useState(''); // User's name 
     const [room, setRoom] = useState(''); // chat Rooms
@@ -24,20 +24,22 @@ export default () => {
   
     // update our messages to avoid duplicated with the old state and updated state as Tuple
     const [messages, setMessages] = useImmer([]);
-  
     const [online, setOnline] = useImmer([]);
   
+    // component life cycle - build-in events
     useEffect(()=>{
       socket.on('message queue',(nick,message) => {
         setMessages(draft => {
           draft.push([nick,message])
         })
       });
-  
+      
+      // when typing message again and again 
       socket.on('update',message => setMessages(draft => {
         draft.push(['',message]);
       }))
   
+      // all people list 
       socket.on('people-list',people => {
         let newState = [];
         for(let person in people){
@@ -47,24 +49,27 @@ export default () => {
         console.log(online)
       });
   
+      // someone joined to the chat 
       socket.on('add-person',(nick,id)=>{
         setOnline(draft => {
           draft.push([id,nick])
         })
       })
   
+      // someone go out from chat 
       socket.on('remove-person',id=>{
         setOnline(draft => draft.filter(m => m[0] !== id))
       })
   
+      // show up the message with the user name 
       socket.on('chat message',(nick,message)=>{
         setMessages(draft => {draft.push([nick,message])})
       })
     },0);
   
     // Handle login to our chat
-    const handleSubmit = e => {
-      e.preventDefault();
+    const handleSubmit = event => {
+      event.preventDefault();
       if (!nameInput) {
         return alert("Name can't be empty , Enter a Name");
       }
@@ -72,21 +77,39 @@ export default () => {
       socket.emit("join", nameInput,room);
     };
   
-    const handleSend = e => {
-      e.preventDefault();
+    // message send 
+    const handleSend = event => {
+      event.preventDefault();
+      event.target.reset();
       if(input !== ''){
         socket.emit('chat message',input,room);
         setInput('');
       }
     }
+
+    // message input 
+    const handleChangeMsg = event => {
+        event.preventDefault();
+        setInput(event.target.value.trim());
+    }
   
+    // people names 
+    const handleChangeName = event => {
+        setNameInput(event.target.value.trim())
+    }
+    
+    // chat rooms 
+    const handleChangeRoom = event => {
+        setRoom(event.target.value.trim())
+    }
+
     return id ? (
       <section className="sendMsg" >
         <ul className="messages"><Messages data={messages} /></ul>
         <ul className="online"> People Online List : <Online data={online} /> </ul>
         <div className="sendform"> 
-          <form onSubmit={e => handleSend(e)}>
-              <input className="msgInput" id="m" onChange={e=> setInput(e.target.value.trim())} placeholder="Type a Message Then press Enter "/>
+          <form onSubmit={event => handleSend(event)}>
+              <input className="msgInput" id="m" onChange={event=> handleChangeMsg(event) } placeholder="Type a Message Then press Enter "/>
               <button className="msgSend" type="submit">Send</button>
           </form>
         </div>
@@ -95,53 +118,12 @@ export default () => {
       <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
         <div> Food Ashur's Chat </div>
-          <input className="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="Enter your name"/><br />
-          <input className="room" onChange={e => setRoom(e.target.value.trim())} required placeholder="Enter your room" /><br />
+          <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
+          <input className="room" onChange={event => handleChangeRoom(event)} required placeholder="Enter your room" /><br />
           <button type="submit">Submit</button>
         </form>
       </div>
     );
-  };
+  }; // end of ChatChannel Component
 
-/*
-// Our Components
-export default () => {
-  
-    // check if the user enter his name or not , then creat an ID and room name for him 
-    const handleSubmit = e => {
-      e.preventDefault();
-      // if no name entered 
-      if (!nameInput) {
-        return alert("Name can't be empty , Enter a Name ");
-      }
-      // set User's ID 
-      setId(name);
-      // emit the event nce user entered his correct name 
-      socket.emit("join", name, room);
-    };
-  
-    return id !== '' ? (
-        
-      <div>Hello</div>
-    ) : (
-      <div style={{ textAlign: "center", margin: "50px auto", width: "75%" }}>
-        <form onSubmit={event => handleSubmit(event)}>
-          <input
-            id="name"
-            onChange={e => setNameInput(e.target.value.trim())}
-            required
-            placeholder="Enter your name"
-          />
-          <br />
-          <input
-            id="room"
-            onChange={e => setRoom(e.target.value.trim())}
-            placeholder="Enter your room"
-          />
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
-  };
-  */
+  export default ChatChannel;
