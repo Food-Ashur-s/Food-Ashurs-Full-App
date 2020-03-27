@@ -4,7 +4,6 @@ import './loading.scss';
 const Spinner = () =>{
   return(
     <React.Fragment>
-<a href="javascript:history.go(0);">Click here to refresh the page</a>
   
   <div id="bigloading">
     <div id="loading">
