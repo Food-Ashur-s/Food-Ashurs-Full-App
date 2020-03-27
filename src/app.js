@@ -15,15 +15,15 @@ import GoogleLog from './component/auth/login-google.js';
 
 
 export default function App (){
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
 
-  const handelcart = newCart => {
-    for (let i = 0; i < cart.length; i++) {
-      if( newCart._id === cart[i]._id) return;
-    }
-    setCart([...cart, newCart]);
-  };
+  // const handelcart = newCart => {
+  //   for (let i = 0; i < cart.length; i++) {
+  //     if( newCart._id === cart[i]._id) return;
+  //   }
+  //   setCart([...cart, newCart]);
+  // };
 
   return (
     <React.Fragment>
@@ -34,16 +34,16 @@ export default function App (){
         <GoogleLog />
         <Auth capability='recipient'>
           <SettingsProvider>
-            <Recipients cartList={cart} handelcart={handelcart}/>
+            <Recipients />
           </SettingsProvider>
         </Auth>
         <Auth capability='donor'>
           <SettingsProvider>
-            <Donor cartList={cart} handelcart={handelcart}/>
+            <Donor />
           </SettingsProvider>
         </Auth>
 
-        <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} />
+        <Profile />
       </LoginContext>
     </React.Fragment>
   );

@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
+import cartPhoto from '../../assets/cart.gif';
 
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
@@ -37,6 +38,9 @@ function Donors (props){
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
   const [ num, setNum] = useState(0);
+  const [cartList, setCartList] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+  const [CartUpdated, setCartUpdated] = useState({});
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -66,7 +70,7 @@ function Donors (props){
 
   const deleteItem = id =>{
     setDonation([]);
-    const _updateState  = results =>{}; // setDonorList(donorList.filter(donor=> donor._id !== id));
+    const _updateState  = results =>{};
     callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
   };
 
@@ -80,7 +84,6 @@ function Donors (props){
     console.log(updated);
     setDonation([updated]);
     const updateHandeler  = newItem =>{};
-    // setDonorList(donorList.map(donor => donor._id === newItem._id ? newItem : donor));
     callAPI(`${donorsAPI}/${updated._id}`, 'PUT', updated, updateHandeler );
     setShowUpdate(!showUpdate);
 
@@ -95,24 +98,47 @@ function Donors (props){
   });
 
   const toggleDetails = item => {
-    // let details = donorList.filter( item => item._id === id )[0] || {};
     setDetails(item);
     setShowDetails(!showDetails);
   };
 
   const toggleUpdate = updatedItem => {
-    // let updated = donorList.filter( item => item._id === id )[0] || {};
     setUpdate(updatedItem);
     setShowUpdate(!showUpdate);
   };
 
-  const addCart = donor => {
-    props.handelcart(donor);
+  const handelUpdateCartChange = e => {
+    setUpdate({...updated, [e.target.name]: e.target.value});
   };
+
+  const toggleCartDetails = item => {
+    setDetails(item);
+    setShowDetails(!showDetails);
+  };
+
+  const toggleCartUpdate = item => {
+    setUpdate(item);
+    setShowUpdate(!showUpdate);
+  };
+
+  const deleteCartItem = id => {
+    let newCartList = cartList.filter( item => item._id !== id );
+    setCartList(newCartList);
+  };
+
+  const UpdteCartItem = e =>{
+    e.preventDefault();
+    setCartList(cartList.map(item => item._id === updated._id ? updated : item));
+    setShowUpdate(!showUpdate);
+  };
+  const toggleCart = () => setShowCart(!showCart);
+
+  const addCart = donor => setCartList([...cartList, donor]);
 
   return (
     <>
       <h1>Donors</h1>
+      <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
         <label> Eastern Food
@@ -155,8 +181,7 @@ function Donors (props){
 
             <button onClick={()=> toggleDetails(donor)}>More Detail</button>
             <button onClick={()=> addCart(donor)}>Add To Cart</button>
-            {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-            <button onClick={()=> deleteItem(donor._id)}>DELETE</button> */}
+
           </ul>;
         })}
       </div>
@@ -165,12 +190,11 @@ function Donors (props){
           <div className="recipient-details">
             <header>
               <li>Name: {details.name}   </li>
-              <li>Request Type: {details.requestType}   </li>
-              <li>Identity: {details.identity}   </li>
-              <li>Contact Number: {details.contactNumber}   </li>
+              <li>Donation Type: {details.type}   </li>
+              <li>Available Time: {details.available_time}   </li>
             </header>
             <div className="item">
-            Description: {details.description}
+            Amount: {details.amount}
             </div>
           </div>
         </Model>
@@ -180,26 +204,87 @@ function Donors (props){
           <div className="recipient-updated">
             <form onSubmit={UpdteItem} value={updated}>
               <input type='hidden' name='_id' value={details._id} />
-              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateCartChange} required />
               <br/>
               <label> Eastern Food
-                <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+                <input type='radio' name='type' value='eastern food' onClick={handelUpdateCartChange} required />
               </label>
               <label> Fast Food
-                <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+                <input type='radio' name='type' value='fast food' onClick={handelUpdateCartChange} required />
               </label>
               <label> Desserts
-                <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+                <input type='radio' name='type' value='desserts' onClick={handelUpdateCartChange} required />
               </label>
               <br/>
-              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateCartChange} required />
               <br/>
-              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateCartChange} />
               <br/>
               <br/>
               <button >Submit</button>
             </form>
           </div>
+        </Model>
+      </When>
+      <When condition={showCart}>
+        <Model title='cart list' close={toggleCart}>
+
+          {
+            cartList.map((item, i)=>{
+              return <ul key={i}>
+                <li>{item.name}</li>
+                <button onClick={()=> toggleCartDetails(item)}>More Detail</button>
+                <button onClick={()=> toggleCartUpdate(item)}>Update</button>
+                <button onClick={()=> deleteCartItem(item._id)}>DELETE</button>
+              </ul>;
+            })
+          }
+
+          <When condition={showDetails}>
+            <Model title='cart details' close={toggleDetails}>
+              <div className="cart-details">
+                <header>
+                  <li>Name: {details.name}   </li>
+                  <li>Donation Type: {details.requestType}   </li>
+                  <li>Contact Number: {details.contactNumber}   </li>
+                  <li>Identity: {details.identity}   </li>
+
+                </header>
+                <div className="item">
+                Description: {details.description}
+                </div>
+              </div>
+            </Model>
+          </When>
+          <When condition={showUpdate}>
+            <Model title='Recipient update' close={toggleUpdate}>
+              <div className="recipient-updated">
+                <form onSubmit={UpdteCartItem} value={updated}>
+                  <input type='hidden' name='_id' value={details._id} />
+                  <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+                  <br/>
+                  <label> Eastern Food
+                    <input type='radio' name='requestType' value='eastern food' onClick={handelUpdateChange} required />
+                  </label>
+                  <label> Fast Food
+                    <input type='radio' name='requestType' value='fast food' onClick={handelUpdateChange} required />
+                  </label>
+                  <label> Desserts
+                    <input type='radio' name='requestType' value='desserts' onClick={handelUpdateChange} required />
+                  </label>
+                  <br/>
+                  <input type='text' name='identity' placeholder='type your identity' defaultValue={updated.identity} onChange={handelUpdateChange} required />
+                  <br/>
+                  <input type='number' name='contactNumber' placeholder='type your contactNumber' defaultValue={updated.contactNumber} onChange={handelUpdateChange} required />
+                  <br/>
+                  <input type='text' name='description' placeholder='description'  defaultValue={updated.description} onChange={handelUpdateChange} />
+                  <br/>
+                  <button >Submit</button>
+                </form>
+              </div>
+
+            </Model>
+          </When>
         </Model>
       </When>
     </>

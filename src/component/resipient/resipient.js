@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
+import cartPhoto from '../../assets/cart.gif';
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
@@ -35,6 +36,8 @@ function Recipients (props){
   const [updated, setUpdate] = useState({});
   const [ num, setNum] = useState(0);
   const [resultsList, setResultstList] = useState([]);
+  const [cartList, setCartList] = useState([]);
+  const [showCart, setShowCart] = useState(false);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -77,8 +80,6 @@ function Recipients (props){
     console.log(updated);
     const postHandeler  = updated => setRecipientList([updated]);
     callAPI(recipientsAPI, 'POST', updated, postHandeler );
-    // const updateHandeler  = newItem => setRecipientList([newItem]);
-    // callAPI(`${recipientsAPI}/${updated._id}`, 'PUT', updated, updateHandeler);
     setShowUpdate(!showUpdate);
   };
 
@@ -101,12 +102,37 @@ function Recipients (props){
     console.log(updated);
     setShowUpdate(!showUpdate);
   };
+  ///////////////////////////////////////////
+  const handelUpdateCartChange = e => {
+    setUpdate({...updated, [e.target.name]: e.target.value});
+  };
 
-  const addCart = donor => props.handelcart(donor);
+  const toggleCartDetails = item => {
+    setDetails(item);
+    setShowDetails(!showDetails);
+  };
+
+  const toggleCartUpdate = item => {
+    setUpdate(item);
+    setShowUpdate(!showUpdate);
+  };
+
+  const deleteCartItem = id => {
+    let newCartList = cartList.filter( item => item._id !== id );
+    setCartList(newCartList);
+  };
+
+  const UpdteCartItem = e =>{
+    e.preventDefault();
+    setCartList(cartList.map(item => item._id === updated._id ? updated : item));
+    setShowUpdate(!showUpdate);
+  };
+  const toggleCart = () => setShowCart(!showCart);
+
+  const addCart = donor => setCartList([...cartList, donor]);
 
   return (
     <>
-      {/* <NavLink to='/profile'>profile</NavLink> */}
       <h1>Recipients</h1>
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
@@ -125,6 +151,7 @@ function Recipients (props){
 
         <button>Submit</button>
       </form>
+      <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
        --------------------------------------------------------------------------------
       <div>Your Order
         {recipientList.map((recipient, idx) =>{
@@ -137,7 +164,6 @@ function Recipients (props){
             <img src={src} height="200" width="200" />
             <p>{recipient.description}</p>
 
-            {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
             <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
             ----------------------------------------------------------------------------
             <section> Results Request
@@ -167,6 +193,7 @@ function Recipients (props){
           </ul>;
         })}
       </div>
+      -----------------------------------------------------------------------
       <When condition={showDetails}>
         <Model title='Donor details' close={toggleDetails}>
           <div className="donor-details">
@@ -181,33 +208,73 @@ function Recipients (props){
           </div>
         </Model>
       </When>
-      <When condition={showUpdate}>
-        {/* <Model title='Recipient update' close={toggleUpdate}>
-          <div className="recipient-updated">
-            <form onSubmit={UpdteItem} value={updated}>
-              <input type='hidden' name='_id' value={details._id} />
-              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
-              <br/>
-              <label> Eastern Food
-                <input type='radio' name='requestType' value='eastern food' onClick={handelUpdateChange} required />
-              </label>
-              <label> Fast Food
-                <input type='radio' name='requestType' value='fast food' onClick={handelUpdateChange} required />
-              </label>
-              <label> Desserts
-                <input type='radio' name='requestType' value='desserts' onClick={handelUpdateChange} required />
-              </label>
-              <br/>
-              <input type='text' name='identity' placeholder='type your identity' defaultValue={updated.identity} onChange={handelUpdateChange} required />
-              <br/>
-              <input type='number' name='contactNumber' placeholder='type your contactNumber' defaultValue={updated.contactNumber} onChange={handelUpdateChange} required />
-              <br/>
-              <input type='text' name='description' placeholder='description'  defaultValue={updated.description} onChange={handelUpdateChange} />
-              <br/>
-              <button >Submit</button>
-            </form>
-          </div>
-        </Model> */}
+
+
+      <When condition={showCart}>
+        <Model title='cart list' close={toggleCart}>
+
+          {
+            cartList.map((item, i)=>{
+              return <ul key={i}>
+                <li>{item.name}</li>
+                <button onClick={()=> toggleCartDetails(item)}>More Detail</button>
+                <button onClick={()=> toggleCartUpdate(item)}>Update</button>
+                <button onClick={()=> deleteCartItem(item._id)}>DELETE</button>
+              </ul>;
+            })
+          }
+
+          <When condition={showDetails}>
+            <Model title='cart details' close={toggleDetails}>
+              <div className="cart-details">
+                <header>
+                  <li>Name: {details.name}   </li>
+                  <li>Donation Type: {details.type}   </li>
+                  <li>Available Time: {details.available_time}   </li>
+                </header>
+                <div className="item">
+            Food Amount: {details.amount}
+                </div>
+              </div>
+            </Model>
+          </When>
+          <When condition={showUpdate}>
+            <Model title='cart update' close={toggleUpdate}>
+              <div className="cart-updated">
+                <form onSubmit={UpdteCartItem} value={details._id}>
+                  <label>
+                    <input type='hidden' name='_id' value={details._id} />
+                  </label>
+                  <label> name
+                    <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+                  </label>
+                  <br/>
+                  <label> Eastern Food
+                    <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+                  </label>
+                  <label> Fast Food
+                    <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+                  </label>
+                  <label> Desserts
+                    <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+                  </label>
+                  <br/>
+                  <label> available_time
+                    <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                  </label>
+                  <br/>
+                  <label>amount
+                    <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+                  </label>
+                  <br/>
+                  <br/>
+                  <button >Submit</button>
+                </form>
+              </div>
+            </Model>
+          </When>
+        </Model>
+
       </When>
     </>
   );

@@ -20,24 +20,16 @@ class GoogleLog extends React.Component {
     }
     responseGoogle1 = (response) => {
       this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-
       //  let id_token = response.getAuthResponse().id_token;
-
-      // console.log(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'recipient');
-
       this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'recipient');
     };
 
    responseGoogle2 = (response) => {
      this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
      //  let id_token = response.getAuthResponse().id_token;
-
-     //  console.log(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'donor');
      this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'donor');
 
    };
-
-
    //  logout = () => {
    //     // this.setState({ isUserLoggedIn: false });
    //  };
