@@ -10,20 +10,11 @@ import LoginContext from './component/auth/context.js';
 import Login from './component/auth/login.js';
 import Auth from './component/auth/auth.js';
 import Logup from './component/auth/logup.js';
-
+import Header from './component/header/header.js';
 import GoogleLog from './component/auth/login-google.js';
 
 
 export default function App (){
-  // const [cart, setCart] = useState([]);
-
-
-  // const handelcart = newCart => {
-  //   for (let i = 0; i < cart.length; i++) {
-  //     if( newCart._id === cart[i]._id) return;
-  //   }
-  //   setCart([...cart, newCart]);
-  // };
 
   return (
     <React.Fragment>
@@ -32,18 +23,30 @@ export default function App (){
         <Login />
         <Logup />
         <GoogleLog />
-        <Auth capability='recipient'>
-          <SettingsProvider>
-            <Recipients />
-          </SettingsProvider>
-        </Auth>
-        <Auth capability='donor'>
-          <SettingsProvider>
-            <Donor />
-          </SettingsProvider>
-        </Auth>
+        <Route exact path= '/'>
+          <Auth capability='recipient'>
+            <SettingsProvider>
+              <Header />
+              <Recipients />
+            </SettingsProvider>
 
-        <Profile />
+          </Auth>
+        </Route>
+        <Route exact path= '/'>
+          <Auth capability='donor'>
+            <SettingsProvider>
+              <Header />
+              <Donor />
+            </SettingsProvider>
+          </Auth>
+        </Route>
+
+
+        <Route exact path= '/profile'>
+          <Header />
+          <Profile />
+        </Route>
+
       </LoginContext>
     </React.Fragment>
   );

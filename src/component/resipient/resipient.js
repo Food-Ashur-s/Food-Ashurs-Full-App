@@ -129,7 +129,12 @@ function Recipients (props){
   };
   const toggleCart = () => setShowCart(!showCart);
 
-  const addCart = donor => setCartList([...cartList, donor]);
+  const addCart = donor => {
+    for (let i = 0; i < cartList.length; i++) {
+      if(donor._id === cartList[i]._id) return;
+    }
+    setCartList([...cartList, donor]);
+  };
 
   return (
     <>

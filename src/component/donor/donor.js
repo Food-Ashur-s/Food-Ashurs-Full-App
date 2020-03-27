@@ -19,6 +19,7 @@ import fastfood0 from '../../assets/fast-food-0.jpg';
 import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
 import fastfood3 from '../../assets/fast-food-3.jpg';
+import Recipients from '../resipient/resipient';
 
 const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
 const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
@@ -133,10 +134,15 @@ function Donors (props){
   };
   const toggleCart = () => setShowCart(!showCart);
 
-  const addCart = donor => setCartList([...cartList, donor]);
-
+  const addCart = recipient => {
+    for (let i = 0; i < cartList.length; i++) {
+      if(recipient._id === cartList[i]._id) return;
+    }
+    setCartList([...cartList, recipient]);
+  };
   return (
     <>
+
       <h1>Donors</h1>
       <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
       <form onSubmit={addItem}>
