@@ -3,6 +3,8 @@ import React, { useState , useEffect} from 'react'; // we use UsState hook to re
 import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
 import './chat.scss';
+import logo from './logo.png';
+
 
 // Component to render users messagess (from google)
 const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName"><strong>{msg[0]}</strong> : <div className="innermsg">{msg[1]}</div></li>) : (<li className="update">{msg[1]}</li>) );
@@ -102,7 +104,7 @@ function ChatChannel () {
     const handleChangeRoom = event => {
         setRoom(event.target.value.trim())
     }
-
+    // if statement to login to chat or typing message 
     return id ? (
       <section className="sendMsg" >
         <ul className="messages"><Messages data={messages} /></ul>
@@ -117,10 +119,11 @@ function ChatChannel () {
     ) : (
       <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
-        <div> Food Ashur's Chat </div>
+        <div className="foodLogo" styles={{ backgroundImage:`url(${logo})` }}></div>
+        <div className="foodName"> Food Ashur's Chat </div>
           <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
           <input className="room" onChange={event => handleChangeRoom(event)} required placeholder="Enter your room" /><br />
-          <button type="submit">Submit</button>
+          <button className="submitB" type="submit">Submit</button>
         </form>
       </div>
     );
