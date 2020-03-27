@@ -1,7 +1,13 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable no-undefined */
 import React from 'react';
 import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
+import Spinner from '../spinner/spinner.js';
+
+const If = props => {
+  return props.condition ? props.children : null;
+};
 
 const API = process.env.REACT_APP_API;
 const SECRET = process.env.SECRET;
@@ -14,6 +20,7 @@ class LoginProvider extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      loading: false,
       login: this.login,
       logout: this.logout,
       logup: this.logup,
@@ -30,9 +37,13 @@ class LoginProvider extends React.Component {
         'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
       }),
     })
+
       .then(response => response.text())
+
       .then(token => this.validateToken(token))
       .catch(console.error);
+      this.setState({loading:true})
+
   }
 
   logup = (username, password, email, role) =>{
@@ -44,6 +55,7 @@ class LoginProvider extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: newbody ? JSON.stringify(newbody) : undefined,
     })
+
       .then( response => {
         console.log(response);
         this.genarateToken(newbody);
@@ -55,6 +67,7 @@ class LoginProvider extends React.Component {
 
   genarateToken = user => {
 
+
     let userData = {
       username: user.username,
       userEamil: user.email,
@@ -63,10 +76,11 @@ class LoginProvider extends React.Component {
     let token = jwt.sign(userData, 'ashurFood');
     console.log(token);
     this.setLoginState(false, token, user);
+
   }
 
   validateToken = token =>{
-    console.log(token);
+    this.setState({loading:true});
     try {
       let user = jwt.verify(token, 'ashurFood');
       this.setLoginState(true, token, user);
@@ -74,12 +88,16 @@ class LoginProvider extends React.Component {
       // alert('wrong password/username');
       this.setLoginState(false, null, {});
       console.error('token invalid');
+      this.setState({ loading: false});
+
     }
   }
   setLoginState = (loggedIn, token, user) =>{
     console.log(this.state.user);
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
+    this.setState({loading:false});
+
   }
 
     logout = () =>{
@@ -91,13 +109,21 @@ class LoginProvider extends React.Component {
       const cookieToken = cookie.load('auth');
       const token = qs.get('token') || cookieToken || null;
       this.validateToken(token);
-    }
 
+    }
     render(){
       return (
-        <LoginContext.Provider value={this.state}>
-          {this.props.children}
-        </LoginContext.Provider>
+        <React.Fragment>
+          <If condition={this.state.loading}> <Spinner /> </If>
+          <If condition={!this.state.loading}>
+
+
+            <LoginContext.Provider value={this.state}>
+              {this.props.children}
+            </LoginContext.Provider>
+          </If>
+        </React.Fragment>
+         
       );
     }
 }

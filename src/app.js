@@ -20,6 +20,7 @@ export default function App (){
 
   const [user, setUserData] = useState({});
 
+
   // console.log(user);
 
   const handelUser = user =>    setUserData(user);
@@ -33,11 +34,12 @@ export default function App (){
   // const handelDonorCarts = newCart =>  setDonorCart([...donorCart, newCart]);
   // const handelRecipientCarts = newCart =>  setRecipientCart([...recipientCart, newCart]);
 
+
   return (
     <>
       <LoginContext>
         <Header />
-        <SignForm />
+        <SignForm/>
         <Auth capability='recipient'>
           <SettingsProvider setUser={handelUser}>
             <Recipients cartList={cart} handelcart={handelcart}/>

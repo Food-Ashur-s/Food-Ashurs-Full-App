@@ -32,6 +32,7 @@ function Recipients(props) {
   const [recipientList, setRecipientList] = useState([]);
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
+
   const [details, setDetails] = useState({});
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
@@ -50,6 +51,7 @@ function Recipients(props) {
       headers: { 'Content-Type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
     })
+
       .then(response => response.json())
       .then(data => typeof handler === 'function' ? handler(data) : null)
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
@@ -132,48 +134,48 @@ function Recipients(props) {
       -------------------------------------------------------------------------------
       <div className="recipients-list">Your Order's Details
         {recipientList.map((recipient, idx) => {
-        let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-        return <div key={idx} className="recipient-line"> Order's Details
-          <h3 className="recipient-item-name"> Your Name : {recipient.name}</h3>
-          <img src={src} className="donor-item-img" height="330" width="300" />
-          <h4 className="recipient-item-name"> Request Type : {recipient.requestType}</h4>
-          <h4 className="recipient-item-name">Identity Type : {recipient.identity}</h4>
-          <h4 className="recipient-item-name"> Contact Number : {recipient.contactNumber}</h4>
-          <p className="recipient-item-name">About Your Request :{recipient.description}</p>
+          let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          return <div key={idx} className="recipient-line"> Order's Details
+            <h3 className="recipient-item-name"> Your Name : {recipient.name}</h3>
+            <img src={src} className="donor-item-img" height="330" width="300" />
+            <h4 className="recipient-item-name"> Request Type : {recipient.requestType}</h4>
+            <h4 className="recipient-item-name">Identity Type : {recipient.identity}</h4>
+            <h4 className="recipient-item-name"> Contact Number : {recipient.contactNumber}</h4>
+            <p className="recipient-item-name">About Your Request :{recipient.description}</p>
 
-          {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
+            {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
             <button onClick={() => deleteItem(recipient._id)}>DELETE</button>
        
       ----------------------------------------------------------------------------
             <section> Matching Results
               {recipient.requestRecipient.map(item => {
-            return <ul key={idx}>
-              <li>
-                {item.name}
-                <img src={src} height="200" width="200" />
-              </li>
-                <button onClick={() => toggleDetails(item)}>More Detail</button>
-                <button onClick={() => addCart(item)}>Add To Cart</button>
-            </ul>;
-          })}
-          </section>
-        </div>;
-      })}
+                return <ul key={idx}>
+                  <li>
+                    {item.name}
+                    <img src={src} height="200" width="200" />
+                  </li>
+                  <button onClick={() => toggleDetails(item)}>More Detail</button>
+                  <button onClick={() => addCart(item)}>Add To Cart</button>
+                </ul>;
+              })}
+            </section>
+          </div>;
+        })}
       </div>
           -------------------------------------------------------------------------------------
       <div> Available Donations
         {resultsList.map((item, i) => {
-        let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
 
-        return <ul key={i} className="recipient-line">
-          <li className="recipient-item-name">{item.name}</li>
-          <img src={src} className="donor-item-img" height="330" width="300" />
-          <div className="div-buttons">
-            <button onClick={() => toggleDetails(item)} className="recipient-item-button more">More Detail</button>
-            <button onClick={() => addCart(item)} className="recipient-item-button">Add To Cart</button>
-          </div>
-        </ul>;
-      })}
+          return <ul key={i} className="recipient-line">
+            <li className="recipient-item-name">{item.name}</li>
+            <img src={src} className="donor-item-img" height="330" width="300" />
+            <div className="div-buttons">
+              <button onClick={() => toggleDetails(item)} className="recipient-item-button more">More Detail</button>
+              <button onClick={() => addCart(item)} className="recipient-item-button">Add To Cart</button>
+            </div>
+          </ul>;
+        })}
       </div>
       <When condition={showDetails}>
         <Model title='Donor details' close={toggleDetails}>
