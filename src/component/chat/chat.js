@@ -3,8 +3,12 @@ import React, { useState , useEffect} from 'react'; // we use UsState hook to re
 import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
 // import 'react-chat-widget/lib/styles.css';
+
 import './chat.scss';
-import logo from '../../logo.png';
+
+import logo from '../../chatAssests/logo.png';
+import onlineIcon from '../../chatAssests/onlineIcon.png';
+
 // import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
@@ -12,7 +16,7 @@ const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="
 
 // Component to check the users status (from google)
 const Online = props => props.data.map(onlineStatus =>
-<p id={onlineStatus[0]}>- {onlineStatus[1]}</p> );
+<p id={onlineStatus[0]}> {onlineStatus[1]}</p> );
 
 function ChatChannel () {
     const [id, setId] = useState(''); // set the ID for the user 
@@ -107,13 +111,15 @@ function ChatChannel () {
     }
     // if statement to login to chat or typing message 
     return id ? (
-      <section className="sendMsg" >
+      <section className="innerForm" >
+        <div className="msgOn">
         <ul className="messages"><Messages data={messages} /></ul>
-        <ul className="online"> People Online List : <Online data={online} /> </ul>
+        <ul className="online"> People Online List : <Online data={online} /><img src={onlineIcon}/> </ul>
+        </div>
         <div className="sendform"> 
-          <form onSubmit={event => handleSend(event)}>
-              <input className="msgInput" id="m" onChange={event=> handleChangeMsg(event) } placeholder="Type a Message Then press Enter "/>
-              <button className="msgSend" type="submit">Send</button>
+          <form onSubmit={event => handleSend(event)} className="msgSub">
+              <input className="msgInput" id="m" onChange={event=> handleChangeMsg(event) } placeholder="Type a Message ... Press Enter "/>
+              <button className="msgSend" type="submit">Message</button>
           </form>
         </div>
       </section>
@@ -121,7 +127,7 @@ function ChatChannel () {
     : (
       <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
-          <img src={logo} />
+          <img src={logo} className="logoImg"/>
         <div className="foodName"> Food Ashur's Chat </div>
         {/* <Chat/> */}
           <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
