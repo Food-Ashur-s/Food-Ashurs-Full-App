@@ -4,7 +4,7 @@ import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
 // import 'react-chat-widget/lib/styles.css';
 import './chat.scss';
-import logo from './logo.png';
+import logo from '../../logo.png';
 // import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
@@ -121,7 +121,7 @@ function ChatChannel () {
     : (
       <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
-        <div className="foodLogo" styles={{ backgroundImage:`url(${logo})` }}></div>
+          <img src={logo} />
         <div className="foodName"> Food Ashur's Chat </div>
         {/* <Chat/> */}
           <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
