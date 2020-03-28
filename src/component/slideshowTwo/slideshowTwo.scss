@@ -1,0 +1,33 @@
+
+  .swiper-container {
+    width: 95%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: 3%;
+    padding: 0;
+  }
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    // width: 100px;
+    // height: 300px;
+
+  }
+  .slide-img{
+      width: 320px;
+      height: 320px;
+  }
+  .swiper-slide {
+    flex-shrink: 0;
+    width:30%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+.swiper-wrapper {
+    position: relative;
+    width: 70%;
+}
+.swiper-wrapper{
+  transform: translate3d(216.275px, 0px, 0px);
+}

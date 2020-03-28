@@ -1,0 +1,95 @@
+@media (min-width: 768px) {
+  .recipients-list {
+    // width: 90%;
+    margin: auto 0 0 10%;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+  }
+}
+@media (max-width: 768px) {
+  .recipients-list {
+    margin: auto;
+    margin-left: 17%;
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
+
+// Recipients Name (h1)
+.fixx {
+  margin-top: 100px;
+}
+
+// label names (food eastren , deserts , fast food )
+.labelName {
+  font-size: 20px;
+}
+.recipient-line {
+  position: relative;
+  border-radius: 3%;
+  width: 80%;
+  margin: 3%;
+  padding: 1.5%;
+  display: block;
+  color: white;
+  background-color: white;
+  box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+
+  .recipient-item-img {
+    border-radius: 3%;
+    width: 100%;
+    margin: auto;
+    opacity: 97%;
+  }
+
+  .div-buttons {
+    opacity: 0;
+    .recipient-item-button {
+      padding: 2%;
+      margin: 10% 10% 10% 14%;
+      width: 230px;
+      height: 50px;
+        display: block;
+      font-size: 20px;
+      color: white;
+      border-radius: 5%;
+      background: rgba(0, 0, 0, 0.438);
+      border: rgba(255, 255, 255, 0.623) solid 1px;
+      box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+    }
+    .more {
+      margin-top: 16%;
+    }
+  }
+
+  .recipient-item-button:hover {
+    color: rgba(0, 150, 136, 0.57);
+    border: rgba(0, 150, 136, 0.57) solid 2px;
+    cursor: pointer;
+  }
+} // end of .recipient-line
+
+.recipient-line .div-buttons {
+  position: absolute;
+  top: 19%;
+  left: 2%;
+  width: 28%;
+  box-sizing: border-box;
+  box-sizing: content-box;
+  height: 76%;
+  border-radius: 3%;
+}
+.recipient-line .div-buttons:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.582);
+}
+.recipient-item-name {
+  text-align: center;
+  margin: 2%;
+  border-top: groove;
+  color: rgba(0, 0, 0, 0.781);
+}
+.recipient-item-name:hover {
+  color: rgba(0, 150, 136, 0.57);
+  cursor: pointer;
+}

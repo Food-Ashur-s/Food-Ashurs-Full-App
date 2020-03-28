@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
 import {Link , NavLink} from 'react-router-dom';
@@ -6,31 +7,38 @@ import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
 import donatePhoto from '../../assets/donate-form.gif';
 
+import './donor.scss';
+import '../../../node_modules/aos/dist/aos.css';
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
-import desserts2 from '../../assets/desserts-1.jpg';
-import desserts3 from '../../assets/desserts-1.jpg';
+import desserts2 from '../../assets/desserts-2.jpg';
+
 
 import easternfood0 from '../../assets/eastern-food-0.jpg';
 import easternfood1 from '../../assets/eastern-food-1.jpg';
 import easternfood2 from '../../assets/eastern-food-2.jpg';
-import easternfood3 from '../../assets/eastern-food-3.jpg';
+
 
 import fastfood0 from '../../assets/fast-food-0.jpg';
 import fastfood1 from '../../assets/fast-food-1.jpg';
 import fastfood2 from '../../assets/fast-food-2.jpg';
 import fastfood3 from '../../assets/fast-food-3.jpg';
 import Recipients from '../resipient/resipient';
+import fastfood4 from '../../assets/fast-food-4.jpg';
+import fastfood5 from '../../assets/fast-food-5.jpg';
 
-const easternfoodArray = [easternfood0, easternfood1, easternfood2, easternfood3];
-const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
-const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
+import AOS from 'aos';
+
+const easternfoodArray = [easternfood0, easternfood1, easternfood2];
+const fastfoodArray = [fastfood0, fastfood1, fastfood2 ,fastfood4,fastfood5];
+const dessertsArray = [desserts0, desserts1, desserts2];
 
 
 
 const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
 
 function Donors (props){
+  AOS.init();
 
   const [donorList, setDonorList] = useState([]);
   const [donation, setDonation] = useState([]);
@@ -60,17 +68,19 @@ function Donors (props){
       .then(data => typeof handler === 'function' ? handler(data) : null )
       .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
   };
-
   const addItem = e => {
     e.preventDefault();
     e.target.reset();
-
     const _updateState  = newItem => setDonation([newItem]);
     callAPI(donorsAPI, 'POST', item, _updateState );
     setNum(Math.floor(Math.random() * 4));
     setshowForm(false);
   };
 
+  // const deleteItem = id =>{
+  //   const _updateState  = results => setDonorList(donorList.filter(donor=> donor._id !== id));
+  //   callAPI(`${donorsAPI}/${id}`, 'DELETE', undefined, _updateState );
+  // };
   const deleteItem = id =>{
     setDonation([]);
     const _updateState  = results =>{};
@@ -91,6 +101,7 @@ function Donors (props){
     setShowUpdate(!showUpdate);
 
   };
+
   const getdonorList = () => {
     const _updateState = data =>
       setDonorList(data.results);
@@ -98,7 +109,7 @@ function Donors (props){
   };
   useEffect(() => {
     getdonorList();
-  });
+  }, [donorList]);
 
   const toggleDetails = item => {
     setDetails(item);
@@ -150,43 +161,123 @@ function Donors (props){
   return (
     <>
 
-      <h1>Donors</h1>
-      <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
-      {!showForm && (<img src={donatePhoto} onClick={toggleForm}  height="100" width="200"/>)}
-      {showForm && (
-        <form onSubmit={addItem}>
-          <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-          <label> Eastern Food
-            <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
-          </label>
-          <label> Fast Food
-            <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-          </label>
-          <label> Desserts
-            <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-          </label>
-          <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-          <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
+      <section className="block-donor">
+        <div className="fixx"></div>
+        {/* <h1>Donors</h1> */}
+        <h1>Donors</h1>
+        <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
+        {!showForm && (<img src={donatePhoto} onClick={toggleForm}  height="100" width="200"/>)}
+        {showForm && (
 
-          <button>Submit</button>
-        </form>
-      )}
+          <form onSubmit={addItem}>
+            <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
+            <label> Eastern Food
+              <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
+            </label>
+            <label> Fast Food
+              <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
+            </label>
+            <label> Desserts
+              <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
+            </label>
+            <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
+            <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
+
+            <button>Submit</button>
+          </form>
+        )}
+
+
       -------------------- Your Donation Data --------------------------
-      {donation.map((item,i)=>{
-        let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-        return <div key={i}>
-          <h3>{item.name}</h3>
-          <h3>{item.type}</h3>
-          <h3>{item.available_time}</h3>
-          <h3>{item.amount}</h3>
-          <img src={src} height="200" width="200" />
-          <button onClick={()=> deleteItem(item._id)}>DELETE</button>
-          <button onClick={()=> toggleUpdate(item)}>Update</button>
+        {donation.map((item,i)=>{
+          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          return <div key={i}>
+            <h3>{item.name}</h3>
+            <h3>{item.type}</h3>
+            <h3>{item.available_time}</h3>
+            <h3>{item.amount}</h3>
+            <img src={src} height="200" width="200" />
+            <button onClick={()=> deleteItem(item._id)}>DELETE</button>
+            <button onClick={()=> toggleUpdate(item)}>Update</button>
 
-        </div>;
-      })}
-      <div>
-        -------------------- Recipient Request --------------------------
+          </div>;
+        })}
+
+      </section>
+      <h3 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipient Request</h3>
+      <section className="block-recipient">
+        <div className="recipient-list">
+          {donorList.map((donor, idx) =>{
+            let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+            return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+              <div className="donor-item">
+                <img src={src}className="donor-item-img" height="330" width="300" />
+                <div className="donor-item-name">
+                  {donor.name}
+                </div>
+              </div>
+              <div className="styles-div">
+                <div className="donor-item-div1" data-aos="fade-right"
+                  data-aos-duration="1500" ></div>
+                <div className="donor-item-div2"data-aos="fade-left"
+                  data-aos-duration="1700"></div>
+              </div>
+              <div className="div-buttons">
+                <button onClick={()=> toggleDetails(donor)} className="donor-item-button"> <i className="	fa fa-address-card-o info"></i>More Detail</button>
+                <button onClick={()=> addCart(donor)} className="donor-item-button"> <i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
+                {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
+                <button onClick={()=> deleteItem(donor._id)}>DELETE</button>  */}
+              </div>
+            </div>;
+          })}
+        </div>
+        <When condition={showDetails}>
+          <Model title='Recipient details' close={toggleDetails}>
+            <div className="recipient-details">
+              <div className="item">
+            Description: {details.description}
+              </div>
+              <div className="detail-info">
+                <div className="detail-name"><span> Name:</span> <p>{details.name}</p></div>
+                <div className="detail-type"><span> Request Type:</span> <p>{details.requestType}</p> </div>
+                <div className="detail-identity"><span>  Identity:</span> <p>{details.identity}</p></div>
+                <div > <i className="fa fa-phone"></i> <p>{details.contactNumber}</p></div>
+              </div>
+            </div>
+          </Model>
+        </When>
+        <When condition={showUpdate}>
+          <Model title='Recipient update' close={toggleUpdate}>
+            <div className="recipient-updated">
+              <form onSubmit={UpdteItem} value={updated}>
+                <input type='hidden' name='_id' value={details._id} />
+                <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
+                <label> Eastern Food
+                  <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+                </label>
+                <label> Fast Food
+                  <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+                </label>
+                <label> Desserts
+                  <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+                </label>
+                <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+                <button >Submit</button>
+              </form>
+            </div>
+          </Model>
+        </When>
+      </section>
+    </>
+  );
+}
+
+export default Donors;
+
+
+
+{/* <div className="donors-list">
         {donorList.map((donor, idx) =>{
           let src = donor.requestType === 'eastern food' ? easternfoodArray[num] : donor.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return <ul key={idx}>
@@ -202,6 +293,33 @@ function Donors (props){
         })}
       </div>
       <When condition={showDetails}>
+          // Math.floor(Math.random() * easternfoodArray.length);
+          let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+
+          return(
+            <>
+              <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+                {/* <div className="donor-item"> */}
+{/* <img src={src} className="donor-item-img" height="330" width="300" />
+                <div className="donor-item-name">
+                  {donor.name}
+                </div>
+                <div className="styles-div">
+                  <div className="donor-item-div1" data-aos="fade-right"
+                    data-aos-duration="1500" ></div>
+                  <div className="donor-item-div2"data-aos="fade-left" data-aos-duration="1700"
+                  ></div>
+                </div>
+                <div className="div-buttons">
+                  <button onClick={()=> toggleDetails(donor._id)} className="donor-item-button more">More Detail</button>
+                  <button onClick={()=> toggleUpdate(donor._id)} className="donor-item-button">Update</button>
+                  <button onClick={()=> deleteItem(donor._id)} className="donor-item-button">DELETE</button>
+                </div>
+              </div>
+            </>); */}
+{/* })}
+      </div> */}
+{/* <When condition={showDetails}>
         <Model title='Recipient details' close={toggleDetails}>
           <div className="recipient-details">
             <header>
@@ -213,6 +331,11 @@ function Donors (props){
             </header>
             <div className="item">
                 Description: {details.description}
+              <li>Donation Type: {details.type}   </li>
+              <li>Available Time: {details.available_time}   </li>
+            </header>
+            <div className="item">
+            Food Amount: {details.amount}
             </div>
           </div>
         </Model>
@@ -224,6 +347,7 @@ function Donors (props){
               <input type='hidden' name='_id' value={details._id} />
               <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateCartChange} required />
               <br/>
+              <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
               <label> Eastern Food
                 <input type='radio' name='type' value='eastern food' onClick={handelUpdateCartChange} required />
               </label>
@@ -239,6 +363,8 @@ function Donors (props){
               <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateCartChange} />
               <br/>
               <br/>
+              <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+              <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
               <button >Submit</button>
             </form>
           </div>
@@ -310,3 +436,4 @@ function Donors (props){
 }
 
 export default Donors;
+      </When> */}
