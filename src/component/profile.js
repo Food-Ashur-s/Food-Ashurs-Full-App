@@ -22,6 +22,8 @@ class Profile extends Component {
       this.setState({
         image: URL.createObjectURL(img),
       });
+      // localStorage.setItem('myphoto', this.state.image);
+      // this.setState({image:localStorage.getItem('myphoto') || cartPhoto});
       this.setState({showUpload:!this.state.showUpload});
     }
   };
