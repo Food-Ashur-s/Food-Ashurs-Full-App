@@ -106,12 +106,10 @@ body {
 // message input and message button  
 .msgSub {
   display: flex;
- 
-
-  // width: 100%;
-  margin-top: 315px;
+  width: 100%;
+  margin-top: 360px;
   margin-left: auto 5px;
-  position: relative;
+  // position: relative;
 }
 
 // message input 
@@ -124,6 +122,7 @@ body {
   font-family: cursive;
   border: solid 2px black;
   font-family: sans-serif;
+  background-color: #00928596;
 }
 
 // message button 
