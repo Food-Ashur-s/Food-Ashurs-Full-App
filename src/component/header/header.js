@@ -11,7 +11,7 @@ export default function Header (props){
       <nav>
         <ul>
           <li>
-            <Link to='/'>Home</Link>
+            <Link to='/Food-Ashur-s/Food-Ashurs-Full-App'>Home</Link>
           </li>
           <li>
             <NavLink to='/profile'>profile</NavLink>

@@ -2,6 +2,8 @@
 import React from 'react';
 import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
+import {Link , NavLink} from 'react-router-dom';
+import { useStore } from 'react-hookstore';
 
 const API = process.env.REACT_APP_API;
 const SECRET = process.env.SECRET;
@@ -78,6 +80,8 @@ class LoginProvider extends React.Component {
   setLoginState = (loggedIn, token, user) =>{
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
+    if(user.role === 'recipient') return <NavLink to='/recipient'></NavLink>;
+    else if(user.role === 'donor') return <NavLink to='/donor'></NavLink>;
   }
 
     logout = () =>{

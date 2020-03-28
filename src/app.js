@@ -19,11 +19,12 @@ export default function App (){
   return (
     <React.Fragment>
       <LoginContext>
+        <Route exact path= '/Food-Ashur-s/Food-Ashurs-Full-App'>
 
-        <Login />
-        <Logup />
-        <GoogleLog />
-        <Route exact path= '/'>
+          <Login />
+          <Logup />
+          <GoogleLog />
+
           <Auth capability='recipient'>
             <SettingsProvider>
               <Header />
@@ -31,17 +32,14 @@ export default function App (){
             </SettingsProvider>
 
           </Auth>
-        </Route>
-        <Route exact path= '/'>
           <Auth capability='donor'>
             <SettingsProvider>
               <Header />
               <Donor />
             </SettingsProvider>
           </Auth>
+
         </Route>
-
-
         <Route exact path= '/profile'>
           <Header />
           <Profile />
