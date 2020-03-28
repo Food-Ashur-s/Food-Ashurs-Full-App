@@ -92,18 +92,19 @@ body {
 
 .msgOn {
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
 }
 
 // message input and message button  
 .msgSub {
-  float: left;
-  clear: both;
+  display: flex;
+  justify-content: end;
   width: 100%;
-  margin-top: 435px;
+  margin-top: 355px;
   margin-left: 5px;
 }
 
+// message input 
 .msgInput {
   color: black;
   width: 90%;
@@ -113,6 +114,7 @@ body {
   font-family: sans-serif;
 }
 
+// message button 
 .msgSend {
   color: #fff;
   text-decoration: none;
@@ -131,12 +133,30 @@ body {
 .msgSend:hover {
   background: #00928596;
 }
-// .online {
-//   margin-left: 500px;
-//   color: green;
-// }
 
-// .userName {
-//   font-weight: bolder;
-//   color: rgb(5, 160, 160);
-// }
+// the words
+.words {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: #00928596;
+}
+
+.words img {
+  height: 13%;
+  width: 13%;
+}
+.online {
+  color: green;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  margin-right: 10px;
+  font-size: larger;
+}
+
+.userName {
+  font-weight: bold;
+  color: rgb(2, 51, 51);
+  font-family: 'Roboto', sans-serif;
+  display: inline;
+}

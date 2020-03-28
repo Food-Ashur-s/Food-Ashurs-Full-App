@@ -12,11 +12,14 @@ import onlineIcon from '../../chatAssests/onlineIcon.png';
 // import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
-const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName"><strong>{msg[0]}</strong> : <div className="innermsg">{msg[1]}</div></li>) : (<li className="update">{msg[1]}</li>) );
+const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName">{msg[0]} : {msg[1]}</li>) : (<li className="update">{msg[1]}</li>) );
 
 // Component to check the users status (from google)
 const Online = props => props.data.map(onlineStatus =>
-<p id={onlineStatus[0]}> {onlineStatus[1]}</p> );
+<div id={onlineStatus[0]}>
+   <img src={onlineIcon}/>
+    {` ${onlineStatus[1]}`}
+   </div> );
 
 function ChatChannel () {
     const [id, setId] = useState(''); // set the ID for the user 
@@ -112,9 +115,14 @@ function ChatChannel () {
     // if statement to login to chat or typing message 
     return id ? (
       <section className="innerForm" >
+           <div className="words">
+      <h1>Food-Ashur's Chat Application <span role="img" aria-label="emoji">💬</span></h1>
+           <img src={logo} />
+      <h2>Help Us To Help Them  <span role="img" aria-label="emoji">❤️</span></h2>
+    </div>
         <div className="msgOn">
-        <ul className="messages"><Messages data={messages} /></ul>
-        <ul className="online"> People Online List : <Online data={online} /><img src={onlineIcon}/> </ul>
+          <ul className="messages"><Messages data={messages} /></ul>
+        <ul className="online">  Online People <Online data={online} /> </ul>
         </div>
         <div className="sendform"> 
           <form onSubmit={event => handleSend(event)} className="msgSub">
