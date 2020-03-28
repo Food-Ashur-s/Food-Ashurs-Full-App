@@ -83,11 +83,19 @@ body {
 
 // innerForm
 .innerForm {
-  text-align: left;
-  height: 100vh;
-  align-items: center;
-  background-color: #00928596;
-  border: 5px solid black;
+  // text-align: left;
+  // height: 100vh;
+  // align-items: center;
+  // background-color: #00928596;
+  // border: 5px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
+  height: 80%;
+  width: 100%;
 }
 
 .msgOn {
@@ -98,16 +106,20 @@ body {
 // message input and message button  
 .msgSub {
   display: flex;
-  justify-content: end;
-  width: 100%;
-  margin-top: 355px;
-  margin-left: 5px;
+ 
+
+  // width: 100%;
+  margin-top: 315px;
+  margin-left: auto 5px;
+  position: relative;
 }
 
 // message input 
 .msgInput {
+  border-radius: 0;
+  font-size: 1.2em;
   color: black;
-  width: 90%;
+  width: 80%;
   padding: 15px;
   font-family: cursive;
   border: solid 2px black;
@@ -122,12 +134,13 @@ body {
   padding: 15px;
   border-radius: 5px;
   border: none;
-  width: 128px;
+  width: 20%;
   font-size: 14px;
   cursor: pointer;
   border: solid 2px #ffffff8c;
   box-shadow: 1px 2px 5px 1px #00928596;
   font-family: cursive;
+  display: inline-block;
 }
 
 .msgSend:hover {
@@ -152,6 +165,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin-right: 10px;
   font-size: larger;
+  // text-transform: uppercase;
 }
 
 .userName {

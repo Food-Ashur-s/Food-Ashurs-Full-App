@@ -12,7 +12,7 @@ import onlineIcon from '../../chatAssests/onlineIcon.png';
 // import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
-const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName">{msg[0]} : {msg[1]}</li>) : (<li className="update">{msg[1]}</li>) );
+const Messages = props => props.data.map(msg => msg[0] !== '' ? (<span><li className="userName"><div className="innermsg">{msg[0]} : {msg[1]}</div></li></span>) : (<li className="update">{msg[1]}</li>) );
 
 // Component to check the users status (from google)
 const Online = props => props.data.map(onlineStatus =>
@@ -121,8 +121,10 @@ function ChatChannel () {
       <h2>Help Us To Help Them  <span role="img" aria-label="emoji">❤️</span></h2>
     </div>
         <div className="msgOn">
+        {/* <div>  */}
           <ul className="messages"><Messages data={messages} /></ul>
-        <ul className="online">  Online People <Online data={online} /> </ul>
+        {/* </div> */}
+        <ul className="online">  Online People : <Online data={online} /> </ul>
         </div>
         <div className="sendform"> 
           <form onSubmit={event => handleSend(event)} className="msgSub">
