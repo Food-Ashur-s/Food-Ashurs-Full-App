@@ -15,7 +15,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
+      password: ''
     };
   }
 
@@ -27,6 +27,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.context.login(this.state.username, this.state.password);
     e.target.reset();
+  
   }
 
   render() {

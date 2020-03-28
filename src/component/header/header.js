@@ -116,9 +116,9 @@ class Header extends React.Component{
         <div className="quotes-div">
           {/* <ul class="slideshow"> */}
           <div ><p data-aos="flip-up" className="quote">Food Charty</p></div>
-          <div><p  data-aos="flip-down" className="quote">Donation</p></div>
-          <div><p data-aos="flip-up" className="quote">Humanity</p></div>
-          <div><p data-aos="flip-down" className="quote">Help ...</p></div>
+          <div><p  data-aos="flip-down" className="quote">&nbsp;&nbsp;Donation</p></div>
+          <div><p data-aos="flip-up" className="quote">&nbsp;&nbsp;Humanity</p></div>
+          <div><p data-aos="flip-down" className="quote">&nbsp;&nbsp;&nbsp;Help ..</p></div>
         </div>
         <div className="clear-div"></div>
       </>

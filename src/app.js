@@ -13,10 +13,8 @@ import Auth from './component/auth/auth.js';
 // import SignForm from './component/sign-forms/signForm.js';
 import SlideShow from './component/slideShow/slideShow.js';
 import About from './component/aboutus/about.js';
-
-const If = props => {
-  return props.condition ? props.children : null;
-};
+// import SignForm from './component/sign-forms/signForm.js';
+import SlideTwo from './component/slideshowTwo/slideshowTwo.js';
 
 export default function App (){
   const [cart, setCart] = useState([]);
@@ -48,6 +46,7 @@ export default function App (){
         <Profile cartList={cart} handelcart={handelcart} setCartList={setCart} userInfo={user}/>
         {/* </Route> */}
         <SlideShow/>
+        <SlideTwo />
         <About />
         <Footer/>
       </LoginContext>

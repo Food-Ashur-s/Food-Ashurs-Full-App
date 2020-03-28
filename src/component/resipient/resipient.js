@@ -3,7 +3,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
-import {When} from '../if';
+import { When } from '../if';
+import './resipient.scss';
+
+
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
@@ -28,11 +31,12 @@ const dessertsArray = [desserts0, desserts1, desserts2];
 
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
 
-function Recipients (props){
+function Recipients(props) {
 
   const [recipientList, setRecipientList] = useState([]);
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
+
   const [details, setDetails] = useState({});
   const [showUpdate, setShowUpdate] = useState(false);
   const [updated, setUpdate] = useState({});
@@ -40,10 +44,10 @@ function Recipients (props){
   const [resultsList, setResultstList] = useState([]);
 
   const handelInputChange = e => {
-    setItem({...item, [e.target.name]: e.target.value});
+    setItem({ ...item, [e.target.name]: e.target.value });
   };
 
-  const callAPI = (url, method , body, handler, errorHandler) => {
+  const callAPI = (url, method, body, handler, errorHandler) => {
     return fetch(url, {
       method: method,
       mode: 'cors',
@@ -51,9 +55,10 @@ function Recipients (props){
       headers: { 'Content-Type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
     })
-      .then( response => response.json())
-      .then(data => typeof handler === 'function' ? handler(data) : null )
-      .catch( (e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e)  );
+
+      .then(response => response.json())
+      .then(data => typeof handler === 'function' ? handler(data) : null)
+      .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
   const addItem = e => {
@@ -72,10 +77,10 @@ function Recipients (props){
   };
 
   const handelUpdateChange = e => {
-    setUpdate({...updated, [e.target.name]: e.target.value});
+    setUpdate({ ...updated, [e.target.name]: e.target.value });
   };
 
-  const UpdteItem = e =>{
+  const UpdteItem = e => {
     e.preventDefault();
     console.log(updated);
     const postHandeler  = updated => setRecipientList([updated]);
@@ -107,66 +112,71 @@ function Recipients (props){
 
   const addCart = donor => props.handelcart(donor);
 
+  /*********************************************** Styling Part ****************************************************************/
   return (
     <>
-      {/* <NavLink to='/profile'>profile</NavLink> */}
+      <div className="fixx"></div>
       <h1>Recipients</h1>
       <form onSubmit={addItem}>
         <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-        <label> Eastern Food
-          <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
-        </label>
-        <label> Fast Food
+        <label className="labelName">
+          <input type='radio' name='requestType' value='eastern food' onClick={handelInputChange} required />
+          Eastern Food </label>
+        <label className="labelName" >
           <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
-        </label>
-        <label> Desserts
+          Fast Food </label>
+        <label className="labelName">
           <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
-        </label>
+          Desserts </label>
         <input type='text' name='identity' placeholder='type your identity' onChange={handelInputChange} required />
         <input type='number' name='contactNumber' placeholder='type your contactNumber' onChange={handelInputChange} required />
         <input type='text' name='description' placeholder='description' onChange={handelInputChange} />
 
         <button>Submit</button>
       </form>
-       --------------------------------------------------------------------------------
-      <div>Your Order
-        {recipientList.map((recipient, idx) =>{
+      -------------------------------------------------------------------------------
+      <div className="recipients-list">Your Order's Details
+        {recipientList.map((recipient, idx) => {
           let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <div key={idx}>
-            <h3>{recipient.name}</h3>
-            <h4>{recipient.identity}</h4>
-            <h4>{recipient.requestType}</h4>
-            <h4>{recipient.contactNumber}</h4>
-            <img src={src} height="200" width="200" />
-            <p>{recipient.description}</p>
+          return <div key={idx} className="recipient-line"> Order's Details
+            <h3 className="recipient-item-name"> Your Name : {recipient.name}</h3>
+            <img src={src} className="donor-item-img" height="330" width="300" />
+            <h4 className="recipient-item-name"> Request Type : {recipient.requestType}</h4>
+            <h4 className="recipient-item-name">Identity Type : {recipient.identity}</h4>
+            <h4 className="recipient-item-name"> Contact Number : {recipient.contactNumber}</h4>
+            <p className="recipient-item-name">About Your Request :{recipient.description}</p>
 
             {/* <button onClick={()=> toggleUpdate(recipient)}>Update</button> */}
-            <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
-            ----------------------------------------------------------------------------
-            <section> Results Request
-              {recipient.requestRecipient.map(item=>{
+            <button onClick={() => deleteItem(recipient._id)}>DELETE</button>
+
+      ----------------------------------------------------------------------------
+            <section> Matching Results
+              {recipient.requestRecipient.map(item => {
                 return <ul key={idx}>
                   <li>
                     {item.name}
                     <img src={src} height="200" width="200" />
                   </li>
-                  <button onClick={()=> toggleDetails(item)}>More Detail</button>
-                  <button onClick={()=> addCart(item)}>Add To Cart</button>
+                  <button onClick={() => toggleDetails(item)}>More Detail</button>
+                  <button onClick={() => addCart(item)}>Add To Cart</button>
                 </ul>;
               })}
             </section>
           </div>;
         })}
       </div>
-      -------------------------------------------------------------------------------------
-      <div> Donations Available
-        {resultsList.map((item, i)=>{
+          -------------------------------------------------------------------------------------
+      <div> Available Donations
+        {resultsList.map((item, i) => {
           let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <ul key={i}>
-            <li>{item.name}</li>
-            <img src={src} height="200" width="200" />
-            <button onClick={()=> toggleDetails(item)}>More Detail</button>
-            <button onClick={()=> addCart(item)}>Add To Cart</button>
+
+          return <ul key={i} className="recipient-line">
+            <li className="recipient-item-name">{item.name}</li>
+            <img src={src} className="donor-item-img" height="330" width="300" />
+            <div className="div-buttons">
+              <button onClick={() => toggleDetails(item)} className="recipient-item-button more">More Detail</button>
+              <button onClick={() => addCart(item)} className="recipient-item-button">Add To Cart</button>
+            </div>
           </ul>;
         })}
       </div>
@@ -179,7 +189,7 @@ function Recipients (props){
               <li>Available Time: {details.available_time}   </li>
             </header>
             <div className="item">
-            Food Amount: {details.amount}
+              Food Amount: {details.amount}
             </div>
           </div>
         </Model>
