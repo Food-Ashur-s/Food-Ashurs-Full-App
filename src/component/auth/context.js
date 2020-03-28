@@ -80,12 +80,12 @@ class LoginProvider extends React.Component {
   setLoginState = (loggedIn, token, user) =>{
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
-    if(user.role === 'recipient') return <NavLink to='/recipient'></NavLink>;
-    else if(user.role === 'donor') return <NavLink to='/donor'></NavLink>;
+    localStorage.setItem('userInfo', JSON.stringify(user));
   }
 
     logout = () =>{
       this.setLoginState(false, null, {});
+      localStorage.clear();
     }
 
     componentDidMount(){
