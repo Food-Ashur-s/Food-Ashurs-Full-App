@@ -2,9 +2,10 @@
 import React, { useState , useEffect} from 'react'; // we use UsState hook to render the componenet once we update app state
 import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
+// import 'react-chat-widget/lib/styles.css';
 import './chat.scss';
 import logo from './logo.png';
-
+// import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
 const Messages = props => props.data.map(msg => msg[0] !== '' ? (<li className="userName"><strong>{msg[0]}</strong> : <div className="innermsg">{msg[1]}</div></li>) : (<li className="update">{msg[1]}</li>) );
@@ -116,14 +117,19 @@ function ChatChannel () {
           </form>
         </div>
       </section>
-    ) : (
+    ) 
+    : (
       <div className="outerForm">
         <form onSubmit={event => handleSubmit(event)}>
         <div className="foodLogo" styles={{ backgroundImage:`url(${logo})` }}></div>
         <div className="foodName"> Food Ashur's Chat </div>
+        {/* <Chat/> */}
           <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
           <input className="room" onChange={event => handleChangeRoom(event)} required placeholder="Enter your room" /><br />
           <button className="submitB" type="submit">Submit</button>
+          {/* <button onClick={() => window.open("http://localhost:3000/Food-Ashur-s/Food-Ashurs-Full-App")}>
+Click to open chat
+</button> */}
         </form>
       </div>
     );
