@@ -1,0 +1,222 @@
+$bg: #f7f7f7;
+$color-primary: #ffe553;
+
+* {
+  box-sizing: border-box;
+}
+
+ul, 
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+body {
+  min-height: 100vh;
+  margin-top: 5em;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 2.5em;
+  max-width: 650px;
+  line-height: 1.3;
+}
+
+.content-block {
+  margin-bottom: 3em;
+}
+
+#tabs {
+  margin-bottom: 2.6em;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    background: #f1f1f1;
+  }
+  
+  li {
+    font-size:1.05em;
+    font-weight: 700;
+    margin-right: 3em;
+    padding-bottom: 0.6em;
+    letter-spacing:0.03em;
+    display: inline-block;
+    position: relative;
+    cursor:pointer;
+    &.active {
+      border-bottom: 4px solid $color-primary;
+    }
+  }
+}
+
+#tab {
+  
+}
+
+p {
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2em;
+  @extend %clearfix;
+}
+
+.stars {
+  font-size: 1.6em;
+}
+
+.label {
+  color: lighten(black, 75%);
+  letter-spacing: .08em;
+  font-size: .65rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: .7rem;
+  text-transform: uppercase;
+}
+
+span.stars {
+  font-size: 1.4em;
+}
+
+.body,
+.course-sidebar {
+  min-height: 100vh;
+}
+
+.course-content {
+  width: calc(100% - 320px);
+  float: right;
+  padding-right: 5em;
+}
+
+.courseSidebar {
+  width: 230px;
+  float: left;
+  position: relative;
+  &__featureImage {
+    padding-bottom: 100%;
+    background: gainsboro;
+    margin-bottom: 3em;
+  }
+}
+
+.profile-image {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+  border-radius: 100%;
+  background: $bg;
+  &__inner {
+    position: Absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+    border-radius: 100%;
+    overflow: hidden;
+    &::after {
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      left: -1px;
+      background: rgba(0, 0, 0, 0.2);
+      content: '';
+    }
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.panel {
+  margin: 2em 0;
+  background: white;
+  padding: 4em 10em 4em 5.5em;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.07), 0 0 55px rgba(0, 0, 0, 0.06);
+}
+
+.courseStats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 2.8rem; 
+  }
+  
+  &__label {
+      background: white;
+      position: relative;
+      margin-bottom: -4px;
+      float: left;
+      padding-right: 5px;
+   }
+  
+   &__divider {     
+      float: left;
+      height: 1px;
+      background: lighten(black, 90%);
+      width: 100%;
+      display: block;
+      margin-bottom: 1.4rem;
+    }
+  
+    &__data { display: block; font-weight:700; font-size:1.05rem;}
+}
+
+
+
+#tab li:not(.active) {display:none;}
+
+
+
+
+
+.button {
+  $root: &;
+  padding: 15px 20px;
+  font-weight: 700;
+  background: #f3f3f3;
+  color: darket(#f3f3f3, 26%);
+  display: inline-block;
+  margin:0 .8em .8em 0;
+  &:first-child {margin-left:0;}
+  &#{$root}--booking {
+    background: $color-primary;
+      color: darken($color-primary, 26%);
+      ;}
+}
+
+.person{
+    width: 90%;
+    height: 95%;
+}
+.bt{
+    background-color: red;
+}
