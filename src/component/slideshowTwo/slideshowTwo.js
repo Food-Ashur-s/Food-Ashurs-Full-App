@@ -11,16 +11,18 @@ import img6 from '../../assets/img-home-6.jpg';
 import img7 from '../../assets/img-home-7.jpg';
 const SimpleSwiperWithParams = () => {
   const params = {
+    // direction: 'vertical',
+    loop: true,
     effect: 'coverflow',
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: 'auto',
     coverflowEffect: {
       rotate: 70,
-      stretch: 0,
-      depth: 100,
+      stretch: 20,
+      depth: 50,
       modifier: 1,
-      slideShadows : true,
+      // slideShadows : true,
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -32,17 +34,24 @@ const SimpleSwiperWithParams = () => {
   };
 
   return(
-    <div className="swiper-container">
-      <Swiper {...params} >
-        <div class="swiper-slide"><img className="slide-img"  src={img1}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img2}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img3}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img4}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img1}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img6}/></div>
-        <div class="swiper-slide"><img className="slide-img"  src={img7}/></div>
-      </Swiper>
-    </div>
+    <>
+      <div className="swiper-container">
+        <p data-aos="fade-up" data-aos-duration="1500" className="slide2-p">“No one has ever become poor by giving.”</p>
+        <p data-aos="fade-up" data-aos-duration="1500" className="slide2-p">“It's not how much we give but how much love we put into giving.”</p>
+        <Swiper {...params} data-aos="fade-up" data-aos-duration="1500"  >
+          <div  class="swiper-slide"><img  className="slide-img"  src={img1}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img2}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img3}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img4}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img1}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img6}/></div>
+          <div class="swiper-slide"><img className="slide-img"  src={img7}/></div>
+        </Swiper>
+      </div>
+      <p data-aos="fade-up" data-aos-duration="1200" className="slide2-p">“There is no exercise better for the heart than reaching down and lifting people up.”</p>
+      <p  data-aos="fade-up" data-aos-duration="1200" className="slide2-p">“When we give cheerfully and accept gratefully, everyone is blessed.”</p>
+      <div className="clear-div"></div>
+    </>
   );
 };
 

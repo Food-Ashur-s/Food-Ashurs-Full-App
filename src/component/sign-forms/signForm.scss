@@ -142,7 +142,7 @@ a{color:rgba(0, 0, 0, 0.623);text-decoration:none}
 
 .hr{
 	height:2px;
-	margin:60px 0 50px 0;
+	margin: 19px 0 28px 0;
 	background:rgba(255, 255, 255, 0.959);
 }
 .foot-lnk{
@@ -244,4 +244,24 @@ input::placeholder {
 	background:rgba(252, 252, 252, 0.658);
 	color:rgb(8, 8, 8);
 	transition: 700ms;
+}
+.button-google{
+	display: block;
+    border: 0px;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    width: calc(100% - 10px);
+    overflow: hidden;
+    padding: 0px 10px;
+    user-select: none;
+    height: 47px;
+    background: rgb(203, 63, 34);
+}
+.button-google:hover{
+	opacity: 88%;
+	cursor: pointer;
 }

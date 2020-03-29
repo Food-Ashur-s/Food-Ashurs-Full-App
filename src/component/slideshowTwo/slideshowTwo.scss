@@ -16,6 +16,7 @@
   .slide-img{
       width: 320px;
       height: 320px;
+      filter: grayscale(20%);
   }
   .swiper-slide {
     flex-shrink: 0;
@@ -31,3 +32,17 @@
 .swiper-wrapper{
   transform: translate3d(216.275px, 0px, 0px);
 }
+.slide2-p{
+  // z-index: 95;
+  text-align: center;
+  font-size: 24px;
+  padding: 2%;
+  letter-spacing: 2px;
+  margin: 1%;
+  color: #ffffffcf;
+  text-shadow: 1px 1.5px 2px #1b5d57;
+}
+// .slide2-p:hover{
+//   transform: scale(1.02);
+//   transition: 600ms;
+// }

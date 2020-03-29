@@ -162,33 +162,41 @@ function Donors (props){
     <>
 
       <section className="block-donor">
-        <div className="fixx"></div>
+        {/* <div className="fixx"></div> */}
         {/* <h1>Donors</h1> */}
-        <h1>Donors</h1>
-        <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
-        {!showForm && (<img src={donatePhoto} onClick={toggleForm}  height="100" width="200"/>)}
-        {showForm && (
+        <div className="donation-div">
+          <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Donor Section</h3>
+          <span className="space-span"></span>
+          <div className="cart-div"><i data-aos="fade-right"
+            data-aos-offset="100"
+            data-aos-easing="ease-in-sine"className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
+          <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness.”</p>
+          <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead.”</p>
+          {/* <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/> */}
+          <div className="donation-href-div">
+            {!showForm && (<button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make donation !</button>)}
+          </div>
+          {showForm && (
 
-          <form onSubmit={addItem}>
-            <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-            <label> Eastern Food
-              <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
-            </label>
-            <label> Fast Food
-              <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-            </label>
-            <label> Desserts
-              <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-            </label>
-            <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-            <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
+            <form onSubmit={addItem}>
+              <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
+              <label> Eastern Food
+                <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
+              </label>
+              <label> Fast Food
+                <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
+              </label>
+              <label> Desserts
+                <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
+              </label>
+              <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
+              <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
 
-            <button>Submit</button>
-          </form>
-        )}
+              <button>Submit</button>
+            </form>
+          )}
+        </div>
 
-
-      -------------------- Your Donation Data --------------------------
         {donation.map((item,i)=>{
           let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return <div key={i}>
@@ -204,7 +212,7 @@ function Donors (props){
         })}
 
       </section>
-      <h3 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipient Request</h3>
+      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipient Request</h4>
       <section className="block-recipient">
         <div className="recipient-list">
           {donorList.map((donor, idx) =>{
@@ -249,21 +257,31 @@ function Donors (props){
         <When condition={showUpdate}>
           <Model title='Recipient update' close={toggleUpdate}>
             <div className="recipient-updated">
-              <form onSubmit={UpdteItem} value={updated}>
-                <input type='hidden' name='_id' value={details._id} />
-                <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
-                <label> Eastern Food
-                  <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
+              <form onSubmit={UpdteItem} value={updated} className="update-form">
+                <label className="update-label">
+                  <input type='hidden' v name='_id' value={details._id} className="update-input" />
                 </label>
-                <label> Fast Food
-                  <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
+                <label className="update-label"> <span> Name :</span>
+                  <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
                 </label>
-                <label> Desserts
-                  <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
+                <div className="redio-div">
+                  <label className="update-label-r">
+                    <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+                  </label>
+                  <label className="update-label-r">
+                    <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
+                  </label>
+                  <label className="update-label-r">
+                    <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required /> Desserts
+                  </label>
+                </div>
+                <label className="update-label"> <span> Available time :</span>
+                  <input type='text' name='available_time' placeholder='type your available_time' className="update-input" defaultValue={updated.available_time} onChange={handelUpdateChange} required />
                 </label>
-                <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-                <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
-                <button >Submit</button>
+                <label className="update-label"><span> Amount : </span>
+                  <input type='number' name='amount' placeholder='type your amount' className="update-input" defaultValue={updated.amount} onChange={handelUpdateChange} />
+                </label>
+                <button className="update-button" >Submit</button>
               </form>
             </div>
           </Model>

@@ -27,7 +27,7 @@ export default function App (){
       <LoginContext>
         <Route exact path= '/Food-Ashur-s/Food-Ashurs-Full-App'>
           <Header />
-          <GoogleLog />
+          {/* <GoogleLog /> */}
           <SlideTwo/>
        
           {/* <SignForm/> */}

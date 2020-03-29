@@ -60,7 +60,7 @@ class Logup extends React.Component {
               <input type="submit" className="button" value="Sign Up"/>
             </div>
             <div class="group-google">
-              <GoogleLoginButton className="button-google"/>
+              {/* <GoogleLoginButton className="button-google"/> */}
             </div>
           </form>
         </If>
