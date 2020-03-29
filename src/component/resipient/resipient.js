@@ -41,6 +41,7 @@ function Recipients (props){
   const [cartList, setCartList] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showForm, setshowForm] = useState(false);
+  const [numberOfCart, setNumberOfCart] = useState(0);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -124,6 +125,7 @@ function Recipients (props){
   const deleteCartItem = id => {
     let newCartList = cartList.filter( item => item._id !== id );
     setCartList(newCartList);
+    setNumberOfCart(numberOfCart - 1);
   };
 
   const UpdteCartItem = e =>{
@@ -138,11 +140,13 @@ function Recipients (props){
       if(donor._id === cartList[i]._id) return;
     }
     setCartList([...cartList, donor]);
+    setNumberOfCart(numberOfCart + 1);
   };
   const toggleForm = e => {
     e.preventDefault();
     setshowForm(true);
   };
+
 
   return (
     <>
@@ -182,6 +186,7 @@ function Recipients (props){
             <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
             ----------------------------------------------------------------------------
             <section> Results Request
+              <h2>Results Match Your Request: {recipient.requestRecipient.length || 0}</h2>
               {recipient.requestRecipient.map(item=>{
                 return <ul key={idx}>
                   <li>
@@ -227,7 +232,7 @@ function Recipients (props){
 
       <When condition={showCart}>
         <Model title='cart list' close={toggleCart}>
-
+          <header>Number Of Your Cart: {numberOfCart}</header>
           {
             cartList.map((item, i)=>{
               return <ul key={i}>
