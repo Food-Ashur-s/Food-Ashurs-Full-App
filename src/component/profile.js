@@ -40,7 +40,7 @@ class Profile extends Component {
       showUpload: false,
       user: JSON.parse(localStorage.getItem('userInfo')),
       showUserUpdate: false,
-      updated:{},
+      updated:{ username:'', userEamil:'' , capabilities: ''},
       updateList: JSON.parse(localStorage.getItem('newUser')),
       showUpdateList: JSON.parse(localStorage.getItem('showNewUser')),
     };
@@ -195,7 +195,7 @@ render() {
 
               <ul id="tab">
                 <li class="active">
-                  <p>{this.context.user.username}  is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
+                  <p>{this.state.updated.username || this.state.updateList.username || this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
                 
                 </li>
 
@@ -239,17 +239,17 @@ render() {
                 <li>
                   <span class="label courseStats__label" >User name</span>
                   <span class="courseStats__divider"></span>
-                  <span class="courseStats__data">{this.state.user.username }</span>
+                  <span class="courseStats__data">{this.state.updated.username || this.state.updateList.username || this.state.user.username }</span>
                 </li>
                 <li>
                   <span class="label courseStats__label">TYpe</span>
                   <span class="courseStats__divider"></span>
-                  <span class="courseStats__data">{this.state.user.capabilities }</span>
+                  <span class="courseStats__data">{this.state.updated.capabilities ||this.state.updateList.capabilities|| this.state.user.capabilities }</span>
                 </li>
                 <li>
                   <span class="label courseStats__label">E-mail</span>
                   <span class="courseStats__divider"></span>
-                  <span class="courseStats__data">{this.state.user.userEamil }</span>
+                  <span class="courseStats__data">{this.state.updated.userEamil ||this.state.updateList.userEamil || this.state.user.userEamil }</span>
                 </li>
                
               </ul>
@@ -293,13 +293,13 @@ export default Profile;
 //       <li>{this.state.user.userEamil }</li>
 //     </ul>
 //   )}
-//   {this.state.showUpdateList && (
-//     <ul>
-//       <li>{this.state.updated.username || this.state.updateList.username}</li>
-//       <li>{this.state.updated.capabilities || this.state.updateList.capabilities}</li>
-//       <li>{this.state.updated.userEamil || this.state.updateList.userEamil}</li>
-//     </ul>
-//   )}
+// {this.state.showUpdateList && (
+//   <ul>
+//     <li>{this.state.updated.username || this.state.updateList.username}</li>
+//     <li>{this.state.updated.capabilities || this.state.updateList.capabilities}</li>
+//     <li>{this.state.updated.userEamil || this.state.updateList.userEamil}</li>
+//   </ul>
+// )}
 
 
 
