@@ -29,16 +29,12 @@ export default function App (){
           <Header />
           {/* <GoogleLog /> */}
           <SlideTwo/>
-       
           {/* <SignForm/> */}
 
           <Auth capability='recipient'>
             <SettingsProvider>
-
               <Recipients />
-
             </SettingsProvider>
-
           </Auth>
           <Auth capability='donor'>
             <SettingsProvider>

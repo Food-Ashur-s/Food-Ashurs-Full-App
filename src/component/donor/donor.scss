@@ -66,7 +66,6 @@
         opacity: 1;
         border-radius: 2%;
         transform: rotate(30beg);
-        // transform: rotate(-45deg) translateY(-10px) translateX(10px);
         background: rgba(0, 0, 0, 0.472);
     }
     
@@ -80,11 +79,6 @@
         height: 86.97%;
         border-radius: 2%;
     }
-    // .donor-item-div2:hover{
-    //     opacity: 0;
-    //     // transition: 800ms;
-    //     // background: rgba(0, 0, 0, 0.842);
-    // }
    
 }
 .block-recipient{
@@ -98,13 +92,11 @@
     top: 22%;
     left: 2%;
     width: 96.5%;
-    // box-sizing: content-box;
     height: 57.5%;
     border-radius: 3%;
 }
 .donor-line .div-buttons:hover{
     opacity: 1;
-    // background: rgba(0, 0, 0, 0.582);
 }
 .donor-item-name{
     display: block;
@@ -136,9 +128,6 @@ width: 100%;
 margin: auto;
 text-align: center;
 }
-// .social-icon{
-
-// }
 .cart , .info{
     display: inline;
 }
@@ -183,7 +172,6 @@ text-align: center;
 }
 .update-button{
     padding: 2%;
-    /* margin: 10% 10% 10% 11.5%; */
     width: 24%;
     height: 50px;
     display: block;
@@ -202,24 +190,19 @@ text-align: center;
     border:rgba(0, 150, 136, 0.57) solid 2px ;
     cursor: pointer;
 }
-
-// .fas{
-//     color: red;
-// }
 .curt-item:hover{
     color: rgba(0, 150, 136, 0.57);
     background: rgba(255, 255, 255, 0.712);
 }
 .donation-button{
     padding: 2%;
-    /* margin: 10% 10% 10% 11.5%; */
-    width: 24%;
+    width: 44%;
     height: 50px;
     display: block;
     line-height: 20%;
     font-size: 20px;
-    margin: auto;
     color: white;
+    margin-top: .9%;
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.35);
     border: rgba(255, 255, 255, 0.623) solid 1px;
@@ -242,18 +225,10 @@ text-align: center;
     margin: auto;
     text-align: center;
     font-size: 37px;
+    border-bottom: groove;
     color: #ffffffe0;
     padding: 1%;
 }
-.donation-href-div{
-    width: 90%;
-    height: 113px;
-    margin: auto;
-    display: grid;
-    padding: 1%;
-    grid-template-columns: 100%
-}
-
 .donation-p{
     text-align: left;
     font-size: 24px;
@@ -267,27 +242,142 @@ text-align: center;
     
 }
 .cart-div{
-    width: 60%;
-    position: absolute;
-    top: 8%;
-    left: 35%;
+    position: relative;
+    margin-left: 267px;
 }
 
 .curt-item{
-    // margin: 3px 275px !important;
-    // padding: 2.2%;
     right: 10px !important;
-    font-size: 28px !important;
-    // text-align: center;
-    height: 47px !important;
+    font-size: 45px !important;
+    height: 58px !important;
     text-decoration: none;
-    width: 65px;
-    // margin: 5px 10px;
+    width: 90px;
     background-color: rgba(3, 100, 87, 0.459);
     border-radius: 50%;
-
 }
 .space-span{
     width: 100%;
     
+}
+
+.form-lable- , .form-lable-r{
+    display: block;
+    font-size: 12px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.822);
+}
+.form-lable-r{
+    background-color: rgba(255, 255, 255, 0.185);
+    border: none;
+    // padding: 1%;
+    margin-bottom: 1%;
+    // text-align: center;
+    width: 90%;
+    border-radius: 25px;
+    
+    label{
+        margin-left: 4%;
+    }
+}
+.form-input-{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.185);
+    border: none;
+    padding: 1%;
+    margin-bottom: 1%;
+    margin-top: -1;
+    color: rgba(255, 255, 255, 0.932);
+    width: 90%;
+    border-radius: 25px;
+}
+
+.form-button-:hover{
+    background: rgba(197, 195, 195, 0.35);
+    color: rgba(2, 20, 19, 0.57);
+    border:rgba(2, 20, 19, 0.57) solid 2px ;
+    cursor: pointer; 
+}
+.time{
+    width: 40%;
+    text-align: center;
+    font-size: 16px;
+}
+.section-item{
+    margin: auto;
+display: grid;
+grid-template-columns: 50% 50%;
+}
+
+.section-donor-item-img{
+    border-radius: 3%;
+    width: 47%;
+    margin: auto;
+    opacity: 97%;
+    grid-column: 1;
+    border-radius: 15%;
+    width: 90%;
+    height: 101%;
+    margin: auto;
+    opacity: 97%;
+}
+.section-info{
+    float: right;
+    background: #00000038;
+    padding: 3%;
+    grid-column: 2;
+    /* margin: auto; */
+    border-radius: 30px;
+    letter-spacing: 1px;
+    line-height: 197%;
+}
+.section-button{
+    position: absolute;
+    top: 5%;
+    left: 4.5%;
+    width: 43%;
+    background: #00000061;
+    background-size: cover;
+    height: 90%;
+    border-radius: 15%;
+    opacity: 0;
+}
+.section-donor-name , .section-donor-type , .section-donor-time , .section-donor-amount {
+    text-align: center;
+    border-bottom: groove;
+    line-height: 42px;
+    margin-bottom: 7%;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px #1a1d1dd9;
+}
+.section-button:hover{
+    opacity: 1;
+}
+.donor-item-button-section{
+    padding: 2%;
+    margin: 16% auto 0% auto;
+    width: 65%;
+    height: 50px;
+    display: block;
+    font-size: 112%;
+    color: white;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.438);
+    border: rgba(255, 255, 255, 0.623) solid 1px;
+    box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+
+.donor-line-section{
+    position: relative;
+    border-radius: 3%;
+    width: 80%;
+    margin: auto;
+    padding: 1.5%;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.74);
+    box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+}
+.donor-item-button-section:hover{
+    color: rgba(0, 150, 136, 0.57);
+    border:rgba(0, 150, 136, 0.57) solid 2px ;
+    cursor: pointer;
 }

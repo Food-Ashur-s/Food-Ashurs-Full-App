@@ -19,7 +19,7 @@ const SimpleSwiperWithParams = () => {
     slidesPerView: 'auto',
     coverflowEffect: {
       rotate: 70,
-      stretch: 20,
+      stretch: 30,
       depth: 50,
       modifier: 1,
       // slideShadows : true,

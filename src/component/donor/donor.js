@@ -51,6 +51,7 @@ function Donors (props){
   const [cartList, setCartList] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showForm, setshowForm] = useState(false);
+  const [numberOfCart, setNumberOfCart] = useState(0);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -138,6 +139,7 @@ function Donors (props){
   const deleteCartItem = id => {
     let newCartList = cartList.filter( item => item._id !== id );
     setCartList(newCartList);
+    setNumberOfCart(numberOfCart - 1);
   };
 
   const UpdteCartItem = e =>{
@@ -147,67 +149,91 @@ function Donors (props){
   };
   const toggleCart = () => setShowCart(!showCart);
 
-  const addCart = recipient => {
+  const addCart = donor => {
     for (let i = 0; i < cartList.length; i++) {
-      if(recipient._id === cartList[i]._id) return;
+      if(donor._id === cartList[i]._id) return;
     }
-    setCartList([...cartList, recipient]);
+    setCartList([...cartList, donor]);
+    setNumberOfCart(numberOfCart + 1);
   };
   const toggleForm = e => {
     e.preventDefault();
-    setshowForm(true);
+    setshowForm(!showForm);
   };
 
   return (
     <>
-
       <section className="block-donor">
         {/* <div className="fixx"></div> */}
         {/* <h1>Donors</h1> */}
         <div className="donation-div">
           <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Donor Section</h3>
           <span className="space-span"></span>
-          <div className="cart-div"><i data-aos="fade-right"
-            data-aos-offset="100"
-            data-aos-easing="ease-in-sine"className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
           <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness.”</p>
           <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead.”</p>
           {/* <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/> */}
           <div className="donation-href-div">
-            {!showForm && (<button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make donation !</button>)}
+            <div className="cart-div" data-aos="fade-right"
+              data-aos-offset="100"
+              data-aos-easing="ease-in-sine">
+              <header className="cart-count">{numberOfCart}</header>
+              <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
+            {!showForm && (
+              <button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make donation !</button>)}
           </div>
           {showForm && (
+            <Model title='donor-form' close={toggleForm}>
+              <div className="addMeal-div">
+                <div className="addMeal-form" >
+                  <form onSubmit={addItem} className="add-form">
+                    <label className="form-lable-">meal name:</label>
+                    <input type='text' name='name' placeholder='type your name' className="form-input-" onChange={handelInputChange} required />
+                    <div className="form-lable-r">
+                      <label>
+                        <input type='radio' name='type' value='eastern food'   onClick={handelInputChange} required />Eastern Food
+                      </label>
+                      <label>
+                        <input type='radio' name='type' value='fast food'   onClick={handelInputChange} required />Fast Food
+                      </label>
+                      <label>
+                        <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />Desserts
+                      </label>
+                    </div>
 
-            <form onSubmit={addItem}>
-              <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-              <label> Eastern Food
-                <input type='radio' name='type' value='eastern food'  onClick={handelInputChange} required />
-              </label>
-              <label> Fast Food
-                <input type='radio' name='type' value='fast food' onClick={handelInputChange} required />
-              </label>
-              <label> Desserts
-                <input type='radio' name='type' value='desserts' onClick={handelInputChange} required />
-              </label>
-              <input type='text' name='available_time' placeholder='type your available_time' onChange={handelInputChange} required />
-              <input type='number' name='amount' placeholder='type your amount' onChange={handelInputChange} />
-
-              <button>Submit</button>
-            </form>
+                    <label className="form-lable-">Amount:</label>
+                    <input type='number' name='amount'  className="form-input-" placeholder='type your amount' onChange={handelInputChange} />
+                    <label className="form-lable-"> Avalible time:</label>
+                    <input type='time' name='available_time'  className="form-input- time" placeholder='type your available_time' onChange={handelInputChange} required />
+                    <button className="form-button-">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </Model>
           )}
         </div>
 
         {donation.map((item,i)=>{
           let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <div key={i}>
-            <h3>{item.name}</h3>
-            <h3>{item.type}</h3>
-            <h3>{item.available_time}</h3>
-            <h3>{item.amount}</h3>
-            <img src={src} height="200" width="200" />
-            <button onClick={()=> deleteItem(item._id)}>DELETE</button>
-            <button onClick={()=> toggleUpdate(item)}>Update</button>
-
+          return <div key={i} className="donor-line-section div-aos" data-aos="zoom-in-up" data-aos-duration="2000" >
+            <div className="donor-item section-item">
+              <img src={src} className="section-donor-item-img" height="330px" width="300px" />
+              <div className="section-info">
+                <div className="section-donor-name">{item.name}</div>
+                <div className="section-donor-type">{item.type}</div>
+                <div className="section-donor-time">{item.available_time}</div>
+                <div className="section-donor-amount">{item.amount}</div>
+              </div>
+              {/* <div className="styles-div">
+                <div className="donor-item-div1" data-aos="fade-right"
+                  data-aos-duration="1500" ></div>
+                <div className="donor-item-div2"data-aos="fade-left"
+                  data-aos-duration="1700"></div>
+              </div> */}
+              <div className="section-button">
+                <button onClick={()=> toggleUpdate(item)} className="donor-item-button-section"> <i className="	fa fa-address-card-o info"></i>Update</button>
+                <button onClick={()=> deleteItem(item._id)} className="donor-item-button-section"><i className="fa fa-close info"></i> DELETE</button>
+              </div>
+            </div>
           </div>;
         })}
 
@@ -216,7 +242,7 @@ function Donors (props){
       <section className="block-recipient">
         <div className="recipient-list">
           {donorList.map((donor, idx) =>{
-            let src = donor.type === 'eastern food' ? easternfoodArray[num] : donor.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+            let src = donor.requestType === 'eastern food' ? easternfoodArray[num] : donor.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
             return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
               <div className="donor-item">
                 <img src={src}className="donor-item-img" height="330" width="300" />
@@ -233,8 +259,6 @@ function Donors (props){
               <div className="div-buttons">
                 <button onClick={()=> toggleDetails(donor)} className="donor-item-button"> <i className="	fa fa-address-card-o info"></i>More Detail</button>
                 <button onClick={()=> addCart(donor)} className="donor-item-button"> <i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
-                {/* <button onClick={()=> toggleUpdate(donor._id)}>Update</button>
-                <button onClick={()=> deleteItem(donor._id)}>DELETE</button>  */}
               </div>
             </div>;
           })}
@@ -246,10 +270,10 @@ function Donors (props){
             Description: {details.description}
               </div>
               <div className="detail-info">
-                <div className="detail-name"><span> Name:</span> <p>{details.name}</p></div>
-                <div className="detail-type"><span> Request Type:</span> <p>{details.requestType}</p> </div>
-                <div className="detail-identity"><span>  Identity:</span> <p>{details.identity}</p></div>
-                <div > <i className="fa fa-phone"></i> <p>{details.contactNumber}</p></div>
+                <div className="detail-name"><span>Name:</span> <p>{details.name}</p></div>
+                <div className="detail-type"><span>Request Type:</span> <p>{details.requestType}</p> </div>
+                <div className="detail-identity"><span>Identity:</span> <p>{details.identity}</p></div>
+                <div ><i className="fa fa-phone"></i><p>{details.contactNumber}</p></div>
               </div>
             </div>
           </Model>
@@ -261,7 +285,7 @@ function Donors (props){
                 <label className="update-label">
                   <input type='hidden' v name='_id' value={details._id} className="update-input" />
                 </label>
-                <label className="update-label"> <span> Name :</span>
+                <label className="update-label"> <span> Name:</span>
                   <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
                 </label>
                 <div className="redio-div">
@@ -275,15 +299,29 @@ function Donors (props){
                     <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required /> Desserts
                   </label>
                 </div>
-                <label className="update-label"> <span> Available time :</span>
+                <label className="update-label"> <span> Available time:</span>
                   <input type='text' name='available_time' placeholder='type your available_time' className="update-input" defaultValue={updated.available_time} onChange={handelUpdateChange} required />
                 </label>
-                <label className="update-label"><span> Amount : </span>
+                <label className="update-label"><span> Amount: </span>
                   <input type='number' name='amount' placeholder='type your amount' className="update-input" defaultValue={updated.amount} onChange={handelUpdateChange} />
                 </label>
                 <button className="update-button" >Submit</button>
               </form>
             </div>
+          </Model>
+        </When>
+        <When condition={showCart}>
+          <Model title='cart list' close={toggleCart}>
+            {
+              cartList.map((item, i)=>{
+                return <ul key={i}>
+                  <li>{item.name}</li>
+                  <button onClick={()=> toggleCartDetails(item)}>More Detail</button>
+                  <button onClick={()=> toggleCartUpdate(item)}>Update</button>
+                  <button onClick={()=> deleteCartItem(item._id)}>DELETE</button>
+                </ul>;
+              })
+            }
           </Model>
         </When>
       </section>

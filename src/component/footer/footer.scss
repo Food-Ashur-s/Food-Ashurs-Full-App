@@ -47,6 +47,41 @@
         text-align: left;
         margin-left: 20%;
       }
+      .cart-count{
+        background-color: #b80d0d;
+        color: white;
+        position: absolute;
+        top: 2%;
+        z-index: 80;
+        left: 32%;
+        width: 10%;
+        border-radius: 50%;
+        padding: 1%;
+        text-align: center;
+    }
+    .form-button-{
+        padding: 2%;
+         width: 24%;
+        height: 50px;
+        display: block;
+        line-height: 20%;
+        font-size: 20px;
+        margin: auto;
+        color: white;
+        margin-top: 20px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.35);
+        border: rgba(255, 255, 255, 0.623) solid 1px;
+        box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+    }
+    .donation-href-div{
+        width: 70%;
+        height: 113px;
+        margin: auto;
+        display: grid;
+        padding: 1%;
+        grid-template-columns: 50% 50% ;
+    }
 }
 @media (max-width: 768px){
     .open{
@@ -93,6 +128,53 @@
         text-align: left;
         margin-left: 2%;
       }
+      .cart-count{
+        background-color: #b80d0d;
+        color: white;
+        position: absolute;
+        top: 2%;
+        z-index: 80;
+        left: 22%;
+        width: 13%;
+        border-radius: 50%;
+        padding: 1%;
+        text-align: center;
+    }
+    .curt-item{
+        font-size: 45px !important;
+        height: 58px !important;
+        text-decoration: none;
+        width: 90px;
+        background-color: rgba(3, 100, 87, 0.459);
+        border-radius: 50%;
+    
+    }
+    .cart-div{
+        position: relative;
+        margin-left: 0;
+    }
+    .form-button-{
+        padding: 2%;
+         width: 84%;
+        height: 50px;
+        display: block;
+        line-height: 20%;
+        font-size: 20px;
+        margin: auto;
+        color: white;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.35);
+        border: rgba(255, 255, 255, 0.623) solid 1px;
+        box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+    }
+    .donation-href-div{
+        width: 70%;
+        height: 113px;
+        margin: auto;
+        display: grid;
+        padding: 1%;
+        grid-template-columns: 100% ;
+    }
 }
 .page-footer{
     clear: both;
