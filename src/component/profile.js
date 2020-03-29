@@ -195,7 +195,7 @@ render() {
 
               <ul id="tab">
                 <li class="active">
-                  <p>{this.state.updated.username || this.state.updateList.username || this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
+                  <p>{this.state.updated.username ||  this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
                 
                 </li>
 

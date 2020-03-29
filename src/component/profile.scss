@@ -84,7 +84,7 @@ body {
     position: relative;
     cursor:pointer;
     &.active {
-      border-bottom: 4px solid rgba(9, 92, 109, 0.925);
+      border-bottom: 3.5px solid rgba(9, 92, 109, 0.925);
 
     }
   }
@@ -244,7 +244,7 @@ span.stars {
       margin-bottom: 1.4rem;
     }
   
-    &__data { display: block; font-weight:400; font-size:1.05rem; text-transform: uppercase; box-shadow: 0 0 9px 0 rgba(9, 92, 109, 0.925); padding-bottom: 5%; padding-left: 5%; text-align: center;
+    &__data { display: block;  font-weight:200; font-size:0.8rem; text-transform: uppercase; box-shadow: 0 0 9px 0 rgba(9, 92, 109, 0.925); padding-bottom: 5%; padding-left: 5%; text-align: left;
     }
 }
 
@@ -326,6 +326,8 @@ margin-left: -3%;
 
 
 
+
+
 .btn11 {
   border: solid 1px rgba(255, 255, 255, 0.884);
   display: block;
@@ -392,7 +394,9 @@ font-size: 25px;
 
 
 
-
+.cir{
+  width: 200%;
+}
   
 
 
