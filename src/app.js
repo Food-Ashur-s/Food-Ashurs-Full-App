@@ -28,7 +28,6 @@ export default function App (){
         <Route exact path= '/Food-Ashur-s/Food-Ashurs-Full-App'>
           <Header />
           {/* <GoogleLog /> */}
-       
           {/* <SignForm/> */}
 
           <Auth capability='recipient'>
