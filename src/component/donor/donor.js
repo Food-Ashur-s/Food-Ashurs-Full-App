@@ -35,7 +35,7 @@ const dessertsArray = [desserts0, desserts1, desserts2];
 
 
 
-const donorsAPI = 'https://food--ashurs.herokuapp.com/api/v1/donor';
+const donorsAPI = `${process.env.REACT_APP_API}/api/v1/donor`;
 
 function Donors (props){
   AOS.init();
@@ -102,7 +102,7 @@ function Donors (props){
   const getdonorList = () => {
     const _updateState = data =>
       setDonorList(data.results);
-    callAPI( 'https://food--ashurs.herokuapp.com/api/v1/recipient', 'GET', undefined, _updateState );
+    callAPI( `${process.env.REACT_APP_API}/api/v1/recipient`, 'GET', undefined, _updateState );
   };
   useEffect(() => {
     getdonorList();
@@ -173,7 +173,7 @@ function Donors (props){
               <header className="cart-count">{numberOfCart}</header>
               <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
             {!showForm && (
-              <button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make donation !</button>)}
+              <button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Let's Donate !</button>)}
           </div>
           {showForm && (
             <Model title='donor-form' close={toggleForm}>
@@ -226,7 +226,7 @@ function Donors (props){
         })}
 
       </section>
-      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipient Request</h4>
+      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipients Request</h4>
       <section className="block-recipient">
         <div className="recipient-list">
           {donorList.map((donor, idx) =>{

@@ -63,7 +63,7 @@ class Login extends React.Component {
 
             <div className="hr"></div>
             <div className="foot-lnk">
-              <a href="#forgot">Forgot Password?</a>
+               Share Goodness
             </div>
           </form>
         </If>
