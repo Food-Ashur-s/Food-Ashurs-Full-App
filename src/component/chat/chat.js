@@ -140,14 +140,14 @@ function ChatChannel (props) {
           <h2 className="chat-h">Help Us To Help Them  <span role="img" aria-label="emoji">❤️</span></h2>
         </div>
         <div className="chat-body-div">
-        <div className="online-section">
-          <ul className="online">  Online People : <Online data={online} /> </ul>
-        </div>
-        <div className="msgOn">
-          <ScrollToBottom>
-            <div className="messages"><Messages data={messages} /></div>
-          </ScrollToBottom>
-        </div>
+          <div className="online-section">
+            <ul className="online">  Online People : <Online data={online} /> </ul>
+          </div>
+          <div className="msgOn">
+            <ScrollToBottom>
+              <div className="messages"><Messages data={messages} /></div>
+            </ScrollToBottom>
+          </div>
         </div>
         <div className="sendform">
           <form onSubmit={event => handleSend(event)} className="msgSub">
