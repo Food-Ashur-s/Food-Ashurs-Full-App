@@ -3,8 +3,7 @@ body {
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  // background-image: url("../../logo.png");
-  // background-repeat: no-repeat;
+  background-color: black;
 }
 
 * {
@@ -16,46 +15,53 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
-  height: 100vh;
+  height: 85vh;
   align-items: center;
-  background-color: black;
-  border: 5px solid #00928596;
+  background-color: #016455ef;
+  border-radius: 30px;
+  box-shadow: 1px 2px 5px 3px #fcfcfcef;
 }
 
 .logoImg {
-  margin: 1px auto;
+  position: absolute;
+  border-radius: 50%;
+  top: 30%;
+  right: 35%;
+  border: 2px groove #ffffff8c;
+  box-shadow: 1px 2px 5px 3px #fcfcfcef;
 }
 
 // our project name
 .foodName {
   color: white;
-  font-size: 2.5em;
+  font-size: 1em;
   padding-bottom: 15px;
-  border-bottom: 5px solid white;
-  margin-bottom: 20px;
+  border-bottom: 5px groove rgba(255, 255, 255, 0.836);
+  margin-bottom: 10%;
+  margin-top: 25%;
   font-weight: bolder;
 }
 
 // submit button
 .submitB {
   color: #fff !important;
-  text-transform: uppercase;
   text-decoration: none;
   // background: #00928596;
-  background: black;
-  padding: 20px;
-  border-radius: 5px;
+  background: rgba(17, 17, 17, 0.336);
+  padding: 10px;
+  border-radius: 25px;
   border: none;
-  width: 100%;
-  margin-top: 10px;
-  font-size: 19px;
+  width: 50%;
+  margin-top: 10%;
+  font-size: 14px;
   cursor: pointer;
   border: solid 2px #ffffff8c;
   box-shadow: 1px 2px 5px 1px #00928596;
 }
 
 .submitB:hover {
-  background-color: #00928596;
+  color: rgba(0, 0, 0, 0.849);
+  border: solid 2px rgba(0, 0, 0, 0.849);
 }
 
 .submitB:focus {
@@ -65,127 +71,192 @@ body {
 // name and room inputs
 .name,
 .room {
-  border-radius: 0;
+  border-radius: 25px;
+  margin: 3%;
   padding: 10px 20px;
   width: 100%;
   font-weight: bold;
   color: black;
   font-weight: bold;
+  background-color: rgba(252, 249, 249, 0.445);
+  box-shadow: 1px 2px 5px 1px #f4faf996;
 }
 
 .name:hover {
-  background-color: #9af1ea96;
+  background-color: rgba(252, 249, 249, 0.301);
+  cursor: pointer;
+  border: 2px solid #2a2b2b96;
 }
 
 .room:hover {
-  background-color: #9af1ea96;
+  background-color: rgba(252, 249, 249, 0.301);
+  cursor: pointer;
+  border: 2px solid #2a2b2b96;
 }
 
 // innerForm
 .innerForm {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #FFFFFF;
-  border-radius: 8px;
-  height: 80%;
-  width: 100%;
+  justify-content: center;
+  text-align: center;
+  height: 90vh;
+  align-items: center;
+  background-color: rgba(241, 248, 245, 0.877);
+  border-radius: 30px;
+  box-shadow: 1px 2px 5px 3px #fcfcfcef;
 }
 
-.msgOn {
-  display: flex;
-  justify-content: space-between;
+// message input
+.messages {
+  position: absolute;
+  top: -140px;
+  left: -80px;
 }
 
-// message input and message button  
-.msgSub {
-  // display: flex;
-  width: 100%;
-  // margin-top: 360px;
-  // margin-left: auto 5px;
-  position: fixed;
-  bottom: 5px;
+.online {
+  position: relative;
+  color: rgba(0, 128, 0, 0.562);
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  margin-right: 10px;
+  font-size: larger;
+  top: -98px;
+  right: -20%;
 }
 
-// message input 
+// message input
 .msgInput {
-  border-radius: 0;
-  font-size: 1.2em;
-  color: black;
-  width: 80%;
-  padding: 15px;
+  width: 72%;
+  padding: 2%;
   font-family: cursive;
   border: solid 2px black;
-  font-family: sans-serif;
-  background-color: #00928596;
+  background-color: #99f5ed96;
+  position: absolute;
+  bottom: -270%;
+  right: 26%;
+  box-shadow: 1px 2px 3px 1px #00928596;
+  border: 1px solid white;
+  border-radius: 30px;
 }
 
-// message button 
+// message button
 .msgSend {
   color: #fff;
-  text-decoration: none;
-  background: black;
-  padding: 15px;
+  background-color: rgb(168, 167, 167);
+  padding: 0.5%;
   border-radius: 5px;
-  border: none;
-  width: 20%;
+  width: 6%;
+  font-size: 14px;
+  font-family: cursive;
+  // float: right;
+  position: fixed;
+  text-align: center;
+  bottom: 6%;
+  right: 2%;
   font-size: 14px;
   cursor: pointer;
   border: solid 2px #ffffff8c;
   box-shadow: 1px 2px 5px 1px #00928596;
-  font-family: cursive;
-  display: inline-block;
+  border-radius: 40%;
 }
 
 .msgSend:hover {
   background: #00928596;
 }
 
-// the words
+// the words inside chat
 .words {
-  display: flex;
-  justify-content: space-between;
-  background-color: black;
+  position: absolute;
+  background-color: rgb(168, 167, 167);
   color: #00928596;
+  top: 5%;
+  border-bottom: solid 2px #ffffff8c;
+  border-top: solid 2px #ffffff8c;
+  box-shadow: 1px 2px 5px 1px #00928596;
+  padding: 2%;
+  border-radius: 10%;
+  background: none;
 }
 
 .words img {
   height: 13%;
   width: 13%;
 }
-.online {
-  color: green;
-  font-weight: bold;
-  font-family: 'Roboto', sans-serif;
-  margin-right: 10px;
-  font-size: larger;
-  // text-transform: uppercase;
-}
 
-// user Name 
+// user Name
 .userName {
   font-weight: bold;
   color: rgb(2, 51, 51);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   display: inline;
 }
 
-// close button 
-.close { 
-  position: fixed;
-  top : px;
-  right: 10px;
-  color: white;
-  border: 2px solid #00928596;
-  border-radius: 20%;
-  background-color: #00928596;
+// close button
+.close {
+  position: absolute;
+  top: 7%;
+  right: 10%;
+  color: rgba(26, 25, 25, 0.521);
+  border: 1px solid #05c7c796;
+  border-radius: 50%;
+  background: none;
   padding: 1px;
-  width: 40px;
+  width: 30px;
   text-align: center;
   margin-bottom: 10px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+// Home button
+.goHome {
+  position: absolute;
+  top: 7%;
+  right: 20%;
+  color: rgba(26, 25, 25, 0.521);
+  border: 1px solid #05c7c796;
+  border-radius: 50%;
+  background: none;
+  padding: 1px;
+  width: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .close:hover {
   background-color: white;
-  color : #00928596;
+  color: #00928596;
+}
+
+.goHome:hover {
+  background-color: white;
+  color: #00928596;
+}
+
+svg.chat {
+  height: 80px;
+  position: fixed;
+  bottom: 10px;
+  right: 28px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.336);
+  border-radius: 40px;
+  font-size: 16px !important;
+  padding: 1%;
+  box-shadow: 1px 2px 3px 1px #00928596;
+  border: 5px solid white;
+}
+
+svg.chat path {
+  fill: black;
+}
+
+.chat-pop {
+  width: 25%;
+  height: 150px;
+  position: absolute;
+  right: 25px;
+  top: 5%;
 }
