@@ -156,10 +156,12 @@ a{color:rgba(0, 0, 0, 0.623);text-decoration:none}
 	background: #00756bbf;
 }
 .group-google {
-	width: 392px;
-	margin-left: -2px;
-	
+		width: 392px;
+		margin-left: -2px;
+		display: grid;
+		grid-template-columns: 50% 50%;
 }
+
 
 .button-google{
 	display: block;
@@ -253,15 +255,30 @@ input::placeholder {
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 16px;
-    margin: 5px;
+    // margin: 5px;
     width: calc(100% - 10px);
     overflow: hidden;
     padding: 0px 10px;
     user-select: none;
     height: 47px;
-    background: rgb(203, 63, 34);
+	background: rgb(203, 63, 34);
+
 }
 .button-google:hover{
 	opacity: 88%;
 	cursor: pointer;
+}
+
+.group-google .fa-google:before {
+    content: "\f1a0";
+    margin-right: 5%;
+    font-size: 25px;
+}
+.group-google  .fa{
+	padding: 2.2%;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0px 10px;
+    border-radius: 25px;
 }

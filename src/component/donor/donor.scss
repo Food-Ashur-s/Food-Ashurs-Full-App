@@ -172,7 +172,7 @@ text-align: center;
 }
 .update-button{
     padding: 2%;
-    width: 24%;
+    width: 20%;
     height: 50px;
     display: block;
     line-height: 20%;
@@ -272,7 +272,7 @@ text-align: center;
     // padding: 1%;
     margin-bottom: 1%;
     // text-align: center;
-    width: 90%;
+    width: 100%;
     border-radius: 25px;
     
     label{
@@ -380,4 +380,13 @@ grid-template-columns: 50% 50%;
     color: rgba(0, 150, 136, 0.57);
     border:rgba(0, 150, 136, 0.57) solid 2px ;
     cursor: pointer;
+}
+// .form-label-r{
+//     width: 100%;
+// }
+.update-label span {
+    text-align: left;
+  }
+  .form-lable-r label {
+    margin-left: 1%;
 }

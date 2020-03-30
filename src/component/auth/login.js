@@ -6,9 +6,7 @@ import { LoginContext } from './context.js';
 import { GoogleLoginButton} from 'react-social-login-buttons';
 
 // import React from 'react';
-import cookie from 'react-cookies';
-import jwt from 'jsonwebtoken';
-import GoogleLogin from 'react-google-login';
+
 // import { GoogleLogout } from 'react-google-login';
 // import { LoginContext } from '../auth/context.js';
 
@@ -40,83 +38,38 @@ class Login extends React.Component {
     e.target.reset();
 
   }
-  responseGoogle1 = (response) => {
-    this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-    //  let id_token = response.getAuthResponse().id_token;
-    this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'recipient');
-  };
 
- responseGoogle2 = (response) => {
-   this.setState({ userDetails: response.profileObj, isUserLoggedIn: true });
-   //  let id_token = response.getAuthResponse().id_token;
-   this.context.logup(response.profileObj.givenName, response.profileObj.googleId,  response.profileObj.email, 'donor');
+  render() {
+    return (
+      <>
+        <If condition={!this.context.loggedIn}>
+          <form onSubmit={this.handleSubmit} className="sign-in-htm">
+            <div className="group">
+              <label for="user" className="label">Username</label>
+              <input name="username" type="user" className="input" placeholder="Enter your name" onChange={this.handleChange}/>
+            </div>
+            <div className="group">
+              <label for="pass" class="label">Password</label>
+              <input name="password" type="password" className="input" data-type="password" placeholder="Enter your password" onChange={this.handleChange}/>
+            </div>
+            <div className="group">
+              <input name="check" type="checkbox" className="check" checked />
+              <label for="check"><span className="icon"></span> Keep me Signed in</label>
+            </div>
+            <div className="group">
+              <button  className="button" >Log In!</button>
+              {/* <input type="submit" className="button" value="Sign In"/> */}
+            </div>
 
- };
-
- render() {
-   return (
-     <>
-       <If condition={!this.context.loggedIn}>
-         <form onSubmit={this.handleSubmit} className="sign-in-htm">
-           <div className="group">
-             <label for="user" className="label">Username</label>
-             <input name="username" type="user" className="input" placeholder="Enter your name" onChange={this.handleChange}/>
-           </div>
-           <div className="group">
-             <label for="pass" class="label">Password</label>
-             <input name="password" type="password" className="input" data-type="password" placeholder="Enter your password" onChange={this.handleChange}/>
-           </div>
-           <div className="group">
-             <input name="check" type="checkbox" className="check" checked />
-             <label for="check"><span className="icon"></span> Keep me Signed in</label>
-           </div>
-           <div className="group">
-             <button  className="button" >Log In!</button>
-             {/* <input type="submit" className="button" value="Sign In"/> */}
-           </div>
-           <div className="group-google">
-             {!this.context.loggedIn && (
-               <GoogleLogin
-                 clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com"
-                 render={renderProps => (
-                   <button
-                     className="button-google"
-                     onClick={renderProps.onClick}
-                     disabled={renderProps.disabled}
-                   >
-                        Log in with Google As Recipent
-                   </button>
-                 )}
-                 onSuccess={this.responseGoogle1}
-                 onFailure={this.responseGoogle1}
-               />
-             )}
-             {!this.context.loggedIn && (
-               <GoogleLogin
-                 clientId="729663215177-d2uq3c446ce2gfkoopbuhm4debo4crvf.apps.googleusercontent.com"
-                 render={renderProps => (
-                   <button
-                     className="button-google"
-                     onClick={renderProps.onClick}
-                     disabled={renderProps.disabled}
-                   >
-                        Log in with Google As Donor
-                   </button>
-                 )}
-                 onSuccess={this.responseGoogle2}
-                 onFailure={this.responseGoogle2}
-               />
-             )}
-           </div>
-           <div className="hr"></div>
-           <div className="foot-lnk">
-             <a href="#forgot">Forgot Password?</a>
-           </div>
-         </form>
-       </If>
-     </>
-   );
- }
+            <div className="hr"></div>
+            <div className="foot-lnk">
+              <a href="#forgot">Forgot Password?</a>
+            </div>
+          </form>
+        </If>
+      </>
+    );
+  }
 }
 
 export default Login;

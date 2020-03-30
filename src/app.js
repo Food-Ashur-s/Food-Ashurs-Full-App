@@ -28,7 +28,7 @@ export default function App (){
         <Route exact path= '/Food-Ashur-s/Food-Ashurs-Full-App'>
           <Header />
           {/* <GoogleLog /> */}
-          <SlideTwo/>
+       
           {/* <SignForm/> */}
 
           <Auth capability='recipient'>
@@ -41,6 +41,7 @@ export default function App (){
               <Donor />
             </SettingsProvider>
           </Auth>
+          <SlideTwo/>
           <SlideShow/>
           <About />
           <Footer/>

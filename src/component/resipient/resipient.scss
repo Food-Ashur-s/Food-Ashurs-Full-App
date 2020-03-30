@@ -93,3 +93,40 @@
   color: rgba(0, 150, 136, 0.57);
   cursor: pointer;
 }
+
+
+.result-req-div{
+  padding: 2%;
+  background-color: rgba(255, 255, 255, 0.11);
+  border-radius: 30px;
+  margin: 4%;
+}
+.update-button-cart{
+  padding: 2%;
+  width: 20%;
+  height: 50px;
+  /* display: block; */
+  line-height: 20%;
+  font-size: 79%;
+  /* margin: auto; */
+  color: white;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: rgba(255, 255, 255, 0.623) solid 1px;
+  box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+.update-button-cart:hover{
+  color: rgba(0, 150, 136, 0.57);
+  border: rgba(0, 150, 136, 0.57) solid 2px;
+  cursor: pointer;
+}
+.cart-button-div{
+  border-bottom: groove;
+  padding: 2%;
+}
+.cart-name{
+  font-size: 16px;
+}
+.form-lable-r label {
+  margin-left: 1%;
+}

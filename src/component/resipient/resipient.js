@@ -7,6 +7,9 @@ import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
 import recipientPhoto from '../../assets/recipient-form.jpg';
 
+import './resipient.scss';
+import AOS from 'aos';
+
 import desserts0 from '../../assets/desserts-0.jpg';
 import desserts1 from '../../assets/desserts-1.jpg';
 import desserts2 from '../../assets/desserts-1.jpg';
@@ -30,7 +33,7 @@ const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
 const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
 
 function Recipients (props){
-
+  AOS.init();
   const [recipientList, setRecipientList] = useState([]);
   const [item, setItem] = useState({});
   const [showDetails, setShowDetails] = useState(false);
@@ -42,6 +45,7 @@ function Recipients (props){
   const [cartList, setCartList] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showForm, setshowForm] = useState(false);
+  const [numberOfCart, setNumberOfCart] = useState(0);
 
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
@@ -124,6 +128,7 @@ function Recipients (props){
   const deleteCartItem = id => {
     let newCartList = cartList.filter( item => item._id !== id );
     setCartList(newCartList);
+    setNumberOfCart(numberOfCart - 1);
   };
 
   const UpdteCartItem = e =>{
@@ -138,159 +143,237 @@ function Recipients (props){
       if(donor._id === cartList[i]._id) return;
     }
     setCartList([...cartList, donor]);
+    setNumberOfCart(numberOfCart + 1);
   };
   const toggleForm = e => {
     e.preventDefault();
-    setshowForm(true);
+    setshowForm(!showForm);
   };
 
   return (
     <>
-      <h1>Recipients</h1>
-      {!showForm && (<img src={recipientPhoto} onClick={toggleForm}  height="100" width="200"/>)}
-      {showForm && (
-        <form onSubmit={addItem}>
-          <input type='text' name='name' placeholder='type your name' onChange={handelInputChange} required />
-          <label> Eastern Food
-            <input type='radio' name='requestType' value='eastern food'  onClick={handelInputChange} required />
-          </label>
-          <label> Fast Food
-            <input type='radio' name='requestType' value='fast food' onClick={handelInputChange} required />
-          </label>
-          <label> Desserts
-            <input type='radio' name='requestType' value='desserts' onClick={handelInputChange} required />
-          </label>
-          <input type='text' name='identity' placeholder='type your identity' onChange={handelInputChange} required />
-          <input type='number' name='contactNumber' placeholder='type your contactNumber' onChange={handelInputChange} required />
-          <input type='text' name='description' placeholder='description' onChange={handelInputChange} />
-
-          <button>Submit</button>
-        </form> )}
-      <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/>
-       --------------------------------------------------------------------------------
-      <div>Your Order
-        {recipientList.map((recipient, idx) =>{
-          let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <div key={idx}>
-            <h3>{recipient.name}</h3>
-            <h4>{recipient.identity}</h4>
-            <h4>{recipient.requestType}</h4>
-            <h4>{recipient.contactNumber}</h4>
-            <img src={src} height="200" width="200" />
-            <p>{recipient.description}</p>
-
-            <button onClick={()=> deleteItem(recipient._id)}>DELETE</button>
-            ----------------------------------------------------------------------------
-            <section> Results Request
-              {recipient.requestRecipient.map(item=>{
-                return <ul key={idx}>
-                  <li>
-                    {item.name}
-                    <img src={src} height="200" width="200" />
-                  </li>
-                  <button onClick={()=> toggleDetails(item)}>More Detail</button>
-                  <button onClick={()=> addCart(item)}>Add To Cart</button>
-                </ul>;
-              })}
-            </section>
-          </div>;
-        })}
-      </div>
-      -------------------------------------------------------------------------------------
-      <div> Donations Available
-        {resultsList.map((item, i)=>{
-          let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
-          return <ul key={i}>
-            <li>{item.name}</li>
-            <img src={src} height="200" width="200" />
-            <button onClick={()=> toggleDetails(item)}>More Detail</button>
-            <button onClick={()=> addCart(item)}>Add To Cart</button>
-          </ul>;
-        })}
-      </div>
-      -----------------------------------------------------------------------
-      <When condition={showDetails}>
-        <Model title='Donor details' close={toggleDetails}>
-          <div className="donor-details">
-            <header>
-              <li>Name: {details.name}   </li>
-              <li>Donation Type: {details.type}   </li>
-              <li>Available Time: {details.available_time}   </li>
-            </header>
-            <div className="item">
-            Food Amount: {details.amount}
-            </div>
+      {/* <div className="cart-div" data-aos="fade-right"
+        data-aos-offset="100"
+        data-aos-easing="ease-in-sine">
+        <header className="cart-count">{numberOfCart}</header>
+        <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div> */}
+      <section className="block-donor">
+        <div className="donation-div">
+          <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Recipients</h3>
+          <span className="space-span"></span>
+          <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness.”</p>
+          <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead.”</p>
+          <div className="donation-href-div">
+            <div className="cart-div" data-aos="fade-right"
+              data-aos-offset="100"
+              data-aos-easing="ease-in-sine">
+              <header className="cart-count">{numberOfCart}</header>
+              <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
+            { !showForm &&  (<button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make Request</button>)}
           </div>
-        </Model>
-      </When>
+          {showForm && (
+            <Model title='donor-form' close={toggleForm}>
+              <div className="addMeal-div">
+                <div className="addMeal-form" >
+                  <form onSubmit={addItem} className="add-form">
+                    <label className="form-lable-">Request name:</label>
+                    <input type='text' name='name' placeholder='type your name' className="update-input" onChange={handelInputChange} required />
 
-
-      <When condition={showCart}>
-        <Model title='cart list' close={toggleCart}>
-
-          {
-            cartList.map((item, i)=>{
-              return <ul key={i}>
-                <li>{item.name}</li>
-                <button onClick={()=> toggleCartDetails(item)}>More Detail</button>
-                <button onClick={()=> toggleCartUpdate(item)}>Update</button>
-                <button onClick={()=> deleteCartItem(item._id)}>DELETE</button>
-              </ul>;
-            })
-          }
-
-          <When condition={showDetails}>
-            <Model title='cart details' close={toggleDetails}>
-              <div className="cart-details">
-                <header>
-                  <li>Name: {details.name}   </li>
-                  <li>Donation Type: {details.type}   </li>
-                  <li>Available Time: {details.available_time}   </li>
-                </header>
-                <div className="item">
-            Food Amount: {details.amount}
+                    <div className="form-lable-r">
+                      <label>
+                        <input type='radio' name='requestType' className="update-input-r" value='eastern food'  onClick={handelInputChange} required /> Eastern Food
+                      </label>
+                      <label>
+                        <input type='radio' name='requestType' className="update-input-r" value='fast food' onClick={handelInputChange} required /> Fast Food
+                      </label>
+                      <label>
+                        <input type='radio' name='requestType' className="update-input-r" value='desserts' onClick={handelInputChange} required />Desserts
+                      </label>
+                    </div>
+                    <label className="form-lable-">Amount:</label>
+                    <input type='number' name='identity' className="update-input" placeholder='type your identity' onChange={handelInputChange} required />
+                    <label className="form-lable-"> Contact Number</label>
+                    <input type='number' className="update-input" name='contactNumber' placeholder='type your contact Number' onChange={handelInputChange} required />
+                    <label className="form-lable-">description :</label>
+                    <input type='text' className="update-input" name='description' placeholder='description' onChange={handelInputChange} />
+                    <button className="form-button-">Submit</button>
+                  </form>
                 </div>
               </div>
             </Model>
-          </When>
-          <When condition={showUpdate}>
-            <Model title='cart update' close={toggleUpdate}>
-              <div className="cart-updated">
-                <form onSubmit={UpdteCartItem} value={details._id}>
-                  <label>
-                    <input type='hidden' name='_id' value={details._id} />
-                  </label>
-                  <label> name
-                    <input type='text' name='name' placeholder='type your name' defaultValue={updated.name} onChange={handelUpdateChange} required />
-                  </label>
-                  <br/>
-                  <label> Eastern Food
-                    <input type='radio' name='type' value='eastern food' onClick={handelUpdateChange} required />
-                  </label>
-                  <label> Fast Food
-                    <input type='radio' name='type' value='fast food' onClick={handelUpdateChange} required />
-                  </label>
-                  <label> Desserts
-                    <input type='radio' name='type' value='desserts' onClick={handelUpdateChange} required />
-                  </label>
-                  <br/>
-                  <label> available_time
-                    <input type='text' name='available_time' placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-                  </label>
-                  <br/>
-                  <label>amount
-                    <input type='number' name='amount' placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
-                  </label>
-                  <br/>
-                  <br/>
-                  <button >Submit</button>
-                </form>
+          )}
+          {/* <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/> */}
+        </div>
+        {/* <div>Your Order */}
+        {recipientList.map((recipient, idx) =>{
+          let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+          return (
+            <>
+              <div key={idx} className="donor-line-section div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+                <div className="donor-item section-item">
+                  <img src={src}className="section-donor-item-img" height="330px" width="300px" />
+                  <div className="section-info">
+                    <div className="section-donor-name">{recipient.name}</div>
+                    <div className="section-donor-type">{recipient.identity}</div>
+                    <div className="section-donor-type">{recipient.requestType}</div>
+                    <div className="section-donor-type">{recipient.contactNumber}</div>
+                    <div className="section-donor-type">{recipient.description}</div>
+                  </div>
+                  <div className="section-button">
+                    <button onClick={()=> deleteItem(recipient._id)} className="donor-item-button-section">DELETE</button>
+                  </div>
+                </div>
               </div>
-            </Model>
-          </When>
-        </Model>
+              <div className="result-req-div">
+                <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Result Request</h4>
+                <section className="block-recipient">
+                  <div className="recipient-list">
+                    {recipient.requestRecipient.map(item=>{
+                      return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+                        <div className="donor-item">
+                          <img src={src} className="donor-item-img" height="330" width="300" />
+                          <div className="donor-item-name">
+                            {item.name}
+                          </div>
+                        </div>
+                        <div className="styles-div">
+                          <div className="donor-item-div1" data-aos="fade-right"
+                            data-aos-duration="1500" ></div>
+                          <div className="donor-item-div2"data-aos="fade-left"
+                            data-aos-duration="1700"></div>
+                        </div>
+                        <div className="div-buttons">
+                          <button onClick={()=> toggleDetails(item)} className="donor-item-button">More Detail</button>
+                          <button onClick={()=> addCart(item)}  className="donor-item-button">Add To Cart</button>
+                        </div>
+                      </div>;
+                    })}
+                  </div>
+                </section>
+              </div>
+            </>
+          );
+        })}
+        {/* </div> */}
+      </section>
+      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Available Donor's</h4>
+      <section className="block-recipient">
+        <div className="recipient-list">
+          {resultsList.map((item, i)=>{
+            let src = item.type === 'eastern food' ? easternfoodArray[num] : item.type === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
+            return <div key={i} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+              <div className="donor-item">
+                <img src={src} className="donor-item-img" height="330" width="300"/>
+                <div className="donor-item-name">{item.name}</div>
+              </div>
+              <div className="styles-div">
+                <div className="donor-item-div1" data-aos="fade-right"
+                  data-aos-duration="1500" ></div>
+                <div className="donor-item-div2"data-aos="fade-left"
+                  data-aos-duration="1700"></div>
+              </div>
+              <div className="div-buttons">
+                <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="	fa fa-address-card-o info"></i>More Detail</button>
+                <button onClick={()=> addCart(item)} className="donor-item-button"><i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
+              </div>
+            </div>;
+          // </div>
+          })}
+        </div>
 
-      </When>
+        <When condition={showDetails}>
+          <Model title='Donor details' close={toggleDetails}>
+            <div className="recipient-details donor-details">
+              <div className="detail-info">
+                <div className="detail-name"><span>Name: </span> {details.name}   </div>
+                <div className="detail-type"><span>Donation Type:</span>  {details.type}   </div>
+                <div className="detail-type"><span>Available Time:</span>  {details.available_time}</div>
+                <div  className="detail-type"><span>Food Amount:</span>  {details.amount}</div>
+              </div>
+            </div>
+          </Model>
+        </When>
+
+
+        <When condition={showCart}>
+          <Model title='cart list' close={toggleCart}>
+
+            {
+              cartList.map((item, i)=>{
+                return <div key={i}>
+                  <div className="cart-name">{item.name}</div>
+                  <div className="cart-button-div">
+                    <button onClick={()=> toggleCartDetails(item)} className="update-button-cart">More Detail</button>
+                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart">Update</button>
+                    <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart">DELETE</button>
+                  </div>
+                </div>;
+              })
+            }
+
+            <When condition={showDetails}>
+              <Model title='Donor details' close={toggleDetails}>
+                <div className="recipient-details donor-details">
+                  <div className="detail-info">
+                    <div className="detail-name"><span>Name: </span> {details.name}   </div>
+                    <div className="detail-type"><span>Donation Type:</span>  {details.type}   </div>
+                    <div className="detail-type"><span>Available Time:</span>  {details.available_time}</div>
+                    <div  className="detail-type"><span>Food Amount:</span>  {details.amount}</div>
+                  </div>
+                </div>
+              </Model>
+            </When>
+
+            {/* <When condition={showDetails}>
+              <Model title='cart details' close={toggleDetails}>
+                <div className="cart-details">
+                  <header>
+                    <li>Name: {details.name}   </li>
+                    <li>Donation Type: {details.type}   </li>
+                    <li>Available Time: {details.available_time}   </li>
+                  </header>
+                  <div className="item">
+            Food Amount: {details.amount}
+                  </div>
+                </div>
+              </Model>
+            </When> */}
+
+            <When condition={showUpdate}>
+              <Model title='cart update' close={toggleUpdate}>
+                <div className="recipient-updated cart-updated">
+                  <form onSubmit={UpdteCartItem} value={details._id}className="update-form">
+                    <label className="update-label">
+                      <input type='hidden' className="update-input" name='_id' value={details._id} />
+                    </label>
+                    <label className="update-label" > <span>Name :</span>
+                      <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
+                    </label>
+                    <div className="redio-div">
+                      <label className="update-label-r">
+                        <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+                      </label>
+                      <label className="update-label-r">
+                        <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
+                      </label>
+                      <label className="update-label-r">
+                        <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required />Desserts
+                      </label>
+                    </div>
+                    <label className="update-label" ><span>available_time</span>
+                      <input type='text' name='available_time' className="update-input" placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                    </label>
+                    <label className="update-label"> <span>amount</span>
+                      <input type='number' name='amount' className="update-input" placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+                    </label>
+                    <button className="update-button">Submit</button>
+                  </form>
+                </div>
+              </Model>
+            </When>
+          </Model>
+        </When>
+      </section>
     </>
   );
 }
