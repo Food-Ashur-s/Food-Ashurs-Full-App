@@ -3,6 +3,8 @@ import React, { useState , useEffect} from 'react'; // we use UsState hook to re
 import useSocket from 'use-socket.io-client';
 import { useImmer } from 'use-immer';
 // import 'react-chat-widget/lib/styles.css';
+import Reactemoji from 'react-emoji';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 import './chat.scss';
 
@@ -12,7 +14,7 @@ import onlineIcon from '../../chatAssests/onlineIcon.png';
 // import { Chat } from 'react-chat-popup';
 
 // Component to render users messagess (from google)
-const Messages = props => props.data.map(msg => msg[0] !== '' ? (<span><li className="userName"><div className="innermsg">{msg[0]} : {msg[1]}</div></li></span>) : (<li className="update">{msg[1]}</li>) );
+const Messages = props => props.data.map(msg => msg[0] !== '' ? (<span><li className="userName"><div className="innermsg">{msg[0]} : {Reactemoji.emojify(msg[1])}</div></li></span>) : (<li className="update">{Reactemoji.emojify(msg[1])}</li>) );
 
 // Component to check the users status (from google)
 const Online = props => props.data.map(onlineStatus =>
@@ -21,7 +23,7 @@ const Online = props => props.data.map(onlineStatus =>
     {` ${onlineStatus[1]}`}
    </div> );
 
-function ChatChannel () {
+function ChatChannel (props) {
     const [id, setId] = useState(''); // set the ID for the user 
     const [nameInput, setNameInput] = useState(''); // User's name 
     const [room, setRoom] = useState(''); // chat Rooms
@@ -115,15 +117,16 @@ function ChatChannel () {
     // if statement to login to chat or typing message 
     return id ? (
       <section className="innerForm" >
+      <button className="close" onClick={props.close}>X</button>
            <div className="words">
       <h1>Food-Ashur's Chat Application <span role="img" aria-label="emoji">💬</span></h1>
            <img src={logo} />
       <h2>Help Us To Help Them  <span role="img" aria-label="emoji">❤️</span></h2>
     </div>
         <div className="msgOn">
-        {/* <div>  */}
+          <ScrollToBottom>
           <ul className="messages"><Messages data={messages} /></ul>
-        {/* </div> */}
+          </ScrollToBottom>
         <ul className="online">  Online People : <Online data={online} /> </ul>
         </div>
         <div className="sendform"> 
@@ -139,7 +142,6 @@ function ChatChannel () {
         <form onSubmit={event => handleSubmit(event)}>
           <img src={logo} className="logoImg"/>
         <div className="foodName"> Food Ashur's Chat </div>
-        {/* <Chat/> */}
           <input className="name" onChange={event => handleChangeName(event)} required placeholder="Enter your name"/><br />
           <input className="room" onChange={event => handleChangeRoom(event)} required placeholder="Enter your room" /><br />
           <button className="submitB" type="submit">Submit</button>
