@@ -170,8 +170,8 @@ function Donors (props){
             <div className="cart-div" data-aos="fade-right"
               data-aos-offset="100"
               data-aos-easing="ease-in-sine">
-              <header className="cart-count">{numberOfCart}</header>
-              <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
+              {/* <header className="cart-count">{numberOfCart}</header> */}
+              <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} > <header className="cart-count">{numberOfCart}</header></i></div>
             {!showForm && (
               <button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Let's Donate !</button>)}
           </div>
