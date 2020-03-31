@@ -9,6 +9,7 @@ ________________________________________________________________________________
 ## Current Version (0.0.1)
 * The Current version of this application is designed to create, read, update, and delete data that is used to select food for clients, depending on what they choose
 * This API was designed to be extensible, so that multiple match types and data sources can be supported in future installments
+* The user can be abel to use the app depend on the role and dor that we used fetch method.
 
 - Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/tree/master]
 __________________________________________________________________________________________________
@@ -241,5 +242,4 @@ We hosted an internal check-in meeting each morning, for each member, to update 
 The Organization was created by our team member Nawal, with all other members added as admin users. The Trello board was also created by Nawal, with all other members added as admin users for consistency in project management. Our application will soon be deployed on Heroku.
 
 _______________________________________________________________________________________________
-# Front-End App(Full)
 
