@@ -69,7 +69,11 @@ class Header extends React.Component{
       <>
         <div className='header-containar'>
 
-          <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
+          <div >
+            <a href="#header" >
+              <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px" />
+            </a>
+          </div>
           <link rel="stylesheet" href="animate.min.css"></link>
           {/* <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
             <h1>Food Ashur's</h1>
