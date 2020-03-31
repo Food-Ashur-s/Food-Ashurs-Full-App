@@ -76,7 +76,10 @@ class LoginProvider extends React.Component {
       capabilities: user.role,
     };
     let token = jwt.sign(userData, 'ashurFood');
-    this.setLoginState(true, token, user);
+    // this.setLoginState(true, token, user);
+    this.validateToken(token);
+    console.log('token', token);
+    
   }
 
   validateToken = token =>{
@@ -92,6 +95,7 @@ class LoginProvider extends React.Component {
   setLoginState = (loggedIn, token, user) =>{
     cookie.save('auth', token);
     this.setState({token, loggedIn, user});
+    console.log('this.state',this.state);
     localStorage.setItem('userInfo', JSON.stringify(user));
     this.setState({ loading: false});
   }

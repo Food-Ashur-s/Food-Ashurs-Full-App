@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
-import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
@@ -30,7 +29,7 @@ const fastfoodArray = [fastfood0, fastfood1, fastfood2, fastfood3];
 const dessertsArray = [desserts0, desserts1, desserts2, desserts3];
 
 
-const recipientsAPI = 'https://food--ashurs.herokuapp.com/api/v1/recipient';
+const recipientsAPI = `${process.env.REACT_APP_API}/api/v1/recipient`;
 
 function Recipients (props){
   AOS.init();
@@ -46,7 +45,6 @@ function Recipients (props){
   const [showCart, setShowCart] = useState(false);
   const [showForm, setshowForm] = useState(false);
   const [numberOfCart, setNumberOfCart] = useState(0);
-
   const handelInputChange = e => {
     setItem({...item, [e.target.name]: e.target.value});
   };
@@ -94,7 +92,7 @@ function Recipients (props){
 
   const getRecipientList = () => {
     const getHandeler = data => setResultstList(data.results);
-    callAPI('https://food--ashurs.herokuapp.com/api/v1/donor', 'GET', undefined, getHandeler );
+    callAPI(`${process.env.REACT_APP_API}/api/v1/donor`, 'GET', undefined, getHandeler );
 
   };
   useEffect(() => {
@@ -190,8 +188,8 @@ function Recipients (props){
                         <input type='radio' name='requestType' className="update-input-r" value='desserts' onClick={handelInputChange} required />Desserts
                       </label>
                     </div>
-                    <label className="form-lable-">Amount:</label>
-                    <input type='number' name='identity' className="update-input" placeholder='type your identity' onChange={handelInputChange} required />
+                    <label className="form-lable-">Identity:</label>
+                    <input type='text' name='identity' className="update-input" placeholder='type your identity' onChange={handelInputChange} required />
                     <label className="form-lable-"> Contact Number</label>
                     <input type='number' className="update-input" name='contactNumber' placeholder='type your contact Number' onChange={handelInputChange} required />
                     <label className="form-lable-">description :</label>
@@ -227,6 +225,7 @@ function Recipients (props){
               <div className="result-req-div">
                 <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Result Request</h4>
                 <section className="block-recipient">
+                  <h3 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Results Match Your Request: {recipient.requestRecipient.length}</h3>
                   <div className="recipient-list">
                     {recipient.requestRecipient.map(item=>{
                       return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
