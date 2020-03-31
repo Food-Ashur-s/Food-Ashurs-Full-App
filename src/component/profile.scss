@@ -225,16 +225,7 @@ span.stars {
     }
 }
 
-
-
 #tab li:not(.active) {display:none;}
-
-
-
-
-
-
-
 
 .avatar {
   position: relative;
@@ -278,12 +269,14 @@ z-index: 1;
  color: #0b7685dc;
  border: solid 1px #0b7685dc;
 }
+@media(min-width: 768px) {
 .cir {
-  width: 61%;
+  width: 51%;
   /* margin-left: -3%; */
   display: grid;
   margin: 3%;
   grid-template-columns: 50% 50%;
+}
 }
 
 .gauge-chart2 , .gauge-chart3{
@@ -354,7 +347,7 @@ font-size: 25px;
 
 
 .cir{
-  width: 200%;
+  width: 300%;
 }
  
 .courseStats {

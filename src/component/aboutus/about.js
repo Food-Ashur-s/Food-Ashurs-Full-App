@@ -23,7 +23,7 @@ class About  extends React.Component {
         </div>
 
         <div className="section" id="p1">
-          <span className="name">Ayman Khawaldeh</span>
+          <span className="name-">Ayman Khawaldeh</span>
           <span className="border"></span>
 
           <div className="par">
@@ -37,7 +37,7 @@ class About  extends React.Component {
 
 
         <div className="section" id="p2">
-          <span className="name">Qusay Hanaqtah</span>
+          <span className="name-">Qusay Hanaqtah</span>
           <span className="border"></span>
 
           <div className="par">
@@ -57,7 +57,7 @@ Graduate of the Luminus Technical College University’s Advanced School of Comp
 
 
         <div className="section" id="p3">
-          <span className="name">Ashar Oran</span>
+          <span className="name-">Ashar Oran</span>
           <span className="border"></span>
           <div className="par">
             <p>Versatile Javascript web application developer, which stems from extensive technical training and a prior background in chemical engineering.
@@ -71,7 +71,7 @@ Through my strong understanding of back-end and user interface development, I as
 
 
         <div className="section" id="p4">
-          <span className="name">Nawal Suliman</span>
+          <span className="name-">Nawal Suliman</span>
           <span className="border"></span>
 
           <div className="par">
