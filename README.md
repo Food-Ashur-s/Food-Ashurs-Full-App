@@ -4,7 +4,7 @@
 - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.
 
 _________________________________________________________________________________________________
-# Back-End App 
+#Full-Stack App 
 
 ## Current Version (0.0.1)
 * The Current version of this application is designed to create, read, update, and delete data that is used to select food for clients, depending on what they choose
