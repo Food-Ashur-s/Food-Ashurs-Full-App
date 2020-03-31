@@ -85,7 +85,7 @@ class Header extends React.Component{
               <span>
                 <ul className="sub-menu ">
                   <li>
-                    <Link to='/Food-Ashur-s/Food-Ashurs-Full-App'>Home</Link>
+                    <Link to='/'>Home</Link>
                   </li>
                   <li>
                     <NavLink to='/profile'>profile</NavLink>

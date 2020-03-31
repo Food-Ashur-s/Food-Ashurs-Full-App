@@ -44,7 +44,7 @@ class Profile extends Component {
       showUserUpdate: false,
       updated:{ username:'', userEamil:'' , capabilities: ''},
       updateList: JSON.parse(localStorage.getItem('newUser')),
-      showUpdateList: JSON.parse(localStorage.getItem('showNewUser')),
+      showNewUser: JSON.parse(localStorage.getItem('showNewUser')),
     };
 
     this.onImageChange = this.onImageChange.bind(this);
@@ -105,7 +105,7 @@ closeSignForm =() => {
 render() {
   return (
     <React.Fragment>
-
+      {/* <When condition={this.context.loggedIn}> */}
       <div className='header-containar'>
         <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
         <link rel="stylesheet" href="animate.min.css"></link>
@@ -117,21 +117,18 @@ render() {
           <span>
             <ul className="sub-menu ">
               <li>
-                <Link to='/Food-Ashur-s/Food-Ashurs-Full-App'>Home</Link>
+                <Link to='/'>Home</Link>
               </li>
               <li>
                 <NavLink to='/profile'>profile</NavLink>
               </li>
 
               <li>
-                <a href="#resipient" title="resipient">Order</a>
-              </li>
-              <li>
                 <a href="#aboutUs" title="aboutUs">About Us</a>
               </li>
               <li>
                 <If condition={this.context.loggedIn}>
-                  <a onClick={this.context.logout} >Log Out!</a>
+                  <a onClick={this.context.logout} > <Link to='/'>Log Out!</Link></a>
                 </If>
                 <If condition={!this.context.loggedIn}>
                   <a onClick={this.handleSignClick}>Log In</a>
@@ -148,7 +145,7 @@ render() {
       <main class="page__course">
         <div class="container">
           <div class="course-content">
-            <h2 className="namm">{this.state.user.username } Profile</h2>
+            <h2 className="namm">{this.state.user.username} Profile</h2>
             <div class="content-block">
               <div className="cir">
                 <GaugeChart id="gauge-chart2"
@@ -182,18 +179,18 @@ render() {
                   <form onSubmit={ e =>{
                     localStorage.setItem('newUser', JSON.stringify(this.state.updated));
                     this.setState({updateList: localStorage.setItem('newUser', JSON.stringify(this.state.updated))});
-                    this.setState({showUserUpdate: localStorage.setItem('showNewUser', JSON.stringify(true))});
+                    this.setState({showNewUser: localStorage.setItem('showNewUser', JSON.stringify(true))});
                   }} value={this.updated}>
                     <label> Your Name is:
-                      <input type='text' name='username' placeholder='type your name' defaultValue={this.state.user.username} onChange={this.handleChange} required />
+                      <input type='text' name='username' placeholder='type your name' defaultValue={this.state.updated.username || this.state.user.username} onChange={this.handleChange} required />
                       <br/>
                     </label>
                     <label> Your role is:
-                      <input type='text' name='capabilities' placeholder='type your name' defaultValue={this.state.user.capabilities} onChange={this.handleChange} required />
+                      <input type='text' name='capabilities' placeholder='type your name' defaultValue={this.state.updated.capabilities || this.state.user.capabilities} onChange={this.handleChange} required />
                       <br/>
                     </label>
                     <label> Your Email is:
-                      <input type='text' name='userEamil' placeholder='type your name' defaultValue={this.state.user.userEamil} onChange={this.handleChange} required />
+                      <input type='text' name='userEamil' placeholder='type your name' defaultValue={this.state.updated.userEamil || this.state.user.userEamil} onChange={this.handleChange} required />
                       <br/>
                     </label>
                     <button >Submit</button>
@@ -233,7 +230,7 @@ render() {
               {!this.state.showUpload && (<button class="btnz" onClick={this.showingUpload}>Edit My Photo</button>)}
             </div>
 
-            {!this.state.showUpdateList && (
+            {!this.state.showNewUser && (
               <ul class="courseStats">
                 <li>
                   <span class="label courseStats__label" >User name</span>
@@ -243,7 +240,7 @@ render() {
                 <li>
                   <span class="label courseStats__label">TYpe</span>
                   <span class="courseStats__divider"></span>
-                  <span class="courseStats__data">{this.state.user.capabilities }</span>
+                  <span class="courseStats__data">{ this.state.user.capabilities }</span>
                 </li>
                 <li>
                   <span class="label courseStats__label">E-mail</span>
@@ -253,7 +250,7 @@ render() {
 
               </ul>
             )}
-            {this.state.showUpdateList && (
+            {this.state.showNewUser && (
               <ul class="courseStats">
                 <li>
                   <span class="label courseStats__label" >User name</span>
@@ -276,6 +273,7 @@ render() {
           </aside>
         </div>
       </main>
+      {/* </When> */}
 
     </React.Fragment>
   );

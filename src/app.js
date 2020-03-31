@@ -31,7 +31,7 @@ export default function App (){
   return (
     <>
       <LoginContext>
-        <Route exact path= '/Food-Ashur-s/Food-Ashurs-Full-App'>
+        <Route exact path= '/'>
           <Header />
           {/* <GoogleLog /> */}
           {/* <SignForm/> */}

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
 import React, {useState, useEffect} from 'react';
-import {Link , NavLink} from 'react-router-dom';
 import Model from '../modal';
 import {When} from '../if';
 import cartPhoto from '../../assets/cart.gif';
