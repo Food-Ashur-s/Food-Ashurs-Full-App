@@ -4,15 +4,14 @@
 - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.
 
 _________________________________________________________________________________________________
-# Back-End App 
+# Full-Stack App 
 
 ## Current Version (0.0.1)
 * The Current version of this application is designed to create, read, update, and delete data that is used to select food for clients, depending on what they choose
 * This API was designed to be extensible, so that multiple match types and data sources can be supported in future installments
+* The user can be able to use the app depend on the roles and we used fetch method to work on the data from the API.
 
-- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs/tree/master]
-- Chat Repository: [https://github.com/Food-Ashur-s/Food-Chat]
-
+- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/tree/master]
 __________________________________________________________________________________________________
 
 ## Architecture
@@ -257,5 +256,4 @@ We hosted an internal check-in meeting each morning, for each member, to update 
 The Organization was created by our team member Nawal, with all other members added as admin users. The Trello board was also created by Nawal, with all other members added as admin users for consistency in project management. Our application will soon be deployed on Heroku.
 
 _______________________________________________________________________________________________
-# Front-End App(Full)
 
