@@ -5,6 +5,7 @@
 
 // submit page
 .outerForm {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -147,8 +148,8 @@ margin: 3%;
 border-radius: 50%;
 z-index: 3000;
 background-color: #00928596;
-font-size: 20px;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 17px;
+// font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 color: white;
 border: 1px solid rgba(0, 0, 0, 0.849);
 }
@@ -161,14 +162,8 @@ border: 1px solid rgba(0, 0, 0, 0.849);
 // the words inside chat
 .words {
   position: absolute;
-  /* background-color: #009688; */
-  /* color: #00928596; */
   top: .5px;
   border-radius: 18px !important;
-  /* border-bottom: solid 2px #ffffff8c; */
-  /* border-top: solid 2px #ffffff8c; */
-  /* box-shadow: 1px 2px 5px 1px #00928596; */
-  /* padding: 2%; */
   width: 100%;
   background-position: center;
   color: white;
@@ -182,12 +177,6 @@ border: 1px solid rgba(0, 0, 0, 0.849);
   height: 13%;
   width: 13%;
 }
-
-// user Name
-// .userName {
-//   background-color: red;
-// }
-
 // close button
 .close {
   position: absolute;
@@ -373,4 +362,8 @@ svg.chat path {
   width: 100%;
  
   grid-row: 2;
+}
+.chat-block{
+  display: block;
+  box-sizing: border-box;
 }
