@@ -177,6 +177,9 @@ Returns an object with 2 keys: count (number) and results (array of objects/reco
         "__v" : 0
 }
 ```
+### Donors Page
+
+![alt text](assest/donor.PNG)
 
 
 ## CRUD api/v1/recipient
@@ -215,11 +218,22 @@ Example response:
 }
 ```
 
+### Recipinets Page
+
+![alt text](assest/Recipient.PNG)
+
 # Testing
 ### Testing with mockRequest
 - jest
 - eslint
 #### Tests all routes and their related CRUD operations
+
+## Chat App
+* This app was designed to be a link of contact between the donors and the recipients.
+
+![alt text](assest/chat.PNG)
+
+
 
 ## Resources
 - Chat Channel :
