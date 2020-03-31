@@ -80,7 +80,7 @@ class Header extends React.Component{
               <span>
                 <ul className="sub-menu ">
                   <li>
-                    <Link to='/'>Home</Link>
+                    <a href="#header" >Home</a>
                   </li>
                   <li>
                     <NavLink to='/profile'>Profile</NavLink>
@@ -122,7 +122,7 @@ class Header extends React.Component{
           <button onClick={this.handleSignClick} data-aos="fade-up" data-aos-duration="2000" className="signForm-button" >
             SignIn</button>
         </If>
-        <div className="header-page"></div>
+        <div className="header-page" id="header"></div>
         <div className="quotes-div">
           {/* <ul class="slideshow"> */}
           <div ><p data-aos="flip-up" className="quote">Food charity</p></div>
