@@ -205,7 +205,7 @@ render() {
 
               <ul id="tab">
                 <li className="active">
-                  <p>{this.state.updated.username ||  this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
+                  <p className="parg">{this.state.updated.username ||  this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
 
                 </li>
 
