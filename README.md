@@ -9,7 +9,7 @@ ________________________________________________________________________________
 ## Current Version (0.0.1)
 * The Current version of this application is designed to create, read, update, and delete data that is used to select food for clients, depending on what they choose
 * This API was designed to be extensible, so that multiple match types and data sources can be supported in future installments
-* The user can be abel to use the app depend on the role and dor that we used fetch method.
+* The user can be able to use the app depend on the roles and we used fetch method to work on the data from the API.
 
 - Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/tree/master]
 __________________________________________________________________________________________________
