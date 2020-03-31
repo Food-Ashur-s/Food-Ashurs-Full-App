@@ -233,16 +233,16 @@ function Donors (props){
             let src = donor.requestType === 'eastern food' ? easternfoodArray[num] : donor.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
             return <div key={idx} className="donor-line div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
               <div className="donor-item">
-                <img src={src} className="donor-item-img" height="330" width="300" />
+                <div className="styles-div">
+                  <img src={src} className="donor-item-img" height="330" width="300" />
+                  <div className="donor-item-div1" data-aos="fade-right"
+                    data-aos-duration="1500" ></div>
+                  <div className="donor-item-div2"data-aos="fade-left"
+                    data-aos-duration="1700"></div>
+                </div>
                 <div className="donor-item-name">
                   {donor.name}
                 </div>
-              </div>
-              <div className="styles-div">
-                <div className="donor-item-div1" data-aos="fade-right"
-                  data-aos-duration="1500" ></div>
-                <div className="donor-item-div2"data-aos="fade-left"
-                  data-aos-duration="1700"></div>
               </div>
               <div className="div-buttons">
                 <button onClick={()=> toggleDetails(donor)} className="donor-item-button"> <i className="	fa fa-address-card-o info"></i>More Detail</button>
@@ -251,53 +251,57 @@ function Donors (props){
             </div>;
           })}
         </div>
-        <When condition={showDetails}>
-          <Model title='Recipient details' close={toggleDetails}>
-            <div className="recipient-details">
-              <div className="item">
+        <div className='pop-up-sub-model'>
+          <When condition={showDetails}>
+            <Model title='Recipient details' close={toggleDetails}>
+              <div className="recipient-details">
+                <div className="item">
             Description: {details.description}
-              </div>
-              <div className="detail-info">
-                <div className="detail-name"><span>Name:</span> <p>{details.name}</p></div>
-                <div className="detail-type"><span>Request Type:</span> <p>{details.requestType}</p> </div>
-                <div className="detail-identity"><span>Identity:</span> <p>{details.identity}</p></div>
-                <div ><i className="fa fa-phone"></i><p>{details.contactNumber}</p></div>
-              </div>
-            </div>
-          </Model>
-        </When>
-        <When condition={showUpdate}>
-          <Model title='Recipient update' close={toggleUpdate}>
-            <div className="recipient-updated">
-              <form onSubmit={UpdteItem} value={updated} className="update-form">
-                <label className="update-label">
-                  <input type='hidden' v name='_id' value={details._id} className="update-input" />
-                </label>
-                <label className="update-label"> <span> Name:</span>
-                  <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
-                </label>
-                <div className="redio-div">
-                  <label className="update-label-r">
-                    <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
-                  </label>
-                  <label className="update-label-r">
-                    <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
-                  </label>
-                  <label className="update-label-r">
-                    <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required /> Desserts
-                  </label>
                 </div>
-                <label className="update-label"> <span> Available time:</span>
-                  <input type='text' name='available_time' placeholder='type your available_time' className="update-input" defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-                </label>
-                <label className="update-label"><span> Amount: </span>
-                  <input type='number' name='amount' placeholder='type your amount' className="update-input" defaultValue={updated.amount} onChange={handelUpdateChange} />
-                </label>
-                <button className="update-button" >Submit</button>
-              </form>
-            </div>
-          </Model>
-        </When>
+                <div className="detail-info">
+                  <div className="detail-name"><span>Name:</span> <p>{details.name}</p></div>
+                  <div className="detail-type"><span>Request Type:</span> <p>{details.requestType}</p> </div>
+                  <div className="detail-identity"><span>Identity:</span> <p>{details.identity}</p></div>
+                  <div ><i className="fa fa-phone"></i><p>{details.contactNumber}</p></div>
+                </div>
+              </div>
+            </Model>
+          </When>
+        </div>
+        <div className='pop-up-sub-model'>
+          <When condition={showUpdate}>
+            <Model title='Recipient update' close={toggleUpdate}>
+              <div className="recipient-updated">
+                <form onSubmit={UpdteItem} value={updated} className="update-form">
+                  <label className="update-label">
+                    <input type='hidden' v name='_id' value={details._id} className="update-input" />
+                  </label>
+                  <label className="update-label"> <span> Name:</span>
+                    <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
+                  </label>
+                  <div className="redio-div">
+                    <label className="update-label-r">
+                      <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+                    </label>
+                    <label className="update-label-r">
+                      <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
+                    </label>
+                    <label className="update-label-r">
+                      <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required /> Desserts
+                    </label>
+                  </div>
+                  <label className="update-label"> <span> Available time:</span>
+                    <input type='text' name='available_time' placeholder='type your available_time' className="update-input" defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                  </label>
+                  <label className="update-label"><span> Amount: </span>
+                    <input type='number' name='amount' placeholder='type your amount' className="update-input" defaultValue={updated.amount} onChange={handelUpdateChange} />
+                  </label>
+                  <button className="update-button" >Submit</button>
+                </form>
+              </div>
+            </Model>
+          </When>
+        </div>
         <When condition={showCart}>
           <Model title='cart list' close={toggleCart}>
 

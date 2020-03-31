@@ -12,7 +12,7 @@ class About  extends React.Component {
 
   render() {
     return (
-      <div className="team-section">
+      <div className="team-section" id="team-section">
         <h2>Our Team</h2>
         <span className="border"></span>
         <div className="ps">

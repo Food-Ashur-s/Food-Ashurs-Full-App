@@ -16,17 +16,19 @@
 .fixx{
     margin-top: 100px;
 }
-.donor-line{
+
+.donor-line {
     position: relative;
     border-radius: 3%;
-    width: 80%;
+    width: 82%;
     margin: 3%;
-    padding: 1.5%;
+    padding: 3.5%;
     display: block;
-    background-color: rgba(255, 255, 255, 0.74);
-    box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+    background-color: rgba(255, 255, 255, 0.93);
+    box-shadow: 5px 3px 10px rgba(0, 150, 136, 0.72);
+
     .donor-item-img{
-        border-radius: 3%;
+        border-radius: 0;
         width: 100%;
         margin: auto;
         opacity: 97%;
@@ -57,27 +59,25 @@
         cursor: pointer;
     }
     .donor-item-div1{
-        position: absolute;
-        top: 1.7%;
-        width: 48.1%;
-        left: 2%;
-        height: 86.9%;
-        transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        background: rgba(0, 0, 0, 0.42);
         opacity: 1;
-        border-radius: 2%;
-        transform: rotate(30beg);
-        background: rgba(0, 0, 0, 0.472);
+        position: absolute;
+        width: 46%;
+        top: 3.7%;
+        left: 4%;
+        height: 330px;
+        border-radius: 0;
     }
     
     .donor-item-div2{
-        background: rgba(0, 0, 0, 0.472);
+        background: rgba(0, 0, 0, 0.42);
         opacity: 1;
         position: absolute;
-        width: 48.1%;
-        top: 1.7%;
-        right: 2%;
-        height: 86.97%;
-        border-radius: 2%;
+        width: 46%;
+        top: 3.7%;
+        right: 4%;
+        height: 330px;
+        border-radius: 0;
     }
    
 }
@@ -98,13 +98,16 @@
 .donor-line .div-buttons:hover{
     opacity: 1;
 }
-.donor-item-name{
+.donor-item-name {
     display: block;
     text-align: center;
     z-index: 100;
-    margin: 2%;
+    /* margin: 2%; */
+    font-size: 17px;
+    padding: 1%;
+    margin-top: 4%;
     border-top: groove;
-    color: rgba(0, 0, 0, 0.781);
+    color: rgba(0, 0, 0, 0.97);
 }
 .donor-item-name:hover{
     color: rgba(0, 150, 136, 0.57);
@@ -227,7 +230,7 @@ text-align: center;
     text-align: center;
     font-size: 37px;
     border-bottom: groove;
-    color: #ffffffe0;
+    color: #ffffffee;
     padding: 1%;
 }
 .donation-p{
@@ -315,7 +318,7 @@ grid-template-columns: 50% 50%;
     margin: auto;
     opacity: 97%;
     grid-column: 1;
-    border-radius: 15%;
+    border-radius: 6%;
     width: 90%;
     height: 101%;
     margin: auto;
@@ -327,19 +330,19 @@ grid-template-columns: 50% 50%;
     padding: 3%;
     grid-column: 2;
     /* margin: auto; */
-    border-radius: 30px;
+    border-radius: 6%;
     letter-spacing: 1px;
     line-height: 197%;
 }
 .section-button{
     position: absolute;
-    top: 5%;
-    left: 4.5%;
-    width: 43%;
+    top: 6%;
+    left: 4.7%;
+    width: 42.9%;
     background: #00000061;
     background-size: cover;
-    height: 90%;
-    border-radius: 15%;
+    height: 89%;
+    border-radius: 6%;
     opacity: 0;
 }
 .section-donor-name , .section-donor-type , .section-donor-time , .section-donor-amount {
@@ -370,7 +373,7 @@ grid-template-columns: 50% 50%;
 .donor-line-section{
     position: relative;
     border-radius: 3%;
-    width: 80%;
+    width: 57%;
     margin: auto;
     padding: 1.5%;
     display: block;
@@ -400,4 +403,12 @@ grid-template-columns: 50% 50%;
     
     width: 90% !important;
     border-radius: 25px;
+}
+.redio-div{
+    margin: 2% 0 0 0 !important;
+}
+.pop-up-sub-model {
+    position: absolute;
+    z-index: 2500;
+    margin: auto;
 }
