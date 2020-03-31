@@ -116,7 +116,8 @@ margin: 3%;
 
 .online {
   color: rgba(22, 125, 22, 0.76);
-  font-weight: bold;
+  // font-weight: bold;
+  font-size: 12px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -262,7 +263,7 @@ svg.chat path {
 
 .chat-pop {
   z-index: 1200;
-  width: 23%;
+  width: 26%;
   height: 150px;
   position: fixed;
   right: 3%;
@@ -322,7 +323,7 @@ svg.chat path {
 }
 .msgOn{
   width: 100%;
-  margin-left: -50%;
+  margin-left: -10%;
   // margin: auto;
 
 
@@ -338,22 +339,33 @@ svg.chat path {
   margin-left: -15%;
 }
 .online-section{
+  grid-row: 1;
+    width: 200px;
+    padding: 0%;
+    text-align: left;
   width: 100px;
   display: block;
+  height: auto;
   clear: both;
   margin: 0;
   padding: 2%;
-  margin-left: -50%;
+  margin-top: -20%;
+  border-radius: 20px;
+  margin-left: -47%;
   background-color: rgba(0, 0, 0, 0.137);
-  // float: left;
 }
+  // float: left;
 .chat-body-div{
   display: grid;
+  width: 50%;
   grid-template-columns: 100%;
   grid-row: 2fr;
 }
 .online-section{
   grid-row: 1;
+  width: 100%;
+  padding: 1%;
+  text-align: center;
 }
 .msgOn{
   display: block;
