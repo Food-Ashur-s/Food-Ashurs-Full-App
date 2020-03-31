@@ -91,7 +91,7 @@ class Header extends React.Component{
                     <NavLink to='/profile'>profile</NavLink>
                   </li>
                   <li>
-                    <a href="" title="aboutUs">About Us</a>
+                    <a href=".team-section" title="aboutUs">About Us</a>
                   </li>
                   <li>
                     <If condition={this.context.loggedIn}>

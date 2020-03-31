@@ -128,14 +128,11 @@ render() {
               </li>
               <li>
                 <If condition={this.context.loggedIn}>
-                  <a onClick={this.context.logout} > <Link to='/'>Log Out!</Link></a>
+                  <Link onClick={this.context.logout}  to='/'>Log Out!</Link>
                 </If>
                 <If condition={!this.context.loggedIn}>
                   <a onClick={this.handleSignClick}>Log In</a>
-                  {/* <button onClick={this.handleSignClick} className="signForm-button" >
-      SignIn</button> */}
                 </If>
-                {/* <a href="#setting" title="setting">Log Out</a> */}
               </li>
             </ul>
           </span>
@@ -181,19 +178,16 @@ render() {
                     this.setState({updateList: localStorage.setItem('newUser', JSON.stringify(this.state.updated))});
                     this.setState({showNewUser: localStorage.setItem('showNewUser', JSON.stringify(true))});
                   }} value={this.updated}>
-                    <label> Your Name is:
-                      <input type='text' name='username' placeholder='type your name' defaultValue={this.state.updated.username || this.state.user.username} onChange={this.handleChange} required />
-                      <br/>
-                    </label>
-                    <label> Your role is:
-                      <input type='text' name='capabilities' placeholder='type your name' defaultValue={this.state.updated.capabilities || this.state.user.capabilities} onChange={this.handleChange} required />
-                      <br/>
-                    </label>
-                    <label> Your Email is:
-                      <input type='text' name='userEamil' placeholder='type your name' defaultValue={this.state.updated.userEamil || this.state.user.userEamil} onChange={this.handleChange} required />
-                      <br/>
-                    </label>
-                    <button >Submit</button>
+                    <label  className="update-label"> Your Name is:  </label>
+                    <input type='text' name='username'  placeholder='type your name' className="update-input" defaultValue={this.state.updated.username || this.state.user.username} onChange={this.handleChange} required />
+
+                    <label className="update-label"> Your role is:</label>
+                    <input type='text' name='capabilities' className="update-input" placeholder='type your name' defaultValue={this.state.updated.capabilities || this.state.user.capabilities} onChange={this.handleChange} required />
+
+                    <label className="update-label"> Your Email is:                  </label>
+                    <input type='text' name='userEamil' className="update-input" placeholder='type your name' defaultValue={this.state.updated.userEamil || this.state.user.userEamil} onChange={this.handleChange} required />
+
+                    <button className="update-button" >Submit</button>
                   </form>
                 </div>
               </Model>

@@ -225,8 +225,8 @@ header{
     background-size: cover;
     opacity: .95;
     background-attachment: fixed;
-    animation: homeSlide 20s linear 0s infinite;
-    transition:all 0s ease-in-out;
+    animation: homeSlide 25s linear 0s infinite;
+    transition:all 5s ease-in-out;
 }
 
 @keyframes homeSlide{

@@ -152,7 +152,7 @@ function ChatChannel (props) {
         <div className="sendform">
           <form onSubmit={event => handleSend(event)} className="msgSub">
             <input className="msgInput" id="m" onChange={event=> handleChangeMsg(event) } placeholder="Type a Message ... Press Enter "/>
-            <button className="msgSend" type="submit">></button>
+            <button className="msgSend" type="submit">send</button>
           </form>
         </div>
       </section>

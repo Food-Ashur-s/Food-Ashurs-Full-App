@@ -191,11 +191,12 @@ input::placeholder {
 	color: rgba(250, 243, 243, 0.5);
   }
 
-.radio{
-    padding: 3%;
+.radio {
+    padding: 2%;
     color: #ffffff98;
-    background: #4872748f;
-    margin-bottom: 5%;
+    border-radius: 25px;
+    background: #487274d1;
+    margin-bottom: 1%;
 }
 .radio label {
     margin-left: 16%;
@@ -255,7 +256,7 @@ input::placeholder {
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 16px;
-    // margin: 5px;
+	// margin: 5px;
     width: calc(100% - 10px);
     overflow: hidden;
     padding: 0px 10px;
@@ -281,4 +282,12 @@ input::placeholder {
     text-decoration: none;
     margin: 0px 10px;
     border-radius: 25px;
+}
+.google-button {
+	font-family: 'Lato', Arial, Helvetica, sans-serif;
+}
+.login-form .group .label {
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 2px;
 }
