@@ -51,10 +51,10 @@
         background-color: #b80d0d;
         color: white;
         position: absolute;
-        top: 2%;
+        top: -2%;
         z-index: 80;
-        left: 32%;
-        width: 10%;
+        left: 12%;
+        width: 7%;
         border-radius: 50%;
         padding: 1%;
         text-align: center;
@@ -75,13 +75,14 @@
         box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
     }
     .donation-href-div{
-        width: 70%;
-        height: 113px;
+        width: 87%;
+                height: 113px;
         margin: auto;
         display: grid;
         padding: 1%;
         grid-template-columns: 50% 50% ;
     }
+    
 }
 @media (max-width: 768px){
     .open{

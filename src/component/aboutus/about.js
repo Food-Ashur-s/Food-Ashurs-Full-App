@@ -27,7 +27,7 @@ class About  extends React.Component {
           <span className="border"></span>
 
           <div className="par">
-            <p>A Full-Stack Software Developer with a specialization in Javascript , also I have a Bachelor’s Degree in Civil Engineering and I worked before as a cotumer care at Crystel company </p>
+            <p>A Full-Stack Software Developer with a specialization in Javascript , also I have a Bachelor’s Degree in Civil Engineering and I worked before as a customer care at Crystel company </p>
             <div className="button_container">
               <a href="https://github.com/aymankhawaldeh" className="github" ><button className="btn">Github Link</button></a>
               <a href="https://www.linkedin.com/in/ayman-khawaldeh-a66486195/" className="linked" ><button className="btn">LinkedIn Link</button></a>

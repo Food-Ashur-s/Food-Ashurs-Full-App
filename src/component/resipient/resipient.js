@@ -207,7 +207,7 @@ function Recipients (props){
           let src = recipient.requestType === 'eastern food' ? easternfoodArray[num] : recipient.requestType === 'fast food' ? fastfoodArray[num] : dessertsArray[num];
           return (
             <>
-              <div key={idx} className="donor-line-section div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
+              <div key={idx} className="donor-line-section- div-aos" data-aos="zoom-in-up" data-aos-duration="2000">
                 <div className="donor-item section-item">
                   <img src={src}className="section-donor-item-img" height="330px" width="300px" />
                   <div className="section-info">
@@ -218,7 +218,7 @@ function Recipients (props){
                     <div className="section-donor-type">{recipient.description}</div>
                   </div>
                   <div className="section-button">
-                    <button onClick={()=> deleteItem(recipient._id)} className="donor-item-button-section">DELETE</button>
+                    <button onClick={()=> deleteItem(recipient._id)} className="donor-item-button-section-"><i className="fa fa-close info"></i>DELETE</button>
                   </div>
                 </div>
               </div>
@@ -242,8 +242,8 @@ function Recipients (props){
                             data-aos-duration="1700"></div>
                         </div>
                         <div className="div-buttons">
-                          <button onClick={()=> toggleDetails(item)} className="donor-item-button">More Detail</button>
-                          <button onClick={()=> addCart(item)}  className="donor-item-button">Add To Cart</button>
+                          <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="	fa fa-address-card-o info"></i>More Detail</button>
+                          <button onClick={()=> addCart(item)}  className="donor-item-button"><i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
                         </div>
                       </div>;
                     })}
@@ -302,25 +302,27 @@ function Recipients (props){
                 return <div key={i}>
                   <div className="cart-name">{item.name}</div>
                   <div className="cart-button-div">
-                    <button onClick={()=> toggleCartDetails(item)} className="update-button-cart">More Detail</button>
-                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart">Update</button>
-                    <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart">DELETE</button>
+                    <button onClick={()=> toggleCartDetails(item)} className="update-button-cart"><i className="	fa fa-address-card-o info"></i>More Detail</button>
+                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart"><i className="	fa fa-address-card-o info"></i>Update</button>
+                    <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart"><i className="fa fa-close info"></i>DELETE</button>
                   </div>
                 </div>;
               })
             }
 
             <When condition={showDetails}>
-              <Model title='Donor details' close={toggleDetails}>
-                <div className="recipient-details donor-details">
-                  <div className="detail-info">
-                    <div className="detail-name"><span>Name: </span> {details.name}   </div>
-                    <div className="detail-type"><span>Donation Type:</span>  {details.type}   </div>
-                    <div className="detail-type"><span>Available Time:</span>  {details.available_time}</div>
-                    <div  className="detail-type"><span>Food Amount:</span>  {details.amount}</div>
+              <div className="cart-details-m">
+                <Model title='Donor details'  close={toggleDetails}>
+                  <div className="recipient-details donor-details">
+                    <div className="detail-info">
+                      <div className="detail-name"><span>Name: </span> {details.name}   </div>
+                      <div className="detail-type"><span>Donation Type:</span>  {details.type}   </div>
+                      <div className="detail-type"><span>Available Time:</span>  {details.available_time}</div>
+                      <div  className="detail-type"><span>Food Amount:</span>  {details.amount}</div>
+                    </div>
                   </div>
-                </div>
-              </Model>
+                </Model>
+              </div>
             </When>
 
             {/* <When condition={showDetails}>
@@ -339,36 +341,38 @@ function Recipients (props){
             </When> */}
 
             <When condition={showUpdate}>
-              <Model title='cart update' close={toggleUpdate}>
-                <div className="recipient-updated cart-updated">
-                  <form onSubmit={UpdteCartItem} value={details._id}className="update-form">
-                    <label className="update-label">
-                      <input type='hidden' className="update-input" name='_id' value={details._id} />
-                    </label>
-                    <label className="update-label" > <span>Name :</span>
-                      <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
-                    </label>
-                    <div className="redio-div">
-                      <label className="update-label-r">
-                        <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+              <div className="cart-details-m">
+                <Model title='cart update' close={toggleUpdate}>
+                  <div className="recipient-updated cart-updated">
+                    <form onSubmit={UpdteCartItem} value={details._id}className="update-form">
+                      <label className="update-label">
+                        <input type='hidden' className="update-input" name='_id' value={details._id} />
                       </label>
-                      <label className="update-label-r">
-                        <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
-                      </label>
-                      <label className="update-label-r">
-                        <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required />Desserts
-                      </label>
-                    </div>
-                    <label className="update-label" ><span>available_time</span>
-                      <input type='text' name='available_time' className="update-input" placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-                    </label>
-                    <label className="update-label"> <span>amount</span>
-                      <input type='number' name='amount' className="update-input" placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
-                    </label>
-                    <button className="update-button">Submit</button>
-                  </form>
-                </div>
-              </Model>
+                      <label className="update-label" >Name :</label>
+                        <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
+               
+                      <div className="redio-div">
+                        <label className="update-label-r">
+                          <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+                        </label>
+                        <label className="update-label-r">
+                          <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
+                        </label>
+                        <label className="update-label-r">
+                          <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required />Desserts
+                        </label>
+                      </div>
+                      <label className="update-label" ><span>available_time</span> </label>
+                        <input type='text' name='available_time' className="update-input" placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+                     
+                      <label className="update-label"> <span>amount</span>  </label>
+                        <input type='number' name='amount' className="update-input" placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+                    
+                      <button className="update-button">Submit</button>
+                    </form>
+                  </div>
+                </Model>
+              </div>
             </When>
           </Model>
         </When>

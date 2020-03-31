@@ -101,14 +101,15 @@
   border-radius: 30px;
   margin: 4%;
 }
-.update-button-cart{
+.update-button-cart {
   padding: 2%;
-  width: 20%;
+  width: 29%;
   height: 50px;
   /* display: block; */
   line-height: 20%;
   font-size: 79%;
   /* margin: auto; */
+  margin: 1%;
   color: white;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.35);
@@ -116,8 +117,8 @@
   box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
 }
 .update-button-cart:hover{
-  color: rgba(0, 150, 136, 0.57);
-  border: rgba(0, 150, 136, 0.57) solid 2px;
+  color: rgba(213, 216, 216, 0.57);
+  border: rgba(166, 168, 168, 0.57)solid 2px;
   cursor: pointer;
 }
 .cart-button-div{
@@ -129,4 +130,56 @@
 }
 .form-lable-r label {
   margin-left: 1%;
+}
+.update-input, .redio-div {
+  color: #dbdada;
+  display: block;
+  font-size: 14px;
+  border: none;
+  padding: 10px 10px;
+  // /* margin: -1% auto 1%; */
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 90% !important;
+  margin: 0;
+}
+.donor-item-button-section- {
+  padding: 2%;
+  margin: 41% auto 0% auto;
+  width: 59%;
+  height: 50px;
+  display: block;
+  font-size: 112%;
+  color: white;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.438);
+  border: rgba(255, 255, 255, 0.623) solid 1px;
+  box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+.donor-item-button-section-:hover{
+  color: rgba(0, 150, 136, 0.57);
+  border:rgba(0, 150, 136, 0.57) solid 2px ;
+  cursor: pointer;
+}
+.donor-line-section- {
+  position: relative;
+  border-radius: 3%;
+  width: 66%;
+  margin: auto;
+  padding: 1.5%;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.74);
+  box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+}
+.cart-details-m{
+  width: 500px !important;
+}
+.update-label {
+  color: #dbdada;
+  font-size: 13px;
+  text-align: left;
+  display: block;
+}
+.redio-div {
+    margin: 2% 0% 1% 0%;
 }
