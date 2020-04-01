@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  height: 78vh;
+  height: 81vh;
   align-items: center;
   background-color: #016455ef;
   border-radius: 30px;
@@ -55,10 +55,7 @@
   box-shadow: 1px 2px 5px 1px #00928596;
 }
 
-.submitB:hover {
-  color: rgba(0, 0, 0, 0.849);
-  border: solid 2px rgba(0, 0, 0, 0.849);
-}
+
 
 .submitB:focus {
   outline: 0;
@@ -95,7 +92,7 @@
   position: relative;
   justify-content: center;
   text-align: center;
-  height: 78vh;
+  height: 81vh;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.93);
   border-radius: 22px;
@@ -368,4 +365,20 @@ svg.chat path {
 .chat-block{
   display: block;
   box-sizing: border-box;
+}
+.msgSend {
+  position: absolute;
+  bottom: -26px;
+  right: 3%;
+  border-radius: 50%;
+  z-index: 3000;
+  background-color: #00928596;
+  font-size: 14px;
+  color: white;
+  padding: 3%;
+  border: 1px solid rgba(0, 0, 0, 0.41);
+}
+.submitB:hover {
+  color: #ffffff48;
+  border: solid 2px #ffffff48;
 }

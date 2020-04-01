@@ -87,17 +87,17 @@ class Header extends React.Component{
                     <a href="#header" >Home</a>
                   </li>
                   <li>
-                    <NavLink to='/profile'>Profile</NavLink>
+                    <NavLink href="#header" to='/profile'>Profile</NavLink>
                   </li>
                   <li>
                     <a href="#team-section" title="aboutUs">About Us</a>
                   </li>
                   <li>
                     <If condition={this.context.loggedIn}>
-                      <a onClick={this.context.logout} >Log Out!</a>
+                      <a href="#header" onClick={this.context.logout} >Log Out!</a>
                     </If>
                     <If condition={!this.context.loggedIn}>
-                      <a onClick={this.handleSignClick}>Log In</a>
+                      <a href="#header" onClick={this.handleSignClick}>Log In</a>
                       {/* <button onClick={this.handleSignClick} className="signForm-button" >
             SignIn</button> */}
                     </If>

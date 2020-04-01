@@ -102,6 +102,7 @@
     display: block;
     text-align: center;
     z-index: 100;
+    font-family: Arial, Helvetica, sans-serif;
     /* margin: 2%; */
     font-size: 17px;
     padding: 1%;
@@ -195,8 +196,9 @@ text-align: center;
     cursor: pointer;
 }
 .curt-item:hover{
-    color: rgba(0, 150, 136, 0.57);
-    background: rgba(255, 255, 255, 0.712);
+    color: rgba(6, 83, 76, 0.911);
+    background: rgba(255, 255, 255, 0.973);
+    transition: 650ms;
 }
 .donation-button{
     padding: 2%;
@@ -256,7 +258,7 @@ text-align: center;
     height: 58px !important;
     text-decoration: none;
     width: 90px;
-    background-color: rgba(3, 100, 87, 0.459);
+    background-color: rgb(12, 69, 76);
     border-radius: 50%;
 }
 .space-span{
