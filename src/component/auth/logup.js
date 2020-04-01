@@ -63,10 +63,10 @@ class Logup extends React.Component {
            </div>
            <div className="radio">
              <label>
-               <input type='radio' name="role" value='donor' onClick={this.handleChange} required/>Donor
+               <input type='radio' name="role" value='donor' onClick={this.handleChange} required/>DONOR
              </label>
              <label>
-               <input type='radio' name="role" value='recipient' onClick={this.handleChange}  required/> Recipient
+               <input type='radio' name="role" value='recipient' onClick={this.handleChange}  required/> RECIPIENT
              </label>
            </div>
            <div className="group" >
@@ -82,7 +82,7 @@ class Logup extends React.Component {
                      onClick={renderProps.onClick}
                      disabled={renderProps.disabled}
                    >
-                        Sign up As Recipent
+                        SIGN UP AS A RECIPIENT
                    </button>
                  )}
                  onSuccess={this.responseGoogle1}
@@ -98,7 +98,7 @@ class Logup extends React.Component {
                      onClick={renderProps.onClick}
                      disabled={renderProps.disabled}
                    >
-                        Sign Up  As Donor
+                        SIGN UP AS A DONOR
                    </button>
                  )}
                  onSuccess={this.responseGoogle2}

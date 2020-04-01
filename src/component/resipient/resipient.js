@@ -159,26 +159,28 @@ function Recipients (props){
         <div className="donation-div">
           <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Recipients</h3>
           <span className="space-span"></span>
-          <p data-aos="fade-left" data-aos-duration="1000" className="res-p">“Service to others is the rent you pay for your room here on earth.”</p>
-          <p data-aos="fade-right" data-aos-duration="1000" className="res-p">“We make a living by what we get, but we make a life by what we give.”</p>
+          <p data-aos="fade-left" data-aos-duration="1000" className="res-p">“Service to others is the rent you pay for your room here on earth”</p>
+          <p data-aos="fade-right" data-aos-duration="1000" className="res-p">“We make a living by what we get, but we make a life by what we give”</p>
           <div className="donation-href-div">
             <div className="cart-div" data-aos="fade-right"
               data-aos-offset="100"
               data-aos-easing="ease-in-sine">
               <header className="cart-count">{numberOfCart}</header>
               <i className="fa fa-cart-plus curt-item" aria-hidden="true" onClick={toggleCart} ></i></div>
-            { !showForm &&  (<button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make Request</button>)}
+            { !showForm &&  (<button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Make a Request</button>)}
           </div>
           {showForm && (
-            <Model title='donor-form' close={toggleForm}>
+            <Model title='Recipient Form' close={toggleForm}>
               <div className="addMeal-div">
                 <div className="addMeal-form" >
                   <form onSubmit={addItem} className="add-form">
-                    <label className="form-lable-">Request name:</label>
+                    <label className="form-lable-">Recipient name:</label>
                     <input type='text' name='name' placeholder='type your name' className="update-input" onChange={handelInputChange} required />
 
-                    <div className="form-lable-r">
-                      <label>
+                    <label className="form-lable-">Select the type :</label>
+                    <div className="form-lable-r"> 
+                    
+                      <label> 
                         <input type='radio' name='requestType' className="update-input-r" value='eastern food'  onClick={handelInputChange} required /> Eastern Food
                       </label>
                       <label>
@@ -191,8 +193,8 @@ function Recipients (props){
                     <label className="form-lable-">Identity:</label>
                     <input type='text' name='identity' className="update-input" placeholder='type your identity' onChange={handelInputChange} required />
                     <label className="form-lable-"> Contact Number</label>
-                    <input type='number' className="update-input" name='contactNumber' placeholder='type your contact Number' onChange={handelInputChange} required />
-                    <label className="form-lable-">description :</label>
+                    <input type='number' className="update-input" name='contactNumber' placeholder=' +962-xxxxxxxxx' onChange={handelInputChange} required />
+                    <label className="form-lable-">Description :</label>
                     <input type='text' className="update-input" name='description' placeholder='description' onChange={handelInputChange} />
                     <button className="form-button-">Submit</button>
                   </form>
@@ -255,7 +257,7 @@ function Recipients (props){
         })}
         {/* </div> */}
       </section>
-      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Available Donor's</h4>
+      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Available Donors</h4>
       <section className="block-recipient">
         <div className="recipient-list">
           {resultsList.map((item, i)=>{
@@ -281,7 +283,7 @@ function Recipients (props){
         </div>
 
         <When condition={showDetails}>
-          <Model title='Donor details' close={toggleDetails}>
+          <Model title='Donor Details' close={toggleDetails}>
             <div className="recipient-details donor-details">
               <div className="detail-info">
                 <div className="detail-name"><span>Name: </span> {details.name}   </div>
@@ -295,7 +297,7 @@ function Recipients (props){
 
 
         <When condition={showCart}>
-          <Model title='cart list' close={toggleCart}>
+          <Model title='Cart List' close={toggleCart}>
 
             {
               cartList.map((item, i)=>{

@@ -144,7 +144,7 @@ render() {
       <main class="page__course">
         <div class="container">
           <div class="course-content">
-            <h2 className="namm">{this.state.user.username} Profile</h2>
+            <h2 className="namm">{this.state.user.username}'s Profile</h2>
             <div class="content-block">
               <div className="cir">
                 <GaugeChart id="gauge-chart2"
@@ -160,7 +160,7 @@ render() {
                   percent={0.37}
                 />
               </div>
-              <span class="rat">rating</span>
+              <span class="rat">Rating</span>
               <span class="stars">★★★★☆</span>
             </div>
 
@@ -173,20 +173,20 @@ render() {
 
             </div>
             <When condition={this.state.showUserUpdate}>
-              <Model title='user update' close={this.handelShowUserUpdate}>
+              <Model title='Update Your Profile' close={this.handelShowUserUpdate}>
                 <div className="user-updated">
                   <form onSubmit={ e =>{
                     localStorage.setItem('newUser', JSON.stringify(this.state.updated));
                     this.setState({updateList: localStorage.setItem('newUser', JSON.stringify(this.state.updated))});
                     this.setState({showNewUser: localStorage.setItem('showNewUser', JSON.stringify(true))});
                   }} value={this.updated}>
-                    <label  className="update-label"> Your Name is:  </label>
+                    <label  className="update-label"> Your Name:  </label>
                     <input type='text' name='username'  placeholder='type your name' className="update-input" defaultValue={this.state.updated.username || this.state.user.username} onChange={this.handleChange} required />
 
-                    <label className="update-label"> Your role is:</label>
+                    <label className="update-label"> Your Role:</label>
                     <input type='text' name='capabilities' className="update-input" placeholder='type your name' defaultValue={this.state.updated.capabilities || this.state.user.capabilities} onChange={this.handleChange} required />
 
-                    <label className="update-label"> Your Email is:                  </label>
+                    <label className="update-label"> Your Email:                  </label>
                     <input type='text' name='userEamil' className="update-input" placeholder='type your name' defaultValue={this.state.updated.userEamil || this.state.user.userEamil} onChange={this.handleChange} required />
 
                     <button className="update-button" >Submit</button>
@@ -207,7 +207,7 @@ render() {
 
               <ul id="tab">
                 <li className="active">
-                  <p className="parg">{this.state.updated.username ||  this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
+                  <p className="parg">{this.state.user.username } is one of the distinguished users of this website and the people who contribute to spreading goodness on Earth.</p>
 
                 </li>
 
@@ -223,7 +223,7 @@ render() {
 
             <div className="change">
               {this.state.showUpload && (<input type="file" name="myImage" class="btn1" onChange={this.onImageChange} />)}
-              {!this.state.showUpload && (<button class="btnz" onClick={this.showingUpload}>Edit My Photo</button>)}
+              {!this.state.showUpload && (<button class="btnz" onClick={this.showingUpload}>Change  Photo</button>)}
             </div>
 
             {!this.state.showNewUser && (

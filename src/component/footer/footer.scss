@@ -196,7 +196,7 @@
 .simple-bio{
     opacity: 70%;
     font-size: 13px;
-    text-align: left;
+    text-align: center;
     line-height: 27px;
     .footer-header{
         text-align: center;
@@ -332,10 +332,15 @@
     text-align: center;
     font-size: 21px;
     margin: 0;
-    margin-left: -23%;
     padding: 0;
+    margin-right: -10%;
 }
 .links-div .linkes-header ,.contact-div .contact-header ,.bio-div .bio-header{
     margin-top: 2%;
 
+}
+
+.linkes-list li{
+    text-align: center;
+    margin-left: -22.5%;
 }

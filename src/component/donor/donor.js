@@ -161,10 +161,10 @@ function Donors (props){
     <>
       <section className="block-donor">
         <div className="donation-div">
-          <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Donor Section</h3>
+          <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Donors</h3>
           <span className="space-span"></span>
-          <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness.”</p>
-          <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead.”</p>
+          <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness”</p>
+          <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead”</p>
           {/* <img src={cartPhoto} onClick={toggleCart}  height="100" width="200"/> */}
           <div className="donation-href-div">
             <div className="cart-div" data-aos="fade-right"
@@ -176,12 +176,14 @@ function Donors (props){
               <button  data-aos="zoom-in-up" data-aos-duration="1000" onClick={toggleForm} className="donation-button"> Let's Donate !</button>)}
           </div>
           {showForm && (
-            <Model title='donor-form' close={toggleForm}>
+            <Model title='Donor Form' close={toggleForm}>
               <div className="addMeal-div">
                 <div className="addMeal-form" >
                   <form onSubmit={addItem} className="add-form">
-                    <label className="form-lable-">meal name:</label>
+                    <label className="form-lable-"> Name:</label>
                     <input type='text' name='name' placeholder='type your name' className="form-input-" onChange={handelInputChange} required />
+                    <label className="form-lable-"> Food Type:</label>
+
                     <div className="form-lable-r">
                       <label>
                         <input type='radio' name='type' value='eastern food'   onClick={handelInputChange} required />Eastern Food
@@ -195,8 +197,8 @@ function Donors (props){
                     </div>
 
                     <label className="form-lable-">Amount:</label>
-                    <input type='number' name='amount'  className="form-input-" placeholder='type your amount' onChange={handelInputChange} />
-                    <label className="form-lable-"> Avalible time:</label>
+                    <input type='text' name='amount'  className="form-input-" placeholder='type your amount' onChange={handelInputChange} />
+                    <label className="form-lable-"> Avalible Time:</label>
                     <input type='time' name='available_time'  className="form-input- time" placeholder='type your available_time' onChange={handelInputChange} required />
                     <button className="form-button-">Submit</button>
                   </form>
@@ -226,7 +228,7 @@ function Donors (props){
         })}
 
       </section>
-      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipients Request</h4>
+      <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Recipients Requests</h4>
       <section className="block-recipient">
         <div className="recipient-list">
           {donorList.map((donor, idx) =>{
@@ -253,16 +255,16 @@ function Donors (props){
         </div>
         <div className='pop-up-sub-model'>
           <When condition={showDetails}>
-            <Model title='Recipient details' close={toggleDetails}>
+            <Model title='Recipient Details' close={toggleDetails}>
               <div className="recipient-details">
-                <div className="item">
-            Description: {details.description}
-                </div>
                 <div className="detail-info">
                   <div className="detail-name"><span>Name:</span> <p>{details.name}</p></div>
                   <div className="detail-type"><span>Request Type:</span> <p>{details.requestType}</p> </div>
                   <div className="detail-identity"><span>Identity:</span> <p>{details.identity}</p></div>
                   <div ><i className="fa fa-phone"></i><p>{details.contactNumber}</p></div>
+                  <div className="item">
+            Description: {details.description}
+                  </div>
                 </div>
               </div>
             </Model>
@@ -270,7 +272,7 @@ function Donors (props){
         </div>
         <div className='pop-up-sub-model'>
           <When condition={showUpdate}>
-            <Model title='Recipient update' close={toggleUpdate}>
+            <Model title='Recipient Update' close={toggleUpdate}>
               <div className="recipient-updated">
                 <form onSubmit={UpdteItem} value={updated} className="update-form">
                   <label className="update-label">
@@ -281,16 +283,16 @@ function Donors (props){
                   </label>
                   <div className="redio-div">
                     <label className="update-label-r">
-                      <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
+                      <input type='radio' name='type' value='eastern food' className="update-input-r" defaultValue={updated.requestType}  onClick={handelUpdateChange} required />Eastern Food
                     </label>
                     <label className="update-label-r">
-                      <input type='radio' name='type' value='fast food' className="update-input-r" onClick={handelUpdateChange} required />Fast Food
+                      <input type='radio' name='type' value='fast food' className="update-input-r"  defaultValue={updated.requestType}  onClick={handelUpdateChange} required />Fast Food
                     </label>
                     <label className="update-label-r">
-                      <input type='radio' name='type' value='desserts' className="update-input-r" onClick={handelUpdateChange} required /> Desserts
+                      <input type='radio' name='type' value='desserts' className="update-input-r"  defaultValue={updated.requestType}  onClick={handelUpdateChange} required /> Desserts
                     </label>
                   </div>
-                  <label className="update-label"> <span> Available time:</span>
+                  <label className="update-label"> <span> Available Time:</span>
                     <input type='text' name='available_time' placeholder='type your available_time' className="update-input" defaultValue={updated.available_time} onChange={handelUpdateChange} required />
                   </label>
                   <label className="update-label"><span> Amount: </span>
@@ -303,7 +305,7 @@ function Donors (props){
           </When>
         </div>
         <When condition={showCart}>
-          <Model title='cart list' close={toggleCart}>
+          <Model title='Cart List' close={toggleCart}>
 
             {
               cartList.map((item, i)=>{

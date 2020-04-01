@@ -134,8 +134,8 @@ function ChatChannel (props) {
   return (id ? (
     <div className="chat-pop">
       <section className="innerForm" >
-        <button className="close" onClick={() => window.close('http://localhost:3000/Food-Ashur-s/Food-Ashurs-Full-App')}>X</button>
-        <button className="goHome" onClick={() => window.open('http://localhost:3000/Food-Ashur-s/Food-Ashurs-Full-App')}> Home</button>
+        <button className="close" onClick={() => window.open('/', '_self')}>X</button>
+        {/* <button className="goHome" onClick={() => window.open('/', '_self' )}> X</button> */}
         <div className="words">
           <h2 className="chat-h">Food-Ashur's Chat-App <span role="img" aria-label="emoji">💬</span></h2>
           <h2 className="chat-h">Help Us To Help Them  <span role="img" aria-label="emoji">❤️</span></h2>
