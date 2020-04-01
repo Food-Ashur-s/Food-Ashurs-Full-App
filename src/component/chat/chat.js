@@ -42,6 +42,7 @@ function ChatChannel (props) {
   const [nameInput, setNameInput] = useState(''); // User's name
   const [room, setRoom] = useState(''); // chat Rooms
   const [input, setInput] = useState(''); // chat messages (inner)
+  
 
 
   // bulid-in socket
@@ -133,7 +134,7 @@ function ChatChannel (props) {
   return (id ? (
     <div className="chat-pop">
       <section className="innerForm" >
-        <button className="close" onClick={() => window.close()}>X</button>
+        <button className="close" onClick={() => window.close('http://localhost:3000/Food-Ashur-s/Food-Ashurs-Full-App')}>X</button>
         <button className="goHome" onClick={() => window.open('http://localhost:3000/Food-Ashur-s/Food-Ashurs-Full-App')}> Home</button>
         <div className="words">
           <h2 className="chat-h">Food-Ashur's Chat-App <span role="img" aria-label="emoji">💬</span></h2>
