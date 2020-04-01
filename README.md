@@ -11,7 +11,7 @@ ________________________________________________________________________________
 * This API was designed to be extensible, so that multiple match types and data sources can be supported in future installments
 * The user can be able to use the app depend on the roles and we used fetch method to work on the data from the API.
 
-- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/tree/master]
+- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App]
 - Deploy Link: [https://food-ashurs-app.herokuapp.com/]
 __________________________________________________________________________________________________
 
