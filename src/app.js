@@ -27,7 +27,6 @@ export default function App (){
     setisToggle(!isToggle);
   };
 
-
   return (
     <>
       <LoginContext>
