@@ -4,15 +4,15 @@
 - Application that takes extra food from local restaurants and gives it to people or charities of need.  This helps save wasted food and assists in the wellness of the local community.
 
 _________________________________________________________________________________________________
-# Back-End App 
+# Full-Stack App 
 
 ## Current Version (0.0.1)
 * The Current version of this application is designed to create, read, update, and delete data that is used to select food for clients, depending on what they choose
 * This API was designed to be extensible, so that multiple match types and data sources can be supported in future installments
+* The user can be able to use the app depend on the roles and we used fetch method to work on the data from the API.
 
-- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs/tree/master]
-- Chat Repository: [https://github.com/Food-Ashur-s/Food-Chat]
-
+- Application Repository: [https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/tree/master]
+- Deploy Link: [https://food--ashurs.herokuapp.com/]
 __________________________________________________________________________________________________
 
 ## Architecture
@@ -177,6 +177,9 @@ Returns an object with 2 keys: count (number) and results (array of objects/reco
         "__v" : 0
 }
 ```
+### Donors Page
+
+![alt text](assest/donor.PNG)
 
 
 ## CRUD api/v1/recipient
@@ -215,11 +218,22 @@ Example response:
 }
 ```
 
+### Recipinets Page
+
+![alt text](assest/Recipient.PNG)
+
 # Testing
 ### Testing with mockRequest
 - jest
 - eslint
 #### Tests all routes and their related CRUD operations
+
+## Chat App
+* This app was designed to be a link of contact between the donors and the recipients.
+
+![alt text](assest/chat.PNG)
+
+
 
 ## Resources
 - Chat Channel :
@@ -240,8 +254,7 @@ We communicated and shared resources through a group Slack channel. We also orga
 We hosted an internal check-in meeting each morning, for each member, to update the team on their progress with any/all tasks or deliverables. Any edits to the project plan will be made as a result of these daily check-ins. We concluded each meeting with a reflection and afinal update of our Trello board.
  
 ## Technology and Tools:
-The Organization was created by our team member Nawal, with all other members added as admin users. The Trello board was also created by Nawal, with all other members added as admin users for consistency in project management. Our application will soon be deployed on Heroku.
+The Organization was created by our team member Nawal, with all other members added as admin users. The Trello board was also created by Nawal, with all other members added as admin users for consistency in project management, Front-End done by using React , and we used Heroku to deploy the project.
 
 _______________________________________________________________________________________________
-# Front-End App(Full)
 
