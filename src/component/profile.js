@@ -107,7 +107,9 @@ render() {
     <React.Fragment>
       {/* <When condition={this.context.loggedIn}> */}
       <div className='header-containar'>
-        <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
+        <Link to='/'>
+          <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
+        </Link>
         <link rel="stylesheet" href="animate.min.css"></link>
         <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
           {/* <h1 className="food">Food Ashur's</h1> */}
