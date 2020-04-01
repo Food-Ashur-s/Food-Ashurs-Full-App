@@ -229,6 +229,7 @@ Example response:
 #### Tests all routes and their related CRUD operations
 
 ## Chat App
+
 * This app designed to be a link of contact between the donors and the recipients.
 
 ![alt text](assest/chat.PNG)

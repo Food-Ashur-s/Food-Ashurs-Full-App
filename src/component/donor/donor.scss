@@ -1,0 +1,416 @@
+@media (min-width: 768px){
+        .recipient-list{
+    margin: auto 0 0 15%;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+}
+}
+@media (max-width: 768px){
+    .recipient-list{
+        margin: auto;
+        margin-left: 17%;
+        display: grid;
+        grid-template-columns: auto;
+    }   
+}
+.fixx{
+    margin-top: 100px;
+}
+
+.donor-line {
+    position: relative;
+    border-radius: 3%;
+    width: 82%;
+    margin: 3%;
+    padding: 3.5%;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.93);
+    box-shadow: 5px 3px 10px rgba(0, 150, 136, 0.72);
+
+    .donor-item-img{
+        border-radius: 0;
+        width: 100%;
+        margin: auto;
+        opacity: 97%;
+    }
+    .div-buttons{
+        opacity: 0;
+        .donor-item-button{
+            padding: 2%;
+            margin: 10% 10% 10% 11.5%;
+            width: 78%;
+            height: 50px;
+            display: block;
+            font-size: 112%;
+            color: white;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.438);
+            border: rgba(255, 255, 255, 0.623) solid 1px;
+            box-shadow:3px 3px 3px rgba(45, 148, 105, 0.308) ;
+        }
+        .more{
+            margin-top: 16%;
+
+        }
+    }
+    .donor-item-button:hover{
+       color: rgba(0, 150, 136, 0.57);
+        border:rgba(0, 150, 136, 0.57) solid 2px ;
+        cursor: pointer;
+    }
+    .donor-item-div1{
+        background: rgba(0, 0, 0, 0.42);
+        opacity: 1;
+        position: absolute;
+        width: 46%;
+        top: 3.7%;
+        left: 4%;
+        height: 330px;
+        border-radius: 0;
+    }
+    
+    .donor-item-div2{
+        background: rgba(0, 0, 0, 0.42);
+        opacity: 1;
+        position: absolute;
+        width: 46%;
+        top: 3.7%;
+        right: 4%;
+        height: 330px;
+        border-radius: 0;
+    }
+   
+}
+.block-recipient{
+    padding-bottom: 3%;
+    width: 91%;
+    display: block;
+    box-sizing: border-box;
+}
+.donor-line .div-buttons {
+    position: absolute; 
+    top: 22%;
+    left: 2%;
+    width: 96.5%;
+    height: 57.5%;
+    border-radius: 3%;
+}
+.donor-line .div-buttons:hover{
+    opacity: 1;
+}
+.donor-item-name {
+    display: block;
+    text-align: center;
+    z-index: 100;
+    font-family: Arial, Helvetica, sans-serif;
+    /* margin: 2%; */
+    font-size: 17px;
+    padding: 1%;
+    margin-top: 4%;
+    border-top: groove;
+    color: rgba(0, 0, 0, 0.97);
+}
+.donor-item-name:hover{
+    color: rgba(0, 150, 136, 0.57);
+    cursor: pointer;
+}
+.clear-div:after{
+   margin: 0;
+}
+.fa{
+    border: none;
+}
+
+i {
+    cursor: pointer;
+   font-size: 130px; 
+   opacity: 1;
+   text-align: center;
+   border-top-style: inset;
+padding: 1%;
+width: 100%;
+margin: auto;
+text-align: center;
+}
+.cart , .info{
+    display: inline;
+}
+.cart:hover , .info:hover{
+    color: white;
+}
+
+.recipient-header{
+    font-size: 40px;
+    width: 85%;
+    margin-left: 6.5%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.712);
+    border-bottom: groove;
+    padding: 2%;
+}
+
+.update-input , .redio-div{
+    color: rgb(219, 218, 218);
+    display: block;
+    font-size: 14px;
+    border: none;
+    padding: 10px 10px;
+    // margin: -1% auto 1%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    width: 90%;
+}
+.update-label{
+    color:rgb(219, 218, 218);
+	font-size:13px;
+}
+.redio-div{
+    margin: 0% 0% 0% 0%;
+}
+.update-label-r span {
+    width:100%;
+	color:#fff;
+	display:block;
+    color:rgb(219, 218, 218);
+	font-size:15px;
+}
+.update-button{
+    padding: 2%;
+    width: 20%;
+    height: 50px;
+    display: block;
+    line-height: 20%;
+    font-size: 79%;
+    margin: auto;
+    color: white;
+    border-radius: 20px;
+    margin-top: 2%;
+    background: rgba(0, 0, 0, 0.35);
+    border: rgba(255, 255, 255, 0.623) solid 1px;
+    box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+
+.update-button:hover{
+    color: rgba(0, 150, 136, 0.57);
+    border:rgba(0, 150, 136, 0.57) solid 2px ;
+    cursor: pointer;
+}
+.curt-item:hover{
+    color: rgba(6, 83, 76, 0.911);
+    background: rgba(255, 255, 255, 0.973);
+    transition: 650ms;
+}
+.donation-button{
+    padding: 2%;
+    width: 44%;
+    height: 50px;
+    display: block;
+    line-height: 20%;
+    font-size: 20px;
+    color: white;
+    margin-top: .9%;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.35);
+    border: rgba(255, 255, 255, 0.623) solid 1px;
+    box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+.donation-button:hover{
+    color: rgba(0, 150, 136, 0.57);
+    border:rgba(0, 150, 136, 0.57) solid 2px ;
+    cursor: pointer;
+    
+}
+.donation-div{
+    position: relative;
+    width: 100%;
+    padding: 2%;
+    
+}
+.donor-header{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    font-size: 37px;
+    border-bottom: groove;
+    color: #ffffffee;
+    padding: 1%;
+}
+.donation-p{
+    text-align: left;
+    font-size: 24px;
+    padding: 2%;
+    margin: 1%;
+    color: #ffffffcf;
+    text-shadow: 1px 2px 2px #1b5d57;
+}
+.donation-p::after{
+    border-bottom: groove;
+    
+}
+.cart-div{
+    position: relative;
+    margin-left: 267px;
+}
+
+.curt-item{
+    right: 10px !important;
+    font-size: 45px !important;
+    height: 58px !important;
+    text-decoration: none;
+    width: 90px;
+    background-color: rgb(12, 69, 76);
+    border-radius: 50%;
+}
+.space-span{
+    width: 100%;
+    
+}
+
+.form-lable- , .form-lable-r{
+    display: block;
+    font-size: 12px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.822);
+}
+.form-lable-r{
+    background-color: rgba(255, 255, 255, 0.185);
+    border: none;
+    // padding: 1%;
+    margin-bottom: 1%;
+    // text-align: center;
+    width: 100%;
+    border-radius: 25px;
+    
+    label{
+        margin-left: 4%;
+    }
+}
+.form-input-{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.185);
+    border: none;
+    padding: 1%;
+    margin-bottom: 1%;
+    margin-top: -1;
+    color: rgba(255, 255, 255, 0.932);
+    width: 90%;
+    border-radius: 25px;
+}
+
+.form-button-:hover{
+    background: rgba(197, 195, 195, 0.35);
+    color: rgba(2, 20, 19, 0.57);
+    border:rgba(2, 20, 19, 0.57) solid 2px ;
+    cursor: pointer; 
+}
+.time{
+    width: 40%;
+    text-align: center;
+    font-size: 16px;
+}
+.section-item{
+    margin: auto;
+display: grid;
+grid-template-columns: 50% 50%;
+}
+
+.section-donor-item-img{
+    border-radius: 3%;
+    width: 47%;
+    margin: auto;
+    opacity: 97%;
+    grid-column: 1;
+    border-radius: 6%;
+    width: 90%;
+    height: 101%;
+    margin: auto;
+    opacity: 97%;
+}
+.section-info{
+    float: right;
+    background: #00000038;
+    padding: 3%;
+    grid-column: 2;
+    /* margin: auto; */
+    border-radius: 6%;
+    letter-spacing: 1px;
+    line-height: 197%;
+}
+.section-button{
+    position: absolute;
+    top: 6%;
+    left: 4.7%;
+    width: 42.9%;
+    background: #00000061;
+    background-size: cover;
+    height: 89%;
+    border-radius: 6%;
+    opacity: 0;
+}
+.section-donor-name , .section-donor-type , .section-donor-time , .section-donor-amount {
+    text-align: center;
+    border-bottom: groove;
+    line-height: 42px;
+    margin-bottom: 7%;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px #1a1d1dd9;
+}
+.section-button:hover{
+    opacity: 1;
+}
+.donor-item-button-section{
+    padding: 2%;
+    margin: 16% auto 0% auto;
+    width: 65%;
+    height: 50px;
+    display: block;
+    font-size: 112%;
+    color: white;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.438);
+    border: rgba(255, 255, 255, 0.623) solid 1px;
+    box-shadow: 3px 3px 3px rgba(45, 148, 105, 0.308);
+}
+
+.donor-line-section{
+    position: relative;
+    border-radius: 3%;
+    width: 57%;
+    margin: auto;
+    padding: 1.5%;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.74);
+    box-shadow: 5px 5px 3px rgba(33, 112, 79, 0.658);
+}
+.donor-item-button-section:hover{
+    color: rgba(0, 150, 136, 0.57);
+    border:rgba(0, 150, 136, 0.57) solid 2px ;
+    cursor: pointer;
+}
+// .form-label-r{
+//     width: 100%;
+// }
+.update-label span {
+    text-align: left;
+  }
+  .form-lable-r label {
+    margin-left: 1%;
+}
+.form-lable-r {
+    background-color: rgba(255, 255, 255, 0.185);
+    border: none;
+    margin-bottom: 1%;
+    
+    margin-top: 2%;
+    
+    width: 90% !important;
+    border-radius: 25px;
+}
+.redio-div{
+    margin: 2% 0 0 0 !important;
+}
+.pop-up-sub-model {
+    position: absolute;
+    z-index: 2500;
+    margin: auto;
+}
