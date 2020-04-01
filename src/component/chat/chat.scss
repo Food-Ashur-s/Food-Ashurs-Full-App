@@ -149,6 +149,9 @@ font-size: 17px;
 // font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 color: white;
 border: 1px solid rgba(0, 0, 0, 0.849);
+width: 8vh;
+margin-bottom: -1%;
+
 }
 
 .msgSend:hover {
@@ -370,6 +373,7 @@ svg.chat path {
   position: absolute;
   bottom: -26px;
   right: 3%;
+  margin-left: -2%;
   border-radius: 50%;
   z-index: 3000;
   background-color: #00928596;
@@ -381,4 +385,17 @@ svg.chat path {
 .submitB:hover {
   color: #ffffff48;
   border: solid 2px #ffffff48;
+}
+
+@media(max-width: 768px) {
+  .innerForm {
+  width: 40vh;
+  margin-left: -77%;
+  
+  }
+  .msgInput{
+    width: 27vh;
+    margin-right: 11%;
+}
+
 }
