@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Food-Ashur-s/Food-Ashurs-Full-App/issues"
   },
-  "homepage": "https://Nsuliman.github.io/Food-Ashur-s/Food-Ashurs-Full-App",
+  "homepage": "https://Nsuliman.github.io/Food-Ashurs-Full-App",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@reduxjs/toolkit": "^1.3.2",
