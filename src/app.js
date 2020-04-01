@@ -58,7 +58,6 @@ export default function App (){
           <Profile />
           <Footer/>
         </Route>
-
       </LoginContext>
     </>
   );
