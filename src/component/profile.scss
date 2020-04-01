@@ -323,6 +323,11 @@ z-index: 1;
 }
 
 @media(max-width: 768px) {
+  .parg{
+    overflow: scroll;
+    width: 150px;
+    height: 200px;
+  }
   .page__course{
     padding:2%}
 

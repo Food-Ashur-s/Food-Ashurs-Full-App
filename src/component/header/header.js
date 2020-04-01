@@ -69,7 +69,11 @@ class Header extends React.Component{
       <>
         <div className='header-containar'>
 
-          <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px"/>
+          <div >
+            <a href="#header" >
+              <img src={logo}  className="wow fadeInLeft slower logo" height="65px" width="200px" />
+            </a>
+          </div>
           <link rel="stylesheet" href="animate.min.css"></link>
           {/* <div className="wow pulse slower" data-wow-offset='50' data-wow-delay="0s" data-wow-iteration="500">
             <h1>Food Ashur's</h1>
@@ -80,20 +84,20 @@ class Header extends React.Component{
               <span>
                 <ul className="sub-menu ">
                   <li>
-                    <Link to='/'>Home</Link>
+                    <a href="#header" >Home</a>
                   </li>
                   <li>
-                    <NavLink to='/profile'>Profile</NavLink>
+                    <NavLink href="#header" to='/profile'>Profile</NavLink>
                   </li>
                   <li>
-                    <a href="#team-section" title="aboutUs">About Us</a>
+                    <a href="#team-section" title="aboutUs" >About Us</a>
                   </li>
                   <li>
                     <If condition={this.context.loggedIn}>
-                      <a onClick={this.context.logout} >Log Out!</a>
+                      <a href="#header" onClick={this.context.logout} >Log Out!</a>
                     </If>
                     <If condition={!this.context.loggedIn}>
-                      <a onClick={this.handleSignClick}>Log In</a>
+                      <a href="#header" onClick={this.handleSignClick}>Log In</a>
                       {/* <button onClick={this.handleSignClick} className="signForm-button" >
             SignIn</button> */}
                     </If>
@@ -122,7 +126,7 @@ class Header extends React.Component{
           <button onClick={this.handleSignClick} data-aos="fade-up" data-aos-duration="2000" className="signForm-button" >
             SignIn</button>
         </If>
-        <div className="header-page"></div>
+        <div className="header-page" id="header"></div>
         <div className="quotes-div">
           {/* <ul class="slideshow"> */}
           <div ><p data-aos="flip-up" className="quote">Food charity</p></div>

@@ -9,20 +9,37 @@ import './about.scss';
 
 
 class About  extends React.Component {
+  constructor(props){
+    super(props);
+    this.state= {show:'fixed'};
+  }
 
   render() {
     return (
       <div className="team-section" id="team-section">
-        <h2>Our Team</h2>
-        <span className="border"></span>
-        <div className="ps">
-          <a href="#p1"><img src={ayman} alt="" /></a>
-          <a href="#p2"><img src={qusay} alt="" /></a>
-          <a href="#p3"><img src={ashar} alt="" /></a>
-          <a href="#p4"><img src={nawal} alt="" /></a>
+        <div className="hid"style={{display:this.state.show}}>
+          <h2>Our Team</h2>
+          <span className="border"></span>
+          <div className="ps">
+            <a href="#p1"><img src={ayman} onClick={()=> this.setState({show:'none'})} alt="" /></a>
+            <a href="#p2"><img src={qusay}  onClick={()=> this.setState({show:'none'})} alt="" /></a>
+            <a href="#p3"><img src={ashar}  onClick={()=> this.setState({show:'none'})} alt="" /></a>
+            <a href="#p4"><img src={nawal}  onClick={()=> this.setState({show:'none'})} alt="" /></a>
+          </div>
         </div>
 
         <div className="section" id="p1">
+          <div className="team-section" id="team-section">
+            <h2>Our Team</h2>
+            <span className="border"></span>
+            <div className="ps">
+              <a href="#p1"><img src={ayman} alt="" /></a>
+              <a href="#p2"><img src={qusay} alt="" /></a>
+              <a href="#p3"><img src={ashar} alt="" /></a>
+              <a href="#p4"><img src={nawal} alt="" /></a>
+            </div>
+          </div>
+          
           <span className="name-">Ayman Khawaldeh</span>
           <span className="border"></span>
 
@@ -37,6 +54,16 @@ class About  extends React.Component {
 
 
         <div className="section" id="p2">
+          <div className="team-section" id="team-section">
+            <h2>Our Team</h2>
+            <span className="border"></span>
+            <div className="ps">
+              <a href="#p1"><img src={ayman} alt="" /></a>
+              <a href="#p2"><img src={qusay} alt="" /></a>
+              <a href="#p3"><img src={ashar} alt="" /></a>
+              <a href="#p4"><img src={nawal} alt="" /></a>
+            </div>
+          </div>
           <span className="name-">Qusay Hanaqtah</span>
           <span className="border"></span>
 
@@ -57,6 +84,16 @@ Graduate of the Luminus Technical College University’s Advanced School of Comp
 
 
         <div className="section" id="p3">
+          <div className="team-section" id="team-section">
+            <h2>Our Team</h2>
+            <span className="border"></span>
+            <div className="ps">
+              <a href="#p1"><img src={ayman} alt="" /></a>
+              <a href="#p2"><img src={qusay} alt="" /></a>
+              <a href="#p3"><img src={ashar} alt="" /></a>
+              <a href="#p4"><img src={nawal} alt="" /></a>
+            </div>
+          </div>
           <span className="name-">Ashar Oran</span>
           <span className="border"></span>
           <div className="par">
@@ -71,6 +108,16 @@ Through my strong understanding of back-end and user interface development, I as
 
 
         <div className="section" id="p4">
+          <div className="team-section" id="team-section">
+            <h2>Our Team</h2>
+            <span className="border"></span>
+            <div className="ps">
+              <a href="#p1"><img src={ayman} alt="" /></a>
+              <a href="#p2"><img src={qusay} alt="" /></a>
+              <a href="#p3"><img src={ashar} alt="" /></a>
+              <a href="#p4"><img src={nawal} alt="" /></a>
+            </div>
+          </div>
           <span className="name-">Nawal Suliman</span>
           <span className="border"></span>
 
