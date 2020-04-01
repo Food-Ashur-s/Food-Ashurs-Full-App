@@ -265,6 +265,15 @@ span.stars {
 position: relative; 
 z-index: 1;
 }
+.btn1{
+  padding: 8%;
+    border: 2px solid #0a252a;
+    /* box-shadow: 2px 0px 2px 2px #0a252a; */
+    border-radius: 25px;
+    font-size: 13px;
+    color: #ffffffb5;
+    width: 100%;
+}
 .btnz:hover{
  color: #0b7685dc;
  border: solid 1px #0b7685dc;

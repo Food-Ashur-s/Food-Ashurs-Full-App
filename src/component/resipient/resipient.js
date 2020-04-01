@@ -159,8 +159,8 @@ function Recipients (props){
         <div className="donation-div">
           <h3 data-aos="zoom-in-up" data-aos-duration="1000" className="donor-header">Recipients</h3>
           <span className="space-span"></span>
-          <p data-aos="fade-left" data-aos-duration="1000" className="donation-p">“Every man must decide whether he will walk in the light of creative altruism or in the darkness of destructive selfishness.”</p>
-          <p data-aos="fade-right" data-aos-duration="1000" className="donation-p">“Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead.”</p>
+          <p data-aos="fade-left" data-aos-duration="1000" className="res-p">“Service to others is the rent you pay for your room here on earth.”</p>
+          <p data-aos="fade-right" data-aos-duration="1000" className="res-p">“We make a living by what we get, but we make a life by what we give.”</p>
           <div className="donation-href-div">
             <div className="cart-div" data-aos="fade-right"
               data-aos-offset="100"
@@ -223,7 +223,7 @@ function Recipients (props){
                 </div>
               </div>
               <div className="result-req-div">
-                <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Result Request</h4>
+                {/* <h4 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Result Request</h4> */}
                 <section className="block-recipient">
                   <h3 data-aos="zoom-in-up" data-aos-duration="1500" className="recipient-header"> Results Match Your Request: {recipient.requestRecipient.length}</h3>
                   <div className="recipient-list">
@@ -236,13 +236,13 @@ function Recipients (props){
                           </div>
                         </div>
                         <div className="styles-div">
-                          <div className="donor-item-div1" data-aos="fade-right"
+                          <div className="donor-item-div1-" data-aos="fade-right"
                             data-aos-duration="1500" ></div>
-                          <div className="donor-item-div2"data-aos="fade-left"
+                          <div className="donor-item-div2-"data-aos="fade-left"
                             data-aos-duration="1700"></div>
                         </div>
                         <div className="div-buttons">
-                          <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="	fa fa-address-card-o info"></i>More Detail</button>
+                          <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="fa fa-address-card-o info"></i>More Detail</button>
                           <button onClick={()=> addCart(item)}  className="donor-item-button"><i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
                         </div>
                       </div>;
@@ -303,7 +303,7 @@ function Recipients (props){
                   <div className="cart-name">{item.name}</div>
                   <div className="cart-button-div">
                     <button onClick={()=> toggleCartDetails(item)} className="update-button-cart"><i className="	fa fa-address-card-o info"></i>More Detail</button>
-                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart"><i className="	fa fa-address-card-o info"></i>Update</button>
+                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart"><i className="		fa fa-pencil-square info"></i>Update</button>
                     <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart"><i className="fa fa-close info"></i>DELETE</button>
                   </div>
                 </div>;
@@ -349,8 +349,8 @@ function Recipients (props){
                         <input type='hidden' className="update-input" name='_id' value={details._id} />
                       </label>
                       <label className="update-label" >Name :</label>
-                        <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
-               
+                      <input type='text' name='name' placeholder='type your name' className="update-input" defaultValue={updated.name} onChange={handelUpdateChange} required />
+
                       <div className="redio-div">
                         <label className="update-label-r">
                           <input type='radio' name='type' value='eastern food' className="update-input-r" onClick={handelUpdateChange} required />Eastern Food
@@ -363,11 +363,11 @@ function Recipients (props){
                         </label>
                       </div>
                       <label className="update-label" ><span>available_time</span> </label>
-                        <input type='text' name='available_time' className="update-input" placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
-                     
+                      <input type='text' name='available_time' className="update-input" placeholder='type your available_time' defaultValue={updated.available_time} onChange={handelUpdateChange} required />
+
                       <label className="update-label"> <span>amount</span>  </label>
-                        <input type='number' name='amount' className="update-input" placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
-                    
+                      <input type='number' name='amount' className="update-input" placeholder='type your amount' defaultValue={updated.amount} onChange={handelUpdateChange} />
+
                       <button className="update-button">Submit</button>
                     </form>
                   </div>
@@ -376,6 +376,7 @@ function Recipients (props){
             </When>
           </Model>
         </When>
+        <div className="spasee-div"></div>
       </section>
     </>
   );

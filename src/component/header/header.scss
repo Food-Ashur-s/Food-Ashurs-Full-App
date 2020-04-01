@@ -237,8 +237,8 @@ header{
     background-size: cover;
     opacity: .95;
     background-attachment: fixed;
-    animation: homeSlide 25s linear 0s infinite;
-    transition:all 10s ease-in-out;
+    animation: homeSlide 30s linear 0s infinite;
+    transition:all 20s ease-in-out;
 }
 
 @keyframes homeSlide{
@@ -252,12 +252,13 @@ header{
     }
     60%{
         background-image: url(https://i.ibb.co/hR7ghcg/img-home-5.jpg);
-        transform: scale(1.1) translateY(10px); 
+        transform: scale(1) translateY(-10px); 
     }
-    80%{
+    61%{
         background-image: url(https://i.ibb.co/Xb5Md9H/img-home-2.jpg);
         transform: scale(1) translateY(0px);
         opacity: 80%;
+        // width: 100%;
     }
     100%{
         background-image: url(https://i.ibb.co/Xb5Md9H/img-home-2.jpg);

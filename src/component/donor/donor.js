@@ -218,7 +218,7 @@ function Donors (props){
                 <div className="section-donor-amount">{item.amount}</div>
               </div>
               <div className="section-button">
-                <button onClick={()=> toggleUpdate(item)} className="donor-item-button-section"> <i className="	fa fa-address-card-o info"></i>Update</button>
+                <button onClick={()=> toggleUpdate(item)} className="donor-item-button-section"> <i className="		fa fa-pencil-square info"></i>Update</button>
                 <button onClick={()=> deleteItem(item._id)} className="donor-item-button-section"><i className="fa fa-close info"></i> DELETE</button>
               </div>
             </div>
@@ -310,9 +310,9 @@ function Donors (props){
                 return <div key={i}>
                   <div className="cart-name">{item.name}</div>
                   <div className="cart-button-div">
-                    <button onClick={()=> toggleCartDetails(item)} className="update-button-cart">More Detail</button>
-                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart">Update</button>
-                    <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart">DELETE</button>
+                    <button onClick={()=> toggleCartDetails(item)} className="update-button-cart"><i className="fa fa-address-card-o info"></i>More Detail</button>
+                    <button onClick={()=> toggleCartUpdate(item)} className="update-button-cart"><i className="fa fa-pencil-square info"></i>Update</button>
+                    <button onClick={()=> deleteCartItem(item._id)} className="update-button-cart"><i className="fa fa-close info"></i>DELETE</button>
                   </div>
                 </div>;
               })

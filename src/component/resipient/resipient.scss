@@ -163,8 +163,8 @@
 }
 .donor-line-section- {
   position: relative;
-  border-radius: 3%;
-  width: 66%;
+  border-radius: 6%;
+  width: 57%;
   margin: auto;
   padding: 1.5%;
   display: block;
@@ -182,4 +182,37 @@
 }
 .redio-div {
     margin: 2% 0% 1% 0%;
+}
+.donor-line .donor-item-div2- {
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 1;
+  position: absolute;
+  width: 46%;
+  top: 3.3%;
+  right: 4.1%;
+  height: 330px;
+  border-radius: 0;
+}
+.donor-line .donor-item-div1- {
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 1;
+  position: absolute;
+  width: 46%;
+  top: 3.3%;
+  left: 4.1%;
+  height: 330px;
+  border-radius: 0;
+}
+.res-p {
+  text-align: center;
+  font-size: 24px;
+  padding: 2%;
+  margin: 1%;
+  color: #ffffffcf;
+  text-shadow: 1px 2px 2px #1b5d57;
+}
+.spasee-div{
+  margin: 5% -2% 2% auto;
+  width: 95%;
+  border-bottom: 3px groove rgba(255, 255, 255, 0.76);
 }
