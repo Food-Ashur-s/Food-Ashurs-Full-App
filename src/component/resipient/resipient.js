@@ -274,7 +274,7 @@ function Recipients (props){
                   data-aos-duration="1700"></div>
               </div>
               <div className="div-buttons">
-                <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="	fa fa-address-card-o info"></i>More Detail</button>
+                <button onClick={()=> toggleDetails(item)} className="donor-item-button"><i className="	fa fa-address-card-o info"></i>More Details</button>
                 <button onClick={()=> addCart(item)} className="donor-item-button"><i className="fa fa-cart-plus cart" ></i>Add To Cart</button>
               </div>
             </div>;
